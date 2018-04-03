@@ -2,18 +2,18 @@
 using MySql.Data.MySqlClient;
 using System.Windows.Forms;
 
-public class dbConnectorClass
+public class DbConnectorClass
 {
     private static String connectStr = "datasource=localhost;port=3306;username=root;password=root;";
     private MySqlConnection dbConnect;
 
-    public dbConnectorClass()
+    public DbConnectorClass()
 	{
         dbConnect = new MySqlConnection(connectStr);
         dbConnect.Open();
     }
 
-    public String nullToEmpty(MySqlDataReader dbReader, String columnName)
+    public String NullToEmpty(MySqlDataReader dbReader, String columnName)
     {
         int idx = dbReader.GetOrdinal(columnName);
         if (dbReader.IsDBNull(idx))
@@ -23,7 +23,7 @@ public class dbConnectorClass
         return dbReader.GetString(idx);
     }
 
-    public MySqlDataReader runQuery(String query)
+    public MySqlDataReader RunQuery(String query)
     {
         MySqlDataReader dbReader = null;
 

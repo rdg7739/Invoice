@@ -33,7 +33,7 @@
             this.storePhoneLabels = new System.Windows.Forms.Label();
             this.storeAddressLabel = new System.Windows.Forms.Label();
             this.storeDetailabel = new System.Windows.Forms.Label();
-            this.StoreNameTxt = new System.Windows.Forms.TextBox();
+            this.storeNameTxt = new System.Windows.Forms.TextBox();
             this.storePhoneTxt = new System.Windows.Forms.TextBox();
             this.storeAddressTxt = new System.Windows.Forms.TextBox();
             this.storeDetailTxt = new System.Windows.Forms.TextBox();
@@ -88,11 +88,11 @@
             // 
             // StoreNameTxt
             // 
-            this.StoreNameTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.StoreNameTxt.Location = new System.Drawing.Point(267, 122);
-            this.StoreNameTxt.Name = "StoreNameTxt";
-            this.StoreNameTxt.Size = new System.Drawing.Size(288, 26);
-            this.StoreNameTxt.TabIndex = 5;
+            this.storeNameTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.storeNameTxt.Location = new System.Drawing.Point(267, 122);
+            this.storeNameTxt.Name = "StoreNameTxt";
+            this.storeNameTxt.Size = new System.Drawing.Size(288, 26);
+            this.storeNameTxt.TabIndex = 5;
             // 
             // storePhoneTxt
             // 
@@ -181,7 +181,7 @@
             this.Controls.Add(this.storeDetailTxt);
             this.Controls.Add(this.storeAddressTxt);
             this.Controls.Add(this.storePhoneTxt);
-            this.Controls.Add(this.StoreNameTxt);
+            this.Controls.Add(this.storeNameTxt);
             this.Controls.Add(this.storeDetailabel);
             this.Controls.Add(this.storeAddressLabel);
             this.Controls.Add(this.storePhoneLabels);
@@ -199,7 +199,7 @@
         private System.Windows.Forms.Label storePhoneLabels;
         private System.Windows.Forms.Label storeAddressLabel;
         private System.Windows.Forms.Label storeDetailabel;
-        private System.Windows.Forms.TextBox StoreNameTxt;
+        private System.Windows.Forms.TextBox storeNameTxt;
         private System.Windows.Forms.TextBox storePhoneTxt;
         private System.Windows.Forms.TextBox storeAddressTxt;
         private System.Windows.Forms.TextBox storeDetailTxt;

@@ -12,7 +12,12 @@ namespace Invoice
 {
     public partial class MyStore : Form
     {
-        private dbConnectorClass db;
+        private DbConnectorClass db;
+        private String dbStoreName;
+        private String dbStorePhone;
+        private String dbStoreAddress;
+        private String dbStoreFax;
+        private String dbStoreDetail;
         public MyStore()
         {
             InitializeComponent();
@@ -22,19 +27,19 @@ namespace Invoice
         {
             try
             {
-                var x = MessageBox.Show("Are you sure you want to save ? ", "Save", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                var x = MessageBox.Show("Are you sure you want to save? ", "Save", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if(DialogResult.Yes == x)
                 {
                     String sqlQuery = "UPDATE invoice_db.store SET " +
-                    "store_name='" + this.StoreNameTxt.Text + "', " +
+                    "store_name='" + this.storeNameTxt.Text + "', " +
                     " store_phone = '" + this.storePhoneTxt.Text + "', " +
                     " store_address = '" + this.storeAddressTxt.Text + "', " +
                     " store_fax = '" + this.storeFaxTxt.Text + "', " +
                     " store_detail = '" + this.storeDetailTxt.Text + "' " +
                     " WHERE store_id = 1;";
-                    db.runQuery(sqlQuery).Close();
-                    MessageBox.Show("Saved");
-                    this.Close();
+                    db.RunQuery(sqlQuery).Close();
+                    syncData();
+                    MessageBox.Show("Data Saved successfully", "Saved", MessageBoxButtons.OK, MessageBoxIcon.None);
                 }
             }
             catch (Exception ex)
@@ -47,16 +52,17 @@ namespace Invoice
         {
             try
             {
-                db = new dbConnectorClass();
-                MySqlDataReader dbReader =  db.runQuery("select * from invoice_db.store where store_id = 1");
+                db = new DbConnectorClass();
+                MySqlDataReader dbReader =  db.RunQuery("select * from invoice_db.store where store_id = 1");
                 if (dbReader.Read())
                 {
-                    this.StoreNameTxt.Text = db.nullToEmpty(dbReader, "store_name");
-                    this.storePhoneTxt.Text = db.nullToEmpty(dbReader, "store_phone");
-                    this.storeAddressTxt.Text = db.nullToEmpty(dbReader, "store_address");
-                    this.storeFaxTxt.Text = db.nullToEmpty(dbReader, "store_fax");
-                    this.storeDetailTxt.Text = db.nullToEmpty(dbReader, "store_detail");
+                    this.storeNameTxt.Text = db.NullToEmpty(dbReader, "store_name");
+                    this.storePhoneTxt.Text = db.NullToEmpty(dbReader, "store_phone");
+                    this.storeAddressTxt.Text = db.NullToEmpty(dbReader, "store_address");
+                    this.storeFaxTxt.Text =  db.NullToEmpty(dbReader, "store_fax");
+                    this.storeDetailTxt.Text = db.NullToEmpty(dbReader, "store_detail");
                 }
+                syncData();
                 dbReader.Close();
             }
             catch (Exception ex)
@@ -64,42 +70,36 @@ namespace Invoice
                 MessageBox.Show(ex.Message);
             }
         }
-
+        private void syncData()
+        {
+            this.dbStoreName = this.storeNameTxt.Text;
+            this.dbStorePhone = this.storePhoneTxt.Text;
+            this.dbStoreAddress = this.storeAddressTxt.Text;
+            this.dbStoreFax = this.storeFaxTxt.Text;
+            this.dbStoreDetail = this.storeDetailTxt.Text;
+        }
         private void CancelBtn_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void MyStore_FormClosing(object sender, FormClosingEventArgs e)
+        protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            var x = MessageBox.Show("Are you sure you want to really exit ? ", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (x == DialogResult.Yes)
-            {
-                db.Close();
-                e.Cancel = false;
-            }
-            else if (e != null)
-            {
-                e.Cancel = true;
-            }
-        }
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (e.CloseReason == CloseReason.UserClosing)
-            {
-                DialogResult result = MessageBox.Show("Do you really want to exit?", "Dialog Title", MessageBoxButtons.YesNo);
-                if (result == DialogResult.Yes)
+            if (!this.storeNameTxt.Text.Equals(this.dbStoreName) ||
+            !this.storePhoneTxt.Text.Equals(this.dbStorePhone) ||
+            !this.storeAddressTxt.Text.Equals(this.dbStoreAddress) ||
+            !this.storeFaxTxt.Text.Equals(this.dbStoreFax) ||
+            !this.storeDetailTxt.Text.Equals(this.dbStoreDetail)){
+                var x = MessageBox.Show("Are you sure you want to really exit?\n unsaved data will be lost. ", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (x == DialogResult.Yes)
                 {
-                    Environment.Exit(0);
+                    db.Close();
+                    e.Cancel = false;
                 }
                 else
                 {
                     e.Cancel = true;
                 }
-            }
-            else
-            {
-                e.Cancel = true;
             }
         }
 

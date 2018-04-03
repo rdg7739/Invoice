@@ -67,7 +67,7 @@
     <Compile Include="CreateItem.Designer.cs">
       <DependentUpon>CreateItem.cs</DependentUpon>
     </Compile>
-    <Compile Include="dbConnector.cs" />
+    <Compile Include="DbConnector.cs" />
     <Compile Include="MyStore.cs">
       <SubType>Form</SubType>
     </Compile>
