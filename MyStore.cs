@@ -38,7 +38,7 @@ namespace Invoice
                     " store_detail = '" + this.storeDetailTxt.Text + "' " +
                     " WHERE store_id = 1;";
                     db.RunQuery(sqlQuery).Close();
-                    syncData();
+                    SyncData();
                     MessageBox.Show("Data Saved successfully", "Saved", MessageBoxButtons.OK, MessageBoxIcon.None);
                 }
             }
@@ -62,7 +62,7 @@ namespace Invoice
                     this.storeFaxTxt.Text =  db.NullToEmpty(dbReader, "store_fax");
                     this.storeDetailTxt.Text = db.NullToEmpty(dbReader, "store_detail");
                 }
-                syncData();
+                SyncData();
                 dbReader.Close();
             }
             catch (Exception ex)
@@ -70,7 +70,8 @@ namespace Invoice
                 MessageBox.Show(ex.Message);
             }
         }
-        private void syncData()
+
+        private void SyncData()
         {
             this.dbStoreName = this.storeNameTxt.Text;
             this.dbStorePhone = this.storePhoneTxt.Text;

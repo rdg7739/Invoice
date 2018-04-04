@@ -28,203 +28,230 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
+            this.storeNameLabel = new System.Windows.Forms.Label();
+            this.storePhoneLabel = new System.Windows.Forms.Label();
+            this.contactNameLabel = new System.Windows.Forms.Label();
+            this.contactPhoneLabel = new System.Windows.Forms.Label();
+            this.storeDetailLabel = new System.Windows.Forms.Label();
+            this.storeNameTxt = new System.Windows.Forms.TextBox();
+            this.storePhoneTxt = new System.Windows.Forms.TextBox();
+            this.storeAddressTxt = new System.Windows.Forms.TextBox();
+            this.contactNameTxt = new System.Windows.Forms.TextBox();
+            this.storeDetailTxt = new System.Windows.Forms.TextBox();
+            this.createStoreTitleLabel = new System.Windows.Forms.Label();
+            this.cancelBtn = new System.Windows.Forms.Button();
+            this.saveBtn = new System.Windows.Forms.Button();
+            this.contactPhoneTxt = new System.Windows.Forms.TextBox();
+            this.storeAddressLabel = new System.Windows.Forms.Label();
+            this.storeFaxTxt = new System.Windows.Forms.TextBox();
+            this.storeFaxLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // label6
+            // storeNameLabel
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(158, 116);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(102, 20);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "Store Name: ";
+            this.storeNameLabel.AutoSize = true;
+            this.storeNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.storeNameLabel.Location = new System.Drawing.Point(157, 116);
+            this.storeNameLabel.Name = "storeNameLabel";
+            this.storeNameLabel.Size = new System.Drawing.Size(102, 20);
+            this.storeNameLabel.TabIndex = 0;
+            this.storeNameLabel.Text = "Store Name: ";
             // 
-            // label7
+            // storePhoneLabel
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(153, 146);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(106, 20);
-            this.label7.TabIndex = 1;
-            this.label7.Text = "Store Phone: ";
+            this.storePhoneLabel.AutoSize = true;
+            this.storePhoneLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.storePhoneLabel.Location = new System.Drawing.Point(153, 146);
+            this.storePhoneLabel.Name = "storePhoneLabel";
+            this.storePhoneLabel.Size = new System.Drawing.Size(106, 20);
+            this.storePhoneLabel.TabIndex = 1;
+            this.storePhoneLabel.Text = "Store Phone: ";
             // 
-            // label8
+            // contactNameLabel
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(140, 208);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(119, 20);
-            this.label8.TabIndex = 2;
-            this.label8.Text = "Contact Name: ";
+            this.contactNameLabel.AutoSize = true;
+            this.contactNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.contactNameLabel.Location = new System.Drawing.Point(140, 278);
+            this.contactNameLabel.Name = "contactNameLabel";
+            this.contactNameLabel.Size = new System.Drawing.Size(119, 20);
+            this.contactNameLabel.TabIndex = 2;
+            this.contactNameLabel.Text = "Contact Name: ";
             // 
-            // label9
+            // contactPhoneLabel
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(140, 239);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(119, 20);
-            this.label9.TabIndex = 3;
-            this.label9.Text = "Contact Phone:";
+            this.contactPhoneLabel.AutoSize = true;
+            this.contactPhoneLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.contactPhoneLabel.Location = new System.Drawing.Point(136, 309);
+            this.contactPhoneLabel.Name = "contactPhoneLabel";
+            this.contactPhoneLabel.Size = new System.Drawing.Size(123, 20);
+            this.contactPhoneLabel.TabIndex = 3;
+            this.contactPhoneLabel.Text = "Contact Phone: ";
             // 
-            // label10
+            // storeDetailLabel
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(120, 272);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(139, 20);
-            this.label10.TabIndex = 4;
-            this.label10.Text = "Store Detail/Note: ";
+            this.storeDetailLabel.AutoSize = true;
+            this.storeDetailLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.storeDetailLabel.Location = new System.Drawing.Point(120, 342);
+            this.storeDetailLabel.Name = "storeDetailLabel";
+            this.storeDetailLabel.Size = new System.Drawing.Size(139, 20);
+            this.storeDetailLabel.TabIndex = 4;
+            this.storeDetailLabel.Text = "Store Detail/Note: ";
             // 
-            // textBox2
+            // storeNameTxt
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.textBox2.Location = new System.Drawing.Point(267, 113);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(288, 26);
-            this.textBox2.TabIndex = 5;
+            this.storeNameTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.storeNameTxt.Location = new System.Drawing.Point(267, 113);
+            this.storeNameTxt.Name = "storeNameTxt";
+            this.storeNameTxt.Size = new System.Drawing.Size(288, 26);
+            this.storeNameTxt.TabIndex = 5;
             // 
-            // textBox6
+            // storePhoneTxt
             // 
-            this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.textBox6.Location = new System.Drawing.Point(267, 143);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(288, 26);
-            this.textBox6.TabIndex = 6;
+            this.storePhoneTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.storePhoneTxt.Location = new System.Drawing.Point(267, 143);
+            this.storePhoneTxt.Name = "storePhoneTxt";
+            this.storePhoneTxt.Size = new System.Drawing.Size(288, 26);
+            this.storePhoneTxt.TabIndex = 6;
             // 
-            // textBox7
+            // storeAddressTxt
             // 
-            this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.textBox7.Location = new System.Drawing.Point(267, 174);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(288, 26);
-            this.textBox7.TabIndex = 7;
+            this.storeAddressTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.storeAddressTxt.Location = new System.Drawing.Point(267, 209);
+            this.storeAddressTxt.Multiline = true;
+            this.storeAddressTxt.Name = "storeAddressTxt";
+            this.storeAddressTxt.Size = new System.Drawing.Size(288, 60);
+            this.storeAddressTxt.TabIndex = 7;
+            this.storeAddressTxt.UseWaitCursor = true;
             // 
-            // textBox8
+            // contactNameTxt
             // 
-            this.textBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.textBox8.Location = new System.Drawing.Point(267, 205);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(288, 26);
-            this.textBox8.TabIndex = 8;
+            this.contactNameTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.contactNameTxt.Location = new System.Drawing.Point(267, 275);
+            this.contactNameTxt.Name = "contactNameTxt";
+            this.contactNameTxt.Size = new System.Drawing.Size(288, 26);
+            this.contactNameTxt.TabIndex = 8;
             // 
-            // textBox9
+            // storeDetailTxt
             // 
-            this.textBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.textBox9.Location = new System.Drawing.Point(267, 269);
-            this.textBox9.Multiline = true;
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(288, 141);
-            this.textBox9.TabIndex = 10;
+            this.storeDetailTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.storeDetailTxt.Location = new System.Drawing.Point(267, 339);
+            this.storeDetailTxt.Multiline = true;
+            this.storeDetailTxt.Name = "storeDetailTxt";
+            this.storeDetailTxt.Size = new System.Drawing.Size(288, 141);
+            this.storeDetailTxt.TabIndex = 10;
             // 
-            // label11
+            // createStoreTitleLabel
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(307, 54);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(209, 39);
-            this.label11.TabIndex = 11;
-            this.label11.Text = "Create Store";
+            this.createStoreTitleLabel.AutoSize = true;
+            this.createStoreTitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createStoreTitleLabel.Location = new System.Drawing.Point(307, 54);
+            this.createStoreTitleLabel.Name = "createStoreTitleLabel";
+            this.createStoreTitleLabel.Size = new System.Drawing.Size(209, 39);
+            this.createStoreTitleLabel.TabIndex = 11;
+            this.createStoreTitleLabel.Text = "Create Store";
             // 
-            // button1
+            // cancelBtn
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(267, 427);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(88, 32);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "Cancel";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            this.cancelBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cancelBtn.Location = new System.Drawing.Point(267, 497);
+            this.cancelBtn.Name = "cancelBtn";
+            this.cancelBtn.Size = new System.Drawing.Size(88, 32);
+            this.cancelBtn.TabIndex = 12;
+            this.cancelBtn.Text = "Cancel";
+            this.cancelBtn.UseVisualStyleBackColor = true;
+            this.cancelBtn.Click += new System.EventHandler(this.CancelBtn_Click);
             // 
-            // button2
+            // saveBtn
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(467, 427);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(88, 32);
-            this.button2.TabIndex = 13;
-            this.button2.Text = "Save";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.Button2_Click);
+            this.saveBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveBtn.Location = new System.Drawing.Point(467, 497);
+            this.saveBtn.Name = "saveBtn";
+            this.saveBtn.Size = new System.Drawing.Size(88, 32);
+            this.saveBtn.TabIndex = 13;
+            this.saveBtn.Text = "Save";
+            this.saveBtn.UseVisualStyleBackColor = true;
+            this.saveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
             // 
-            // textBox10
+            // contactPhoneTxt
             // 
-            this.textBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.textBox10.Location = new System.Drawing.Point(267, 236);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(288, 26);
-            this.textBox10.TabIndex = 15;
+            this.contactPhoneTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.contactPhoneTxt.Location = new System.Drawing.Point(267, 306);
+            this.contactPhoneTxt.Name = "contactPhoneTxt";
+            this.contactPhoneTxt.Size = new System.Drawing.Size(288, 26);
+            this.contactPhoneTxt.TabIndex = 15;
             // 
-            // label12
+            // storeAddressLabel
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(140, 177);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(119, 20);
-            this.label12.TabIndex = 14;
-            this.label12.Text = "Store Address: ";
+            this.storeAddressLabel.AutoSize = true;
+            this.storeAddressLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.storeAddressLabel.Location = new System.Drawing.Point(140, 212);
+            this.storeAddressLabel.Name = "storeAddressLabel";
+            this.storeAddressLabel.Size = new System.Drawing.Size(119, 20);
+            this.storeAddressLabel.TabIndex = 14;
+            this.storeAddressLabel.Text = "Store Address: ";
+            // 
+            // storeFaxTxt
+            // 
+            this.storeFaxTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.storeFaxTxt.Location = new System.Drawing.Point(267, 176);
+            this.storeFaxTxt.Name = "storeFaxTxt";
+            this.storeFaxTxt.Size = new System.Drawing.Size(288, 26);
+            this.storeFaxTxt.TabIndex = 17;
+            // 
+            // storeFaxLabel
+            // 
+            this.storeFaxLabel.AutoSize = true;
+            this.storeFaxLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.storeFaxLabel.Location = new System.Drawing.Point(153, 179);
+            this.storeFaxLabel.Name = "storeFaxLabel";
+            this.storeFaxLabel.Size = new System.Drawing.Size(86, 20);
+            this.storeFaxLabel.TabIndex = 16;
+            this.storeFaxLabel.Text = "Store Fax: ";
             // 
             // CreateStore
             // 
             this.ClientSize = new System.Drawing.Size(784, 561);
-            this.Controls.Add(this.textBox10);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.textBox9);
-            this.Controls.Add(this.textBox8);
-            this.Controls.Add(this.textBox7);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.storeFaxTxt);
+            this.Controls.Add(this.storeFaxLabel);
+            this.Controls.Add(this.contactPhoneTxt);
+            this.Controls.Add(this.storeAddressLabel);
+            this.Controls.Add(this.saveBtn);
+            this.Controls.Add(this.cancelBtn);
+            this.Controls.Add(this.createStoreTitleLabel);
+            this.Controls.Add(this.storeDetailTxt);
+            this.Controls.Add(this.contactNameTxt);
+            this.Controls.Add(this.storeAddressTxt);
+            this.Controls.Add(this.storePhoneTxt);
+            this.Controls.Add(this.storeNameTxt);
+            this.Controls.Add(this.storeDetailLabel);
+            this.Controls.Add(this.contactPhoneLabel);
+            this.Controls.Add(this.contactNameLabel);
+            this.Controls.Add(this.storePhoneLabel);
+            this.Controls.Add(this.storeNameLabel);
             this.Name = "CreateStore";
+            this.Load += new System.EventHandler(this.CreateStore_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label storeNameLabel;
+        private System.Windows.Forms.Label storePhoneLabel;
+        private System.Windows.Forms.Label contactNameLabel;
+        private System.Windows.Forms.Label contactPhoneLabel;
+        private System.Windows.Forms.Label storeDetailLabel;
+        private System.Windows.Forms.TextBox storeNameTxt;
+        private System.Windows.Forms.TextBox storePhoneTxt;
+        private System.Windows.Forms.TextBox storeAddressTxt;
+        private System.Windows.Forms.TextBox contactNameTxt;
+        private System.Windows.Forms.TextBox storeDetailTxt;
+        private System.Windows.Forms.Label createStoreTitleLabel;
+        private System.Windows.Forms.Button cancelBtn;
+        private System.Windows.Forms.Button saveBtn;
+        private System.Windows.Forms.TextBox contactPhoneTxt;
+        private System.Windows.Forms.Label storeAddressLabel;
+        private System.Windows.Forms.TextBox storeFaxTxt;
+        private System.Windows.Forms.Label storeFaxLabel;
     }
 }

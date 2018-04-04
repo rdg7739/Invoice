@@ -188,7 +188,6 @@
             this.Controls.Add(this.storeNameLabel);
             this.Name = "MyStore";
             this.Load += new System.EventHandler(this.MyStore_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
