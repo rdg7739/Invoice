@@ -113,6 +113,14 @@
             this.storePhoneTxt.Size = new System.Drawing.Size(288, 26);
             this.storePhoneTxt.TabIndex = 6;
             // 
+            // storeFaxTxt
+            // 
+            this.storeFaxTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.storeFaxTxt.Location = new System.Drawing.Point(267, 176);
+            this.storeFaxTxt.Name = "storeFaxTxt";
+            this.storeFaxTxt.Size = new System.Drawing.Size(288, 26);
+            this.storeFaxTxt.TabIndex = 7;
+            // 
             // storeAddressTxt
             // 
             this.storeAddressTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -120,7 +128,7 @@
             this.storeAddressTxt.Multiline = true;
             this.storeAddressTxt.Name = "storeAddressTxt";
             this.storeAddressTxt.Size = new System.Drawing.Size(288, 60);
-            this.storeAddressTxt.TabIndex = 7;
+            this.storeAddressTxt.TabIndex = 8;
             this.storeAddressTxt.UseWaitCursor = true;
             // 
             // contactNameTxt
@@ -129,7 +137,15 @@
             this.contactNameTxt.Location = new System.Drawing.Point(267, 275);
             this.contactNameTxt.Name = "contactNameTxt";
             this.contactNameTxt.Size = new System.Drawing.Size(288, 26);
-            this.contactNameTxt.TabIndex = 8;
+            this.contactNameTxt.TabIndex = 9;
+            // 
+            // contactPhoneTxt
+            // 
+            this.contactPhoneTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.contactPhoneTxt.Location = new System.Drawing.Point(267, 306);
+            this.contactPhoneTxt.Name = "contactPhoneTxt";
+            this.contactPhoneTxt.Size = new System.Drawing.Size(288, 26);
+            this.contactPhoneTxt.TabIndex = 10;
             // 
             // storeDetailTxt
             // 
@@ -138,7 +154,7 @@
             this.storeDetailTxt.Multiline = true;
             this.storeDetailTxt.Name = "storeDetailTxt";
             this.storeDetailTxt.Size = new System.Drawing.Size(288, 141);
-            this.storeDetailTxt.TabIndex = 10;
+            this.storeDetailTxt.TabIndex = 11;
             // 
             // createStoreTitleLabel
             // 
@@ -147,7 +163,7 @@
             this.createStoreTitleLabel.Location = new System.Drawing.Point(307, 54);
             this.createStoreTitleLabel.Name = "createStoreTitleLabel";
             this.createStoreTitleLabel.Size = new System.Drawing.Size(209, 39);
-            this.createStoreTitleLabel.TabIndex = 11;
+            this.createStoreTitleLabel.TabIndex = 12;
             this.createStoreTitleLabel.Text = "Create Store";
             // 
             // cancelBtn
@@ -155,8 +171,8 @@
             this.cancelBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cancelBtn.Location = new System.Drawing.Point(267, 497);
             this.cancelBtn.Name = "cancelBtn";
-            this.cancelBtn.Size = new System.Drawing.Size(88, 32);
-            this.cancelBtn.TabIndex = 12;
+            this.cancelBtn.Size = new System.Drawing.Size(90, 30);
+            this.cancelBtn.TabIndex = 13;
             this.cancelBtn.Text = "Cancel";
             this.cancelBtn.UseVisualStyleBackColor = true;
             this.cancelBtn.Click += new System.EventHandler(this.CancelBtn_Click);
@@ -164,21 +180,13 @@
             // saveBtn
             // 
             this.saveBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveBtn.Location = new System.Drawing.Point(467, 497);
+            this.saveBtn.Location = new System.Drawing.Point(465, 497);
             this.saveBtn.Name = "saveBtn";
-            this.saveBtn.Size = new System.Drawing.Size(88, 32);
-            this.saveBtn.TabIndex = 13;
+            this.saveBtn.Size = new System.Drawing.Size(90, 30);
+            this.saveBtn.TabIndex = 14;
             this.saveBtn.Text = "Save";
             this.saveBtn.UseVisualStyleBackColor = true;
             this.saveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
-            // 
-            // contactPhoneTxt
-            // 
-            this.contactPhoneTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.contactPhoneTxt.Location = new System.Drawing.Point(267, 306);
-            this.contactPhoneTxt.Name = "contactPhoneTxt";
-            this.contactPhoneTxt.Size = new System.Drawing.Size(288, 26);
-            this.contactPhoneTxt.TabIndex = 15;
             // 
             // storeAddressLabel
             // 
@@ -187,16 +195,8 @@
             this.storeAddressLabel.Location = new System.Drawing.Point(140, 212);
             this.storeAddressLabel.Name = "storeAddressLabel";
             this.storeAddressLabel.Size = new System.Drawing.Size(119, 20);
-            this.storeAddressLabel.TabIndex = 14;
+            this.storeAddressLabel.TabIndex = 15;
             this.storeAddressLabel.Text = "Store Address: ";
-            // 
-            // storeFaxTxt
-            // 
-            this.storeFaxTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.storeFaxTxt.Location = new System.Drawing.Point(267, 176);
-            this.storeFaxTxt.Name = "storeFaxTxt";
-            this.storeFaxTxt.Size = new System.Drawing.Size(288, 26);
-            this.storeFaxTxt.TabIndex = 17;
             // 
             // storeFaxLabel
             // 
@@ -234,7 +234,19 @@
             this.PerformLayout();
 
         }
-
+        private void Init_deleteBtn()
+        {
+            this.DeleteBtn = new System.Windows.Forms.Button();
+            this.DeleteBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeleteBtn.Location = new System.Drawing.Point(593, 357);
+            this.DeleteBtn.Name = "DeleteBtn";
+            this.DeleteBtn.Size = new System.Drawing.Size(90, 30);
+            this.DeleteBtn.TabIndex = 13;
+            this.DeleteBtn.Text = "Delete";
+            this.DeleteBtn.UseVisualStyleBackColor = true;
+            this.DeleteBtn.Click += new System.EventHandler(this.DeleteBtn_Click);
+            this.Controls.Add(this.DeleteBtn);
+        }
         #endregion
         private System.Windows.Forms.Label storeNameLabel;
         private System.Windows.Forms.Label storePhoneLabel;
@@ -253,5 +265,6 @@
         private System.Windows.Forms.Label storeAddressLabel;
         private System.Windows.Forms.TextBox storeFaxTxt;
         private System.Windows.Forms.Label storeFaxLabel;
+        private System.Windows.Forms.Button DeleteBtn;
     }
 }

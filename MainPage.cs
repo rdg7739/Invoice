@@ -37,7 +37,7 @@ namespace Invoice
 
         private void ItemListBtn_Click(object sender, EventArgs e)
         {
-            ItemList form2 = new ItemList();
+            ProductList form2 = new ProductList();
             form2.Show();
         }
 
@@ -61,7 +61,7 @@ namespace Invoice
 
         private void CreatItemBtn_Click(object sender, EventArgs e)
         {
-            CreateItem form2 = new CreateItem();
+            CreateProduct form2 = new CreateProduct();
             form2.Show();
         }
     }

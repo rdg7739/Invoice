@@ -61,11 +61,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CreateItem.cs">
+    <Compile Include="CreateProduct.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CreateItem.Designer.cs">
-      <DependentUpon>CreateItem.cs</DependentUpon>
+    <Compile Include="CreateProduct.Designer.cs">
+      <DependentUpon>CreateProduct.cs</DependentUpon>
     </Compile>
     <Compile Include="DbConnector.cs" />
     <Compile Include="MyStore.cs">
@@ -110,11 +110,11 @@
     <Compile Include="MainPage.Designer.cs">
       <DependentUpon>MainPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="ItemList.cs">
+    <Compile Include="ProductList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ItemList.Designer.cs">
-      <DependentUpon>ItemList.cs</DependentUpon>
+    <Compile Include="ProductList.Designer.cs">
+      <DependentUpon>ProductList.cs</DependentUpon>
     </Compile>
     <Compile Include="OrderList.cs">
       <SubType>Form</SubType>
@@ -124,8 +124,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="CreateItem.resx">
-      <DependentUpon>CreateItem.cs</DependentUpon>
+    <EmbeddedResource Include="CreateProduct.resx">
+      <DependentUpon>CreateProduct.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DeliverySchedule.resx">
       <DependentUpon>DeliverySchedule.cs</DependentUpon>
@@ -142,8 +142,8 @@
     <EmbeddedResource Include="StoreList.resx">
       <DependentUpon>StoreList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ItemList.resx">
-      <DependentUpon>ItemList.cs</DependentUpon>
+    <EmbeddedResource Include="ProductList.resx">
+      <DependentUpon>ProductList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainPage.resx">
       <DependentUpon>MainPage.cs</DependentUpon>

@@ -28,33 +28,38 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.orderDataView = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.StoreList = new System.Windows.Forms.ComboBox();
+            this.DeliveryDate = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.TotalTxt = new System.Windows.Forms.TextBox();
+            this.SaveBtn = new System.Windows.Forms.Button();
+            this.CancelBtn = new System.Windows.Forms.Button();
+            this.RouteLbl = new System.Windows.Forms.Label();
+            this.RouteTxt = new System.Windows.Forms.TextBox();
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Produce = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Market = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Note = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orderDataView)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // orderDataView
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.orderDataView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.orderDataView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Quantity,
-            this.Produce,
             this.Price,
             this.Amount,
+            this.Market,
             this.Note});
-            this.dataGridView1.Location = new System.Drawing.Point(29, 108);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(729, 418);
-            this.dataGridView1.TabIndex = 5;
+            this.orderDataView.Location = new System.Drawing.Point(29, 108);
+            this.orderDataView.Name = "orderDataView";
+            this.orderDataView.Size = new System.Drawing.Size(729, 386);
+            this.orderDataView.TabIndex = 5;
+            this.orderDataView.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Grid_EditingControlShowing);
             // 
             // label4
             // 
@@ -66,23 +71,23 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "Bill To (Customer): ";
             // 
-            // comboBox1
+            // StoreList
             // 
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(174, 30);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(584, 28);
-            this.comboBox1.TabIndex = 7;
+            this.StoreList.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StoreList.FormattingEnabled = true;
+            this.StoreList.Location = new System.Drawing.Point(174, 30);
+            this.StoreList.Name = "StoreList";
+            this.StoreList.Size = new System.Drawing.Size(584, 28);
+            this.StoreList.TabIndex = 7;
             // 
-            // dateTimePicker1
+            // DeliveryDate
             // 
-            this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(29, 68);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(258, 26);
-            this.dateTimePicker1.TabIndex = 11;
+            this.DeliveryDate.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeliveryDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeliveryDate.Location = new System.Drawing.Point(29, 68);
+            this.DeliveryDate.Name = "DeliveryDate";
+            this.DeliveryDate.Size = new System.Drawing.Size(258, 26);
+            this.DeliveryDate.TabIndex = 11;
             // 
             // label1
             // 
@@ -94,29 +99,59 @@
             this.label1.TabIndex = 12;
             this.label1.Text = "Total:";
             // 
-            // textBox2
+            // TotalTxt
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(658, 68);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 26);
-            this.textBox2.TabIndex = 13;
+            this.TotalTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TotalTxt.Location = new System.Drawing.Point(658, 68);
+            this.TotalTxt.Name = "TotalTxt";
+            this.TotalTxt.Size = new System.Drawing.Size(100, 26);
+            this.TotalTxt.TabIndex = 13;
+            // 
+            // SaveBtn
+            // 
+            this.SaveBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaveBtn.Location = new System.Drawing.Point(674, 501);
+            this.SaveBtn.Name = "SaveBtn";
+            this.SaveBtn.Size = new System.Drawing.Size(84, 34);
+            this.SaveBtn.TabIndex = 14;
+            this.SaveBtn.Text = "Save";
+            this.SaveBtn.UseVisualStyleBackColor = true;
+            this.SaveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
+            // 
+            // CancelBtn
+            // 
+            this.CancelBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CancelBtn.Location = new System.Drawing.Point(568, 501);
+            this.CancelBtn.Name = "CancelBtn";
+            this.CancelBtn.Size = new System.Drawing.Size(84, 34);
+            this.CancelBtn.TabIndex = 15;
+            this.CancelBtn.Text = "Cancel";
+            this.CancelBtn.UseVisualStyleBackColor = true;
+            this.CancelBtn.Click += new System.EventHandler(this.CancelBtn_Click);
+            // 
+            // RouteLbl
+            // 
+            this.RouteLbl.AutoSize = true;
+            this.RouteLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RouteLbl.Location = new System.Drawing.Point(314, 71);
+            this.RouteLbl.Name = "RouteLbl";
+            this.RouteLbl.Size = new System.Drawing.Size(61, 20);
+            this.RouteLbl.TabIndex = 16;
+            this.RouteLbl.Text = "Route: ";
+            // 
+            // RouteTxt
+            // 
+            this.RouteTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RouteTxt.Location = new System.Drawing.Point(381, 68);
+            this.RouteTxt.Name = "RouteTxt";
+            this.RouteTxt.Size = new System.Drawing.Size(100, 26);
+            this.RouteTxt.TabIndex = 17;
             // 
             // Quantity
             // 
             this.Quantity.HeaderText = "QTY";
             this.Quantity.Name = "Quantity";
             this.Quantity.Width = 50;
-            // 
-            // Produce
-            // 
-            this.Produce.FillWeight = 200F;
-            this.Produce.HeaderText = "PRODUCE";
-            this.Produce.MaxDropDownItems = 50;
-            this.Produce.MinimumWidth = 100;
-            this.Produce.Name = "Produce";
-            this.Produce.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Produce.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // Price
             // 
@@ -130,6 +165,12 @@
             this.Amount.HeaderText = "AMOUNT";
             this.Amount.MinimumWidth = 50;
             this.Amount.Name = "Amount";
+            this.Amount.ReadOnly = true;
+            // 
+            // Market
+            // 
+            this.Market.HeaderText = "Market";
+            this.Market.Name = "Market";
             // 
             // Note
             // 
@@ -141,31 +182,52 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.RouteTxt);
+            this.Controls.Add(this.RouteLbl);
+            this.Controls.Add(this.CancelBtn);
+            this.Controls.Add(this.SaveBtn);
+            this.Controls.Add(this.TotalTxt);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.DeliveryDate);
+            this.Controls.Add(this.StoreList);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.orderDataView);
             this.Name = "CreateOrder";
             this.Text = "CreateOrder";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orderDataView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
-
+        private void Init_deleteBtn()
+        {
+            this.DeleteBtn = new System.Windows.Forms.Button();
+            this.DeleteBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeleteBtn.Location = new System.Drawing.Point(593, 357);
+            this.DeleteBtn.Name = "DeleteBtn";
+            this.DeleteBtn.Size = new System.Drawing.Size(90, 30);
+            this.DeleteBtn.TabIndex = 13;
+            this.DeleteBtn.Text = "Delete";
+            this.DeleteBtn.UseVisualStyleBackColor = true;
+            this.DeleteBtn.Click += new System.EventHandler(this.DeleteBtn_Click);
+            this.Controls.Add(this.DeleteBtn);
+        }
         #endregion
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView orderDataView;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.ComboBox StoreList;
+        private System.Windows.Forms.DateTimePicker DeliveryDate;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox TotalTxt;
+        private System.Windows.Forms.Button SaveBtn;
+        private System.Windows.Forms.Button CancelBtn;
+        private System.Windows.Forms.Button DeleteBtn;
+        private System.Windows.Forms.Label RouteLbl;
+        private System.Windows.Forms.TextBox RouteTxt;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
-        private System.Windows.Forms.DataGridViewComboBoxColumn Produce;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
         private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Market;
         private System.Windows.Forms.DataGridViewTextBoxColumn Note;
     }
 }

@@ -10,61 +10,56 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 namespace Invoice
 {
-    public partial class StoreList : Form
+    public partial class ProductList : Form
     {
-        DbConnectorClass db;
-        MySqlDataAdapter adapter;
-        public StoreList()
+        private DbConnectorClass db;
+        private MySqlDataAdapter adapter;
+        public ProductList()
         {
             InitializeComponent();
-            GetStoreList();
+            GetItemList();
             AddEditBtn();
         }
-        public void GetStoreList()
-        {
+        public void GetItemList() {
             try
             {
                 db = new DbConnectorClass();
-                adapter = new MySqlDataAdapter("SELECT store_id AS No, store_name AS `Store Name`," +
-                    "store_address AS Address, store_phone AS Phone, store_fax AS Fax, " +
-                    "contact_name AS `Contact Name`, contact_phone AS Phone, store_detail AS `Store Detail` " +
-                    "FROM invoice_db.store", db.GetConnection());
+                adapter = new MySqlDataAdapter("select product_id as No,Product, Price, Quantity, Note from invoice_db.product", db.GetConnection());
                 // Create one DataTable with one column.
                 DataSet DS = new DataSet();
                 adapter.Fill(DS);
-                this.StoreDataView.DataSource = DS.Tables[0];
-
+                this.ProductDataView.DataSource = DS.Tables[0];
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void AddEditBtn()
         {
-            DataGridViewButtonColumn EditBtn = new DataGridViewButtonColumn
+            DataGridViewButtonColumn EditBtnColumn = new DataGridViewButtonColumn
             {
                 HeaderText = "",
                 Name = "Edit",
                 Text = "Edit",
                 UseColumnTextForButtonValue = true
             };
-            this.StoreDataView.Columns.Add(EditBtn);
-            this.StoreDataView.CellClick += new DataGridViewCellEventHandler(DataGridView_CellClick);
-            //
-
+            this.ProductDataView.Columns.Add(EditBtnColumn);
+            this.ProductDataView.CellClick += new DataGridViewCellEventHandler(DataGridView_CellClick);
+            this.ProductDataView.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
         // Calls the Employee.RequestStatus method.
         private void DataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // Ignore clicks that are not on button cells. 
             if (e.RowIndex < 0 || e.ColumnIndex !=
-                this.StoreDataView.Columns["Edit"].Index) return;
+                this.ProductDataView.Columns["Edit"].Index) return;
 
             // Retrieve the task ID.
-            String storeId = (String)this.StoreDataView[1, e.RowIndex].Value.ToString();
-            CreateStore cs = new CreateStore(storeId, this);
-            cs.Show();
+            String productId = (String)this.ProductDataView[1,e.RowIndex].Value.ToString();
+            CreateProduct cp = new CreateProduct(productId, this);
+            cp.Show();
         }
     }
 }

@@ -22,7 +22,9 @@ public class DbConnectorClass
         }
         return dbReader.GetString(idx);
     }
-
+    public MySqlConnection GetConnection() {
+        return this.dbConnect; 
+    }
     public MySqlDataReader RunQuery(String query)
     {
         MySqlDataReader dbReader = null;

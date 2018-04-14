@@ -83,7 +83,7 @@
             this.storeDetailabel.Location = new System.Drawing.Point(121, 290);
             this.storeDetailabel.Name = "storeDetailabel";
             this.storeDetailabel.Size = new System.Drawing.Size(139, 20);
-            this.storeDetailabel.TabIndex = 4;
+            this.storeDetailabel.TabIndex = 3;
             this.storeDetailabel.Text = "Store Detail/Note: ";
             // 
             // StoreNameTxt
@@ -92,7 +92,7 @@
             this.storeNameTxt.Location = new System.Drawing.Point(267, 122);
             this.storeNameTxt.Name = "StoreNameTxt";
             this.storeNameTxt.Size = new System.Drawing.Size(288, 26);
-            this.storeNameTxt.TabIndex = 5;
+            this.storeNameTxt.TabIndex = 4;
             // 
             // storePhoneTxt
             // 
@@ -102,6 +102,14 @@
             this.storePhoneTxt.Size = new System.Drawing.Size(288, 26);
             this.storePhoneTxt.TabIndex = 6;
             // 
+            // storeFaxTxt
+            // 
+            this.storeFaxTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.storeFaxTxt.Location = new System.Drawing.Point(267, 187);
+            this.storeFaxTxt.Name = "storeFaxTxt";
+            this.storeFaxTxt.Size = new System.Drawing.Size(288, 26);
+            this.storeFaxTxt.TabIndex = 7;
+            // 
             // storeAddressTxt
             // 
             this.storeAddressTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -109,7 +117,7 @@
             this.storeAddressTxt.Multiline = true;
             this.storeAddressTxt.Name = "storeAddressTxt";
             this.storeAddressTxt.Size = new System.Drawing.Size(288, 60);
-            this.storeAddressTxt.TabIndex = 7;
+            this.storeAddressTxt.TabIndex = 8;
             // 
             // storeDetailTxt
             // 
@@ -118,7 +126,7 @@
             this.storeDetailTxt.Multiline = true;
             this.storeDetailTxt.Name = "storeDetailTxt";
             this.storeDetailTxt.Size = new System.Drawing.Size(288, 141);
-            this.storeDetailTxt.TabIndex = 10;
+            this.storeDetailTxt.TabIndex = 11;
             // 
             // myStoreTitleLabel
             // 
@@ -127,7 +135,7 @@
             this.myStoreTitleLabel.Location = new System.Drawing.Point(307, 54);
             this.myStoreTitleLabel.Name = "myStoreTitleLabel";
             this.myStoreTitleLabel.Size = new System.Drawing.Size(152, 39);
-            this.myStoreTitleLabel.TabIndex = 11;
+            this.myStoreTitleLabel.TabIndex = 12;
             this.myStoreTitleLabel.Text = "My Store";
             // 
             // cancelBtn
@@ -136,7 +144,7 @@
             this.cancelBtn.Location = new System.Drawing.Point(267, 436);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(88, 32);
-            this.cancelBtn.TabIndex = 12;
+            this.cancelBtn.TabIndex = 13;
             this.cancelBtn.Text = "Cancel";
             this.cancelBtn.UseVisualStyleBackColor = true;
             this.cancelBtn.Click += new System.EventHandler(this.CancelBtn_Click);
@@ -147,18 +155,10 @@
             this.saveBtn.Location = new System.Drawing.Point(467, 436);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(88, 32);
-            this.saveBtn.TabIndex = 13;
+            this.saveBtn.TabIndex = 14;
             this.saveBtn.Text = "Save";
             this.saveBtn.UseVisualStyleBackColor = true;
             this.saveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
-            // 
-            // storeFaxTxt
-            // 
-            this.storeFaxTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.storeFaxTxt.Location = new System.Drawing.Point(267, 187);
-            this.storeFaxTxt.Name = "storeFaxTxt";
-            this.storeFaxTxt.Size = new System.Drawing.Size(288, 26);
-            this.storeFaxTxt.TabIndex = 15;
             // 
             // storeFaxLabel
             // 
@@ -167,7 +167,7 @@
             this.storeFaxLabel.Location = new System.Drawing.Point(174, 190);
             this.storeFaxLabel.Name = "storeFaxLabel";
             this.storeFaxLabel.Size = new System.Drawing.Size(86, 20);
-            this.storeFaxLabel.TabIndex = 14;
+            this.storeFaxLabel.TabIndex = 15;
             this.storeFaxLabel.Text = "Store Fax: ";
             // 
             // MyStore

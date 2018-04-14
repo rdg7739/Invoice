@@ -32,11 +32,11 @@
             this.Title = new System.Windows.Forms.Label();
             this.OrderListBtn = new System.Windows.Forms.Button();
             this.DeliveryScheduleBtn = new System.Windows.Forms.Button();
-            this.ItemListBtn = new System.Windows.Forms.Button();
+            this.ProductListBtn = new System.Windows.Forms.Button();
             this.StoreListBtn = new System.Windows.Forms.Button();
             this.CreateStoreBtn = new System.Windows.Forms.Button();
             this.MyStoreBtn = new System.Windows.Forms.Button();
-            this.CreatItemBtn = new System.Windows.Forms.Button();
+            this.CreatProductBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // createOrderBtn
@@ -84,16 +84,16 @@
             this.DeliveryScheduleBtn.UseVisualStyleBackColor = true;
             this.DeliveryScheduleBtn.Click += new System.EventHandler(this.DeliveryScheduleBtn_Click);
             // 
-            // ItemListBtn
+            // ProductListBtn
             // 
-            this.ItemListBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ItemListBtn.Location = new System.Drawing.Point(90, 266);
-            this.ItemListBtn.Name = "ItemListBtn";
-            this.ItemListBtn.Size = new System.Drawing.Size(200, 40);
-            this.ItemListBtn.TabIndex = 4;
-            this.ItemListBtn.Text = "Item List";
-            this.ItemListBtn.UseVisualStyleBackColor = true;
-            this.ItemListBtn.Click += new System.EventHandler(this.ItemListBtn_Click);
+            this.ProductListBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ProductListBtn.Location = new System.Drawing.Point(90, 266);
+            this.ProductListBtn.Name = "ProductListBtn";
+            this.ProductListBtn.Size = new System.Drawing.Size(200, 40);
+            this.ProductListBtn.TabIndex = 4;
+            this.ProductListBtn.Text = "Product List";
+            this.ProductListBtn.UseVisualStyleBackColor = true;
+            this.ProductListBtn.Click += new System.EventHandler(this.ItemListBtn_Click);
             // 
             // StoreListBtn
             // 
@@ -128,27 +128,27 @@
             this.MyStoreBtn.UseVisualStyleBackColor = true;
             this.MyStoreBtn.Click += new System.EventHandler(this.MyStoreBtn_Click);
             // 
-            // CreatItemBtn
+            // CreatProductBtn
             // 
-            this.CreatItemBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CreatItemBtn.Location = new System.Drawing.Point(310, 266);
-            this.CreatItemBtn.Name = "CreatItemBtn";
-            this.CreatItemBtn.Size = new System.Drawing.Size(200, 40);
-            this.CreatItemBtn.TabIndex = 8;
-            this.CreatItemBtn.Text = "Create Item";
-            this.CreatItemBtn.UseVisualStyleBackColor = true;
-            this.CreatItemBtn.Click += new System.EventHandler(this.CreatItemBtn_Click);
+            this.CreatProductBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CreatProductBtn.Location = new System.Drawing.Point(310, 266);
+            this.CreatProductBtn.Name = "CreatProductBtn";
+            this.CreatProductBtn.Size = new System.Drawing.Size(200, 40);
+            this.CreatProductBtn.TabIndex = 8;
+            this.CreatProductBtn.Text = "Create Product";
+            this.CreatProductBtn.UseVisualStyleBackColor = true;
+            this.CreatProductBtn.Click += new System.EventHandler(this.CreatItemBtn_Click);
             // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 361);
-            this.Controls.Add(this.CreatItemBtn);
+            this.Controls.Add(this.CreatProductBtn);
             this.Controls.Add(this.MyStoreBtn);
             this.Controls.Add(this.CreateStoreBtn);
             this.Controls.Add(this.StoreListBtn);
-            this.Controls.Add(this.ItemListBtn);
+            this.Controls.Add(this.ProductListBtn);
             this.Controls.Add(this.DeliveryScheduleBtn);
             this.Controls.Add(this.OrderListBtn);
             this.Controls.Add(this.Title);
@@ -165,11 +165,11 @@
         private System.Windows.Forms.Label Title;
         private System.Windows.Forms.Button OrderListBtn;
         private System.Windows.Forms.Button DeliveryScheduleBtn;
-        private System.Windows.Forms.Button ItemListBtn;
+        private System.Windows.Forms.Button ProductListBtn;
         private System.Windows.Forms.Button StoreListBtn;
         private System.Windows.Forms.Button CreateStoreBtn;
         private System.Windows.Forms.Button MyStoreBtn;
-        private System.Windows.Forms.Button CreatItemBtn;
+        private System.Windows.Forms.Button CreatProductBtn;
     }
 }
 
