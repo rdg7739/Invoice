@@ -28,93 +28,77 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.MA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Produce = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.route1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.route2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.route3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.DeliveryScheduleLbl = new System.Windows.Forms.Label();
+            this.DeliveryScheduleView = new System.Windows.Forms.DataGridView();
+            this.DeliveryScheduleDate = new System.Windows.Forms.DateTimePicker();
+            this.Save = new System.Windows.Forms.Button();
+            this.CancelBtn = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.DeliveryScheduleView)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // DeliveryScheduleLbl
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(80, 46);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(311, 39);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Delivery Schedule: ";
+            this.DeliveryScheduleLbl.AutoSize = true;
+            this.DeliveryScheduleLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeliveryScheduleLbl.Location = new System.Drawing.Point(80, 46);
+            this.DeliveryScheduleLbl.Name = "DeliveryScheduleLbl";
+            this.DeliveryScheduleLbl.Size = new System.Drawing.Size(311, 39);
+            this.DeliveryScheduleLbl.TabIndex = 0;
+            this.DeliveryScheduleLbl.Text = "Delivery Schedule: ";
             // 
-            // dataGridView1
+            // DeliveryScheduleView
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.MA,
-            this.Quantity,
-            this.Produce,
-            this.route1,
-            this.route2,
-            this.route3});
-            this.dataGridView1.Location = new System.Drawing.Point(87, 116);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(643, 271);
-            this.dataGridView1.TabIndex = 1;
+            this.DeliveryScheduleView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DeliveryScheduleView.Location = new System.Drawing.Point(87, 116);
+            this.DeliveryScheduleView.Name = "DeliveryScheduleView";
+            this.DeliveryScheduleView.Size = new System.Drawing.Size(643, 271);
+            this.DeliveryScheduleView.TabIndex = 1;
             // 
-            // MA
+            // DeliveryScheduleDate
             // 
-            this.MA.HeaderText = "MA";
-            this.MA.Name = "MA";
+            this.DeliveryScheduleDate.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeliveryScheduleDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeliveryScheduleDate.Location = new System.Drawing.Point(397, 52);
+            this.DeliveryScheduleDate.Name = "DeliveryScheduleDate";
+            this.DeliveryScheduleDate.Size = new System.Drawing.Size(333, 30);
+            this.DeliveryScheduleDate.TabIndex = 2;
+            this.DeliveryScheduleDate.ValueChanged += new System.EventHandler(this.DeliveryScheduleDate_ValueChanged);
             // 
-            // Quantity
+            // Save
             // 
-            this.Quantity.HeaderText = "QTY";
-            this.Quantity.Name = "Quantity";
+            this.Save.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Save.Location = new System.Drawing.Point(630, 400);
+            this.Save.Name = "Save";
+            this.Save.Size = new System.Drawing.Size(100, 30);
+            this.Save.TabIndex = 3;
+            this.Save.Text = "Save";
+            this.Save.UseVisualStyleBackColor = true;
+            this.Save.Click += new System.EventHandler(this.Save_Click);
             // 
-            // Produce
+            // CancelBtn
             // 
-            this.Produce.HeaderText = "PRODUCE";
-            this.Produce.Name = "Produce";
-            // 
-            // route1
-            // 
-            this.route1.HeaderText = "#1 ROUTE";
-            this.route1.Name = "route1";
-            // 
-            // route2
-            // 
-            this.route2.HeaderText = "#2 ROUTE";
-            this.route2.Name = "route2";
-            // 
-            // route3
-            // 
-            this.route3.HeaderText = "#3 ROUTE";
-            this.route3.Name = "route3";
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(397, 52);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(333, 30);
-            this.dateTimePicker1.TabIndex = 2;
+            this.CancelBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CancelBtn.Location = new System.Drawing.Point(524, 400);
+            this.CancelBtn.Name = "CancelBtn";
+            this.CancelBtn.Size = new System.Drawing.Size(100, 30);
+            this.CancelBtn.TabIndex = 4;
+            this.CancelBtn.Text = "Cancel";
+            this.CancelBtn.UseVisualStyleBackColor = true;
+            this.CancelBtn.Click += new System.EventHandler(this.CancelBtn_Click);
             // 
             // DeliverySchedule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.CancelBtn);
+            this.Controls.Add(this.Save);
+            this.Controls.Add(this.DeliveryScheduleDate);
+            this.Controls.Add(this.DeliveryScheduleView);
+            this.Controls.Add(this.DeliveryScheduleLbl);
             this.Name = "DeliverySchedule";
             this.Text = "DeliverySchedule";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DeliveryScheduleView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -122,14 +106,10 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MA;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Produce;
-        private System.Windows.Forms.DataGridViewTextBoxColumn route1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn route2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn route3;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label DeliveryScheduleLbl;
+        private System.Windows.Forms.DataGridView DeliveryScheduleView;
+        private System.Windows.Forms.DateTimePicker DeliveryScheduleDate;
+        private System.Windows.Forms.Button Save;
+        private System.Windows.Forms.Button CancelBtn;
     }
 }

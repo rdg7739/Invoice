@@ -25,7 +25,7 @@ namespace Invoice
             try
             {
                 db = new DbConnectorClass();
-                adapter = new MySqlDataAdapter("SELECT store_id AS No, store_name AS `Store Name`," +
+                adapter = new MySqlDataAdapter("SELECT store_id AS `Store Id`, store_name AS `Store Name`," +
                     "store_address AS Address, store_phone AS Phone, store_fax AS Fax, " +
                     "contact_name AS `Contact Name`, contact_phone AS Phone, store_detail AS `Store Detail` " +
                     "FROM invoice_db.store", db.GetConnection());
@@ -33,7 +33,7 @@ namespace Invoice
                 DataSet DS = new DataSet();
                 adapter.Fill(DS);
                 this.StoreDataView.DataSource = DS.Tables[0];
-
+                this.StoreDataView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
             catch (Exception ex)
             {

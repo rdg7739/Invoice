@@ -51,6 +51,7 @@
             this.ProductDataView.ReadOnly = true;
             this.ProductDataView.Size = new System.Drawing.Size(692, 310);
             this.ProductDataView.TabIndex = 1;
+            this.ProductDataView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ProductDataView_CellContentClick);
             // 
             // ProductList
             // 

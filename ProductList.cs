@@ -17,10 +17,10 @@ namespace Invoice
         public ProductList()
         {
             InitializeComponent();
-            GetItemList();
+            GetProductList();
             AddEditBtn();
         }
-        public void GetItemList() {
+        public void GetProductList() {
             try
             {
                 db = new DbConnectorClass();
@@ -29,6 +29,7 @@ namespace Invoice
                 DataSet DS = new DataSet();
                 adapter.Fill(DS);
                 this.ProductDataView.DataSource = DS.Tables[0];
+                this.ProductDataView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
             catch (Exception ex)
             {
@@ -60,6 +61,11 @@ namespace Invoice
             String productId = (String)this.ProductDataView[1,e.RowIndex].Value.ToString();
             CreateProduct cp = new CreateProduct(productId, this);
             cp.Show();
+        }
+
+        private void ProductDataView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

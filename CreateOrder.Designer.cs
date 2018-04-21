@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.orderDataView = new System.Windows.Forms.DataGridView();
-            this.label4 = new System.Windows.Forms.Label();
+            this.BillToLbl = new System.Windows.Forms.Label();
             this.StoreList = new System.Windows.Forms.ComboBox();
             this.DeliveryDate = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
@@ -37,12 +37,15 @@
             this.SaveBtn = new System.Windows.Forms.Button();
             this.CancelBtn = new System.Windows.Forms.Button();
             this.RouteLbl = new System.Windows.Forms.Label();
-            this.RouteTxt = new System.Windows.Forms.TextBox();
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Market = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Note = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RouteComboBox = new System.Windows.Forms.ComboBox();
+            this.ProductCol = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.QTYCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PriceCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AmountCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MarketCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NoteCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RouteCol = new System.Windows.Forms.DataGridViewComboBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.orderDataView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,26 +53,28 @@
             // 
             this.orderDataView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.orderDataView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Quantity,
-            this.Price,
-            this.Amount,
-            this.Market,
-            this.Note});
+            this.ProductCol,
+            this.QTYCol,
+            this.PriceCol,
+            this.AmountCol,
+            this.MarketCol,
+            this.NoteCol,
+            this.RouteCol});
             this.orderDataView.Location = new System.Drawing.Point(29, 108);
             this.orderDataView.Name = "orderDataView";
             this.orderDataView.Size = new System.Drawing.Size(729, 386);
             this.orderDataView.TabIndex = 5;
             this.orderDataView.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Grid_EditingControlShowing);
             // 
-            // label4
+            // BillToLbl
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(25, 33);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(142, 20);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Bill To (Customer): ";
+            this.BillToLbl.AutoSize = true;
+            this.BillToLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BillToLbl.Location = new System.Drawing.Point(25, 33);
+            this.BillToLbl.Name = "BillToLbl";
+            this.BillToLbl.Size = new System.Drawing.Size(142, 20);
+            this.BillToLbl.TabIndex = 6;
+            this.BillToLbl.Text = "Bill To (Customer): ";
             // 
             // StoreList
             // 
@@ -78,7 +83,7 @@
             this.StoreList.Location = new System.Drawing.Point(174, 30);
             this.StoreList.Name = "StoreList";
             this.StoreList.Size = new System.Drawing.Size(584, 28);
-            this.StoreList.TabIndex = 7;
+            this.StoreList.TabIndex = 1;
             // 
             // DeliveryDate
             // 
@@ -87,7 +92,8 @@
             this.DeliveryDate.Location = new System.Drawing.Point(29, 68);
             this.DeliveryDate.Name = "DeliveryDate";
             this.DeliveryDate.Size = new System.Drawing.Size(258, 26);
-            this.DeliveryDate.TabIndex = 11;
+            this.DeliveryDate.TabIndex = 2;
+            this.DeliveryDate.Value = new System.DateTime(2018, 4, 14, 17, 57, 1, 0);
             // 
             // label1
             // 
@@ -105,7 +111,7 @@
             this.TotalTxt.Location = new System.Drawing.Point(658, 68);
             this.TotalTxt.Name = "TotalTxt";
             this.TotalTxt.Size = new System.Drawing.Size(100, 26);
-            this.TotalTxt.TabIndex = 13;
+            this.TotalTxt.TabIndex = 4;
             // 
             // SaveBtn
             // 
@@ -113,7 +119,7 @@
             this.SaveBtn.Location = new System.Drawing.Point(674, 501);
             this.SaveBtn.Name = "SaveBtn";
             this.SaveBtn.Size = new System.Drawing.Size(84, 34);
-            this.SaveBtn.TabIndex = 14;
+            this.SaveBtn.TabIndex = 7;
             this.SaveBtn.Text = "Save";
             this.SaveBtn.UseVisualStyleBackColor = true;
             this.SaveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
@@ -124,7 +130,7 @@
             this.CancelBtn.Location = new System.Drawing.Point(568, 501);
             this.CancelBtn.Name = "CancelBtn";
             this.CancelBtn.Size = new System.Drawing.Size(84, 34);
-            this.CancelBtn.TabIndex = 15;
+            this.CancelBtn.TabIndex = 6;
             this.CancelBtn.Text = "Cancel";
             this.CancelBtn.UseVisualStyleBackColor = true;
             this.CancelBtn.Click += new System.EventHandler(this.CancelBtn_Click);
@@ -139,50 +145,80 @@
             this.RouteLbl.TabIndex = 16;
             this.RouteLbl.Text = "Route: ";
             // 
-            // RouteTxt
-            // 
-            this.RouteTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RouteTxt.Location = new System.Drawing.Point(381, 68);
-            this.RouteTxt.Name = "RouteTxt";
-            this.RouteTxt.Size = new System.Drawing.Size(100, 26);
-            this.RouteTxt.TabIndex = 17;
-            // 
             // Quantity
             // 
             this.Quantity.HeaderText = "QTY";
             this.Quantity.Name = "Quantity";
             this.Quantity.Width = 50;
             // 
-            // Price
+            // RouteComboBox
             // 
-            this.Price.HeaderText = "PRICE";
-            this.Price.MinimumWidth = 50;
-            this.Price.Name = "Price";
-            this.Price.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.RouteComboBox.AllowDrop = true;
+            this.RouteComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.RouteComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RouteComboBox.FormattingEnabled = true;
+            this.RouteComboBox.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3"});
+            this.RouteComboBox.Location = new System.Drawing.Point(381, 68);
+            this.RouteComboBox.Name = "RouteComboBox";
+            this.RouteComboBox.Size = new System.Drawing.Size(100, 28);
+            this.RouteComboBox.TabIndex = 17;
+            this.RouteComboBox.SelectedIndexChanged += new System.EventHandler(this.RouteComboBox_SelectedIndexChanged);
             // 
-            // Amount
+            // ProductCol
             // 
-            this.Amount.HeaderText = "AMOUNT";
-            this.Amount.MinimumWidth = 50;
-            this.Amount.Name = "Amount";
-            this.Amount.ReadOnly = true;
+            this.ProductCol.HeaderText = "Product";
+            this.ProductCol.Name = "ProductCol";
+            this.ProductCol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ProductCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
-            // Market
+            // QTYCol
             // 
-            this.Market.HeaderText = "Market";
-            this.Market.Name = "Market";
+            this.QTYCol.HeaderText = "QTY";
+            this.QTYCol.Name = "QTYCol";
             // 
-            // Note
+            // PriceCol
             // 
-            this.Note.HeaderText = "Note";
-            this.Note.Name = "Note";
+            this.PriceCol.HeaderText = "Price";
+            this.PriceCol.Name = "PriceCol";
+            // 
+            // AmountCol
+            // 
+            this.AmountCol.HeaderText = "Amount";
+            this.AmountCol.Name = "AmountCol";
+            // 
+            // MarketCol
+            // 
+            this.MarketCol.HeaderText = "Market";
+            this.MarketCol.Name = "MarketCol";
+            // 
+            // NoteCol
+            // 
+            this.NoteCol.HeaderText = "Note";
+            this.NoteCol.Name = "NoteCol";
+            // 
+            // RouteCol
+            // 
+            this.RouteCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.RouteCol.HeaderText = "Route";
+            this.RouteCol.Items.AddRange(new object[] {
+            "",
+            "1",
+            "2",
+            "3"});
+            this.RouteCol.Name = "RouteCol";
+            this.RouteCol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.RouteCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.RouteCol.Width = 61;
             // 
             // CreateOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
-            this.Controls.Add(this.RouteTxt);
+            this.Controls.Add(this.RouteComboBox);
             this.Controls.Add(this.RouteLbl);
             this.Controls.Add(this.CancelBtn);
             this.Controls.Add(this.SaveBtn);
@@ -190,7 +226,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.DeliveryDate);
             this.Controls.Add(this.StoreList);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.BillToLbl);
             this.Controls.Add(this.orderDataView);
             this.Name = "CreateOrder";
             this.Text = "CreateOrder";
@@ -214,7 +250,7 @@
         }
         #endregion
         private System.Windows.Forms.DataGridView orderDataView;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label BillToLbl;
         private System.Windows.Forms.ComboBox StoreList;
         private System.Windows.Forms.DateTimePicker DeliveryDate;
         private System.Windows.Forms.Label label1;
@@ -223,11 +259,14 @@
         private System.Windows.Forms.Button CancelBtn;
         private System.Windows.Forms.Button DeleteBtn;
         private System.Windows.Forms.Label RouteLbl;
-        private System.Windows.Forms.TextBox RouteTxt;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Market;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Note;
+        private System.Windows.Forms.ComboBox RouteComboBox;
+        private System.Windows.Forms.DataGridViewComboBoxColumn ProductCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QTYCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PriceCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AmountCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MarketCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NoteCol;
+        private System.Windows.Forms.DataGridViewComboBoxColumn RouteCol;
     }
 }

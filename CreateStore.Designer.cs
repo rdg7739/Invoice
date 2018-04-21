@@ -112,14 +112,7 @@
             this.storePhoneTxt.Name = "storePhoneTxt";
             this.storePhoneTxt.Size = new System.Drawing.Size(288, 26);
             this.storePhoneTxt.TabIndex = 6;
-            // 
-            // storeFaxTxt
-            // 
-            this.storeFaxTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.storeFaxTxt.Location = new System.Drawing.Point(267, 176);
-            this.storeFaxTxt.Name = "storeFaxTxt";
-            this.storeFaxTxt.Size = new System.Drawing.Size(288, 26);
-            this.storeFaxTxt.TabIndex = 7;
+            this.storePhoneTxt.TextChanged += new System.EventHandler(this.StorePhoneTxt_TextChanged);
             // 
             // storeAddressTxt
             // 
@@ -138,14 +131,6 @@
             this.contactNameTxt.Name = "contactNameTxt";
             this.contactNameTxt.Size = new System.Drawing.Size(288, 26);
             this.contactNameTxt.TabIndex = 9;
-            // 
-            // contactPhoneTxt
-            // 
-            this.contactPhoneTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.contactPhoneTxt.Location = new System.Drawing.Point(267, 306);
-            this.contactPhoneTxt.Name = "contactPhoneTxt";
-            this.contactPhoneTxt.Size = new System.Drawing.Size(288, 26);
-            this.contactPhoneTxt.TabIndex = 10;
             // 
             // storeDetailTxt
             // 
@@ -188,6 +173,15 @@
             this.saveBtn.UseVisualStyleBackColor = true;
             this.saveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
             // 
+            // contactPhoneTxt
+            // 
+            this.contactPhoneTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.contactPhoneTxt.Location = new System.Drawing.Point(267, 306);
+            this.contactPhoneTxt.Name = "contactPhoneTxt";
+            this.contactPhoneTxt.Size = new System.Drawing.Size(288, 26);
+            this.contactPhoneTxt.TabIndex = 10;
+            this.contactPhoneTxt.TextChanged += new System.EventHandler(this.ContactPhoneTxt_TextChanged);
+            // 
             // storeAddressLabel
             // 
             this.storeAddressLabel.AutoSize = true;
@@ -197,6 +191,15 @@
             this.storeAddressLabel.Size = new System.Drawing.Size(119, 20);
             this.storeAddressLabel.TabIndex = 15;
             this.storeAddressLabel.Text = "Store Address: ";
+            // 
+            // storeFaxTxt
+            // 
+            this.storeFaxTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.storeFaxTxt.Location = new System.Drawing.Point(267, 176);
+            this.storeFaxTxt.Name = "storeFaxTxt";
+            this.storeFaxTxt.Size = new System.Drawing.Size(288, 26);
+            this.storeFaxTxt.TabIndex = 7;
+            this.storeFaxTxt.TextChanged += new System.EventHandler(this.StoreFaxTxt_TextChanged);
             // 
             // storeFaxLabel
             // 

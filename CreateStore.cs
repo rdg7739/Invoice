@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
@@ -23,6 +24,7 @@ namespace Invoice
         private String dbContactPhone;
         private String dbStoreDetail;
         private StoreList sl;
+        private Boolean isSave = false;
         public CreateStore()
         {
             InitializeComponent();
@@ -81,7 +83,7 @@ namespace Invoice
                 if (DialogResult.Yes == x)
                 {
                     String sqlQuery = "";
-                    if (this.dbId == null)
+                    if (this.dbId ==null)
                     {
                         sqlQuery = "INSERT INTO invoice_db.store " +
                         "(store_name, store_phone, store_address, store_fax, store_detail, contact_phone, contact_name) VALUES " +
@@ -108,6 +110,10 @@ namespace Invoice
                     MessageBox.Show("Data Saved successfully", "Saved", MessageBoxButtons.OK, MessageBoxIcon.None);
                     // need to close createStore form after click 'OK' button
                 }
+                isSave = true;
+                if (this.sl != null)
+                    this.sl.GetStoreList();
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -152,7 +158,7 @@ namespace Invoice
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            if (HasDateChange())
+            if (HasDateChange() && !isSave)
             {
                 var x = MessageBox.Show("Are you sure you want to really exit?\n unsaved data will be lost. ", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (x == DialogResult.Yes)
@@ -191,6 +197,26 @@ namespace Invoice
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void StorePhoneTxt_TextChanged(object sender, EventArgs e)
+        {
+            this.storePhoneTxt.Text = ChangeToPhoneFormat(this.storePhoneTxt.Text);
+        }
+
+        private void StoreFaxTxt_TextChanged(object sender, EventArgs e)
+        {
+            this.storeFaxTxt.Text = ChangeToPhoneFormat(this.storeFaxTxt.Text);
+        }
+
+        private void ContactPhoneTxt_TextChanged(object sender, EventArgs e)
+        {
+            this.contactPhoneTxt.Text = ChangeToPhoneFormat(this.contactPhoneTxt.Text);
+        }
+        private String ChangeToPhoneFormat(String value)
+        {
+            value = Regex.Replace(value, @"/[^\d]/g", "");
+            return Regex.Replace(value, @"(\d{3})(\d{3})(\d{4})", "($1)-$2-$3");
         }
     }
 }

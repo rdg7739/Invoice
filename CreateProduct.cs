@@ -20,6 +20,7 @@ namespace Invoice
         private String dbNote;
         private Boolean isEdit = false;
         private ProductList pl;
+        private Boolean isSave = false;
         public CreateProduct()
         {
             InitializeComponent();
@@ -91,6 +92,10 @@ namespace Invoice
                     db.RunQuery(sqlQuery).Close();
                     MessageBox.Show("Data Saved successfully", "Saved", MessageBoxButtons.OK, MessageBoxIcon.None);
                     // need to close this form after click 'OK' button
+                    isSave = true;
+                    if (this.pl != null)
+                        this.pl.GetProductList();
+                    this.Close();
                 }
             }
             catch (Exception ex)
@@ -129,14 +134,14 @@ namespace Invoice
         }
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            if (HasDateChange())
+            if (HasDateChange() && !isSave)
             {
                 var x = MessageBox.Show("Are you sure you want to really exit?\n unsaved data will be lost. ", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (x == DialogResult.Yes)
                 {
                     db.Close();
                     if(pl!= null)
-                        pl.GetItemList();
+                        pl.GetProductList();
                     e.Cancel = false;
                 }
                 else
@@ -168,6 +173,11 @@ namespace Invoice
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void CancelBtn_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
