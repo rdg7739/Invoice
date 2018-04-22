@@ -64,5 +64,17 @@ namespace Invoice
             CreateProduct form2 = new CreateProduct();
             form2.Show();
         }
+
+        private void WeeklySaleBtn_Click(object sender, EventArgs e)
+        {
+            WeeklySale form2 = new WeeklySale();
+            form2.Show();
+        }
+
+        private void WeeklyExpenseBtn_Click(object sender, EventArgs e)
+        {
+            WeeklyExpense form2 = new WeeklyExpense();
+            form2.Show();
+        }
     }
 }

@@ -39,7 +39,8 @@ namespace Invoice
                     "sum(case when route = 2 then quantity else 0 end) as `route 2`, "+
                     "sum(case when route = 3 then quantity else 0 end) as `route 3` "+
                     "from invoice_db.cart where order_id in " +
-                    "(select order_id from invoice_db.order where delivery_date = '" +
+                    "(select order_id from invoice_db.order as o inner join invoice_db.store as s " +
+                    "on s.store_id = o.store_id where isMarket = '0' AND delivery_date = '" +
                 Convert.ToDateTime(this.DeliveryScheduleDate.Value.ToString()).ToString("yyyy-MM-dd")+
                     "') group by product;", db.GetConnection());
                 // Create one DataTable with one column.

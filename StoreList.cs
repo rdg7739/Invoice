@@ -27,7 +27,7 @@ namespace Invoice
                 db = new DbConnectorClass();
                 adapter = new MySqlDataAdapter("SELECT store_id AS `Store Id`, store_name AS `Store Name`," +
                     "store_address AS Address, store_phone AS Phone, store_fax AS Fax, " +
-                    "contact_name AS `Contact Name`, contact_phone AS Phone, store_detail AS `Store Detail` " +
+                    "contact_name AS `Contact Name`, contact_phone AS Phone, store_detail AS `Store Detail`, if(isMarket = 1, 'True', 'False') as `Is Market` " +
                     "FROM invoice_db.store", db.GetConnection());
                 // Create one DataTable with one column.
                 DataSet DS = new DataSet();

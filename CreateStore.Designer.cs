@@ -45,6 +45,7 @@
             this.storeAddressLabel = new System.Windows.Forms.Label();
             this.storeFaxTxt = new System.Windows.Forms.TextBox();
             this.storeFaxLabel = new System.Windows.Forms.Label();
+            this.isMarket = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // storeNameLabel
@@ -154,7 +155,7 @@
             // cancelBtn
             // 
             this.cancelBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cancelBtn.Location = new System.Drawing.Point(267, 497);
+            this.cancelBtn.Location = new System.Drawing.Point(267, 517);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(90, 30);
             this.cancelBtn.TabIndex = 13;
@@ -165,7 +166,7 @@
             // saveBtn
             // 
             this.saveBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveBtn.Location = new System.Drawing.Point(465, 497);
+            this.saveBtn.Location = new System.Drawing.Point(465, 517);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(90, 30);
             this.saveBtn.TabIndex = 14;
@@ -211,9 +212,22 @@
             this.storeFaxLabel.TabIndex = 16;
             this.storeFaxLabel.Text = "Store Fax: ";
             // 
+            // isMarket
+            // 
+            this.isMarket.AutoSize = true;
+            this.isMarket.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.isMarket.Location = new System.Drawing.Point(267, 486);
+            this.isMarket.Name = "isMarket";
+            this.isMarket.Size = new System.Drawing.Size(116, 24);
+            this.isMarket.TabIndex = 17;
+            this.isMarket.Text = "Is a market?";
+            this.isMarket.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.isMarket.UseVisualStyleBackColor = true;
+            // 
             // CreateStore
             // 
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.isMarket);
             this.Controls.Add(this.storeFaxTxt);
             this.Controls.Add(this.storeFaxLabel);
             this.Controls.Add(this.contactPhoneTxt);
@@ -269,5 +283,6 @@
         private System.Windows.Forms.TextBox storeFaxTxt;
         private System.Windows.Forms.Label storeFaxLabel;
         private System.Windows.Forms.Button DeleteBtn;
+        private System.Windows.Forms.CheckBox isMarket;
     }
 }

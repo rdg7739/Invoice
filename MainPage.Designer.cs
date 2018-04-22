@@ -37,6 +37,8 @@
             this.CreateStoreBtn = new System.Windows.Forms.Button();
             this.MyStoreBtn = new System.Windows.Forms.Button();
             this.CreatProductBtn = new System.Windows.Forms.Button();
+            this.WeeklySaleBtn = new System.Windows.Forms.Button();
+            this.WeeklyExpenseBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // createOrderBtn
@@ -139,11 +141,35 @@
             this.CreatProductBtn.UseVisualStyleBackColor = true;
             this.CreatProductBtn.Click += new System.EventHandler(this.CreatItemBtn_Click);
             // 
+            // WeeklySaleBtn
+            // 
+            this.WeeklySaleBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WeeklySaleBtn.Location = new System.Drawing.Point(90, 316);
+            this.WeeklySaleBtn.Name = "WeeklySaleBtn";
+            this.WeeklySaleBtn.Size = new System.Drawing.Size(200, 40);
+            this.WeeklySaleBtn.TabIndex = 9;
+            this.WeeklySaleBtn.Text = "Weekly Sale";
+            this.WeeklySaleBtn.UseVisualStyleBackColor = true;
+            this.WeeklySaleBtn.Click += new System.EventHandler(this.WeeklySaleBtn_Click);
+            // 
+            // WeeklyExpenseBtn
+            // 
+            this.WeeklyExpenseBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WeeklyExpenseBtn.Location = new System.Drawing.Point(310, 316);
+            this.WeeklyExpenseBtn.Name = "WeeklyExpenseBtn";
+            this.WeeklyExpenseBtn.Size = new System.Drawing.Size(200, 40);
+            this.WeeklyExpenseBtn.TabIndex = 10;
+            this.WeeklyExpenseBtn.Text = "Weekly Expense";
+            this.WeeklyExpenseBtn.UseVisualStyleBackColor = true;
+            this.WeeklyExpenseBtn.Click += new System.EventHandler(this.WeeklyExpenseBtn_Click);
+            // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 361);
+            this.ClientSize = new System.Drawing.Size(584, 411);
+            this.Controls.Add(this.WeeklyExpenseBtn);
+            this.Controls.Add(this.WeeklySaleBtn);
             this.Controls.Add(this.CreatProductBtn);
             this.Controls.Add(this.MyStoreBtn);
             this.Controls.Add(this.CreateStoreBtn);
@@ -170,6 +196,8 @@
         private System.Windows.Forms.Button CreateStoreBtn;
         private System.Windows.Forms.Button MyStoreBtn;
         private System.Windows.Forms.Button CreatProductBtn;
+        private System.Windows.Forms.Button WeeklySaleBtn;
+        private System.Windows.Forms.Button WeeklyExpenseBtn;
     }
 }
 

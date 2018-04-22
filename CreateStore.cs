@@ -54,6 +54,8 @@ namespace Invoice
                     this.contactNameTxt.Text = db.NullToEmpty(dbReader, "contact_name");
                     this.contactPhoneTxt.Text = db.NullToEmpty(dbReader, "contact_phone");
                     this.storeDetailTxt.Text = db.NullToEmpty(dbReader, "store_detail");
+                    Object isMarketValue = db.NullToEmpty(dbReader, "isMarket");
+                    this.isMarket.Checked = (isMarketValue.Equals("1")) ? true : false;
                 }
                 SyncData();
                 dbReader.Close();
@@ -86,14 +88,15 @@ namespace Invoice
                     if (this.dbId ==null)
                     {
                         sqlQuery = "INSERT INTO invoice_db.store " +
-                        "(store_name, store_phone, store_address, store_fax, store_detail, contact_phone, contact_name) VALUES " +
+                        "(store_name, store_phone, store_address, store_fax, store_detail, contact_phone, contact_name, isMarket) VALUES " +
                         "('" + this.storeNameTxt.Text + "', " +
                         " '" + this.storePhoneTxt.Text + "', " +
                         " '" + this.storeAddressTxt.Text + "', " +
                         " '" + this.storeFaxTxt.Text + "', " +
                         " '" + this.storeDetailTxt.Text + "', " +
                         " '" + this.contactPhoneTxt.Text + "', " +
-                        " '" + this.contactNameTxt.Text + "') ";
+                        " '" + this.contactNameTxt.Text + "', " +
+                        " '" + ((this.isMarket.Checked) ? 1: 0) + "') ";
                     }
                     else
                     {
@@ -104,7 +107,8 @@ namespace Invoice
                         "store_fax = '" + this.storeFaxTxt.Text + "', " +
                         "store_detail = '" + this.storeDetailTxt.Text + "', " +
                         "contact_phone = '" + this.contactPhoneTxt.Text + "', " +
-                        "contact_name = '" + this.contactNameTxt.Text + "' WHERE store_id= " + this.dbId;
+                        "contact_name = '" + this.contactNameTxt.Text + "', " +
+                        "isMarket = '" + ((this.isMarket.Checked) ? 1: 0) + "' WHERE store_id= " + this.dbId;
                     }
                     db.RunQuery(sqlQuery).Close();
                     MessageBox.Show("Data Saved successfully", "Saved", MessageBoxButtons.OK, MessageBoxIcon.None);

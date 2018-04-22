@@ -87,10 +87,11 @@ namespace Invoice
                 db = new DbConnectorClass();
                 adapter = new MySqlDataAdapter("SELECT Product, quantity AS QTY, " +
                     "Price, (price * quantity) AS Amount, Market, Note, Route " +
-                    "FROM invoice_db.cart where order_id = "+id, db.GetConnection());
+                    "FROM invoice_db.cart where quantity > 0 and order_id = "+id, db.GetConnection());
                 // Create one DataTable with one column.
                 this.DS = new DataSet();
                 adapter.Fill(DS);
+                this.orderDataView.Rows.Clear();
                 for (int i = 0; i < DS.Tables[0].Rows.Count; i++)
                 {
                     DataRow myRow = DS.Tables[0].Rows[i];
@@ -104,8 +105,8 @@ namespace Invoice
                     row.Cells[ROUTE].Value = myRow[ROUTE];
                     this.orderDataView.Rows.Add(row);
                 }
-                dbReader = db.RunQuery("select * from invoice_db.store where store_id = " +
-                    "(select store_id from invoice_db.order where order_id = "+id+");");
+                dbReader = db.RunQuery("select * from invoice_db.store as s inner join invoice_db.order as o " +
+                    "on s.store_id = o.store_id where order_id = "+id+";");
                 if(dbReader.Read())
                 {
                     this.StoreList.SelectedIndex = this.StoreList.FindString(
@@ -113,6 +114,7 @@ namespace Invoice
                         ", (" + db.NullToEmpty(dbReader, "store_phone") +
                         "), " + db.NullToEmpty(dbReader, "store_address") +
                         " (Contact: " + db.NullToEmpty(dbReader, "contact_name") + ")");
+                    this.DeliveryDate.Value = Convert.ToDateTime(db.NullToEmpty(dbReader, "delivery_date"));
                 }
                 dbReader.Close();
                 //this.orderDataView.DataSource = DS.Tables[0];
@@ -368,7 +370,7 @@ namespace Invoice
                             string checkExist = "SELECT * FROM invoice_db.cart " + whereStr;
                             dbReader = db.RunQuery(checkExist);
                             string InsertSql = "";
-                            if (dbReader.Read())
+                            if (!dbReader.Read())
                             {
                                 InsertSql = "INSERT INTO invoice_db.cart(quantity, product, price, market, note, route, order_id) VALUES(" +
                                 "'" + qty + "', '" + product + "', '" + price + "', '" +

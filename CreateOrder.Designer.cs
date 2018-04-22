@@ -29,6 +29,13 @@
         private void InitializeComponent()
         {
             this.orderDataView = new System.Windows.Forms.DataGridView();
+            this.ProductCol = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.QTYCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PriceCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AmountCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MarketCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NoteCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RouteCol = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.BillToLbl = new System.Windows.Forms.Label();
             this.StoreList = new System.Windows.Forms.ComboBox();
             this.DeliveryDate = new System.Windows.Forms.DateTimePicker();
@@ -39,18 +46,14 @@
             this.RouteLbl = new System.Windows.Forms.Label();
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RouteComboBox = new System.Windows.Forms.ComboBox();
-            this.ProductCol = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.QTYCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PriceCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AmountCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MarketCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NoteCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RouteCol = new System.Windows.Forms.DataGridViewComboBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.orderDataView)).BeginInit();
             this.SuspendLayout();
             // 
             // orderDataView
             // 
+            this.orderDataView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.orderDataView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.orderDataView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ProductCol,
@@ -65,6 +68,52 @@
             this.orderDataView.Size = new System.Drawing.Size(729, 386);
             this.orderDataView.TabIndex = 5;
             this.orderDataView.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Grid_EditingControlShowing);
+            // 
+            // ProductCol
+            // 
+            this.ProductCol.HeaderText = "Product";
+            this.ProductCol.Name = "ProductCol";
+            this.ProductCol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ProductCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // QTYCol
+            // 
+            this.QTYCol.HeaderText = "QTY";
+            this.QTYCol.Name = "QTYCol";
+            // 
+            // PriceCol
+            // 
+            this.PriceCol.HeaderText = "Price";
+            this.PriceCol.Name = "PriceCol";
+            // 
+            // AmountCol
+            // 
+            this.AmountCol.HeaderText = "Amount";
+            this.AmountCol.Name = "AmountCol";
+            // 
+            // MarketCol
+            // 
+            this.MarketCol.HeaderText = "Market";
+            this.MarketCol.Name = "MarketCol";
+            // 
+            // NoteCol
+            // 
+            this.NoteCol.HeaderText = "Note";
+            this.NoteCol.Name = "NoteCol";
+            // 
+            // RouteCol
+            // 
+            this.RouteCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.RouteCol.HeaderText = "Route";
+            this.RouteCol.Items.AddRange(new object[] {
+            "",
+            "1",
+            "2",
+            "3"});
+            this.RouteCol.Name = "RouteCol";
+            this.RouteCol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.RouteCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.RouteCol.Width = 61;
             // 
             // BillToLbl
             // 
@@ -166,52 +215,6 @@
             this.RouteComboBox.Size = new System.Drawing.Size(100, 28);
             this.RouteComboBox.TabIndex = 17;
             this.RouteComboBox.SelectedIndexChanged += new System.EventHandler(this.RouteComboBox_SelectedIndexChanged);
-            // 
-            // ProductCol
-            // 
-            this.ProductCol.HeaderText = "Product";
-            this.ProductCol.Name = "ProductCol";
-            this.ProductCol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ProductCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // QTYCol
-            // 
-            this.QTYCol.HeaderText = "QTY";
-            this.QTYCol.Name = "QTYCol";
-            // 
-            // PriceCol
-            // 
-            this.PriceCol.HeaderText = "Price";
-            this.PriceCol.Name = "PriceCol";
-            // 
-            // AmountCol
-            // 
-            this.AmountCol.HeaderText = "Amount";
-            this.AmountCol.Name = "AmountCol";
-            // 
-            // MarketCol
-            // 
-            this.MarketCol.HeaderText = "Market";
-            this.MarketCol.Name = "MarketCol";
-            // 
-            // NoteCol
-            // 
-            this.NoteCol.HeaderText = "Note";
-            this.NoteCol.Name = "NoteCol";
-            // 
-            // RouteCol
-            // 
-            this.RouteCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.RouteCol.HeaderText = "Route";
-            this.RouteCol.Items.AddRange(new object[] {
-            "",
-            "1",
-            "2",
-            "3"});
-            this.RouteCol.Name = "RouteCol";
-            this.RouteCol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.RouteCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.RouteCol.Width = 61;
             // 
             // CreateOrder
             // 

@@ -17,3 +17,5 @@ C:\Users\yomiguri\source\repos\Invoice\Invoice\obj\Debug\Invoice.csproj.CoreComp
 C:\Users\yomiguri\source\repos\Invoice\Invoice\obj\Debug\Invoice.csproj.CopyComplete
 C:\Users\yomiguri\source\repos\Invoice\Invoice\obj\Debug\Invoice.exe
 C:\Users\yomiguri\source\repos\Invoice\Invoice\obj\Debug\Invoice.pdb
+C:\Users\yomiguri\source\repos\Invoice\Invoice\obj\Debug\Invoice.WeeklySale.resources
+C:\Users\yomiguri\source\repos\Invoice\Invoice\obj\Debug\Invoice.WeeklyExpense.resources
