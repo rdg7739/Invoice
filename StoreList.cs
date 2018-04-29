@@ -22,13 +22,36 @@ namespace Invoice
         }
         public void GetStoreList()
         {
+            this.ShowMarketCheckBox.Checked = true;
+            this.ShowCustomerCheckBox.Checked = true;
+            GetStoreList(true, true);
+        }
+        public void GetStoreList(bool isMarket, bool isCustomer)
+        {
             try
             {
+                String whereStr = "";
+                if (isMarket && isCustomer)
+                {
+                    whereStr = "";
+                }
+                else if (isMarket)
+                {
+                    whereStr = "where isMarket = 0";
+                }
+                else if (isCustomer)
+                {
+                    whereStr = "where isMarket = 1";
+                }
+                else
+                {
+                    whereStr = "where isMarket = 2";
+                }
                 db = new DbConnectorClass();
                 adapter = new MySqlDataAdapter("SELECT store_id AS `Store Id`, store_name AS `Store Name`," +
                     "store_address AS Address, store_phone AS Phone, store_fax AS Fax, " +
                     "contact_name AS `Contact Name`, contact_phone AS Phone, store_detail AS `Store Detail`, if(isMarket = 1, 'True', 'False') as `Is Market` " +
-                    "FROM invoice_db.store", db.GetConnection());
+                    "FROM invoice_db.store " + whereStr + " order by store_name ", db.GetConnection());
                 // Create one DataTable with one column.
                 DataSet DS = new DataSet();
                 adapter.Fill(DS);
@@ -65,6 +88,13 @@ namespace Invoice
             String storeId = (String)this.StoreDataView[1, e.RowIndex].Value.ToString();
             CreateStore cs = new CreateStore(storeId, this);
             cs.Show();
+        }
+
+        private void ShowOptionCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            bool isMarket = this.ShowMarketCheckBox.Checked;
+            bool isCustomer = this.ShowCustomerCheckBox.Checked;
+            GetStoreList(isMarket, isCustomer);
         }
     }
 }

@@ -133,6 +133,7 @@
             this.StoreList.Name = "StoreList";
             this.StoreList.Size = new System.Drawing.Size(584, 28);
             this.StoreList.TabIndex = 1;
+            this.StoreList.SelectedIndexChanged += new System.EventHandler(this.StoreList_SelectedIndexChanged);
             // 
             // DeliveryDate
             // 

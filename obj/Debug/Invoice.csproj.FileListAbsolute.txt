@@ -19,3 +19,11 @@ C:\Users\yomiguri\source\repos\Invoice\Invoice\obj\Debug\Invoice.exe
 C:\Users\yomiguri\source\repos\Invoice\Invoice\obj\Debug\Invoice.pdb
 C:\Users\yomiguri\source\repos\Invoice\Invoice\obj\Debug\Invoice.WeeklySale.resources
 C:\Users\yomiguri\source\repos\Invoice\Invoice\obj\Debug\Invoice.WeeklyExpense.resources
+C:\Users\yomiguri\source\repos\Invoice\Invoice\bin\Debug\Invoice.exe.manifest
+C:\Users\yomiguri\source\repos\Invoice\Invoice\bin\Debug\Invoice.application
+C:\Users\yomiguri\source\repos\Invoice\Invoice\obj\Debug\Invoice.exe.manifest
+C:\Users\yomiguri\source\repos\Invoice\Invoice\obj\Debug\Invoice.application
+C:\Users\yomiguri\source\repos\Invoice\Invoice\bin\Debug\invoice_db.mdf
+C:\Users\yomiguri\source\repos\Invoice\Invoice\bin\Debug\invoice_db_log.ldf
+C:\Users\yomiguri\source\repos\Invoice\Invoice\bin\Debug\MySql.Data.dll
+C:\Users\yomiguri\source\repos\Invoice\Invoice\bin\Debug\MySql.Data.xml

@@ -24,13 +24,37 @@ namespace Invoice
 
         public void OrderLoad()
         {
+            this.BuyCheckBox.Checked = true;
+            this.SellCheckBox.Checked = true;
+            OrderLoad(true, true);
+        }
+        public void OrderLoad(bool isBuy, bool isSell)
+        {
             try
-            { 
+            {
                 db = new DbConnectorClass();
+                String whereStr = "";
+                if(isBuy && isSell)
+                {
+                    whereStr = "";
+                }
+                else if (isBuy)
+                {
+                    whereStr = "where isMarket = 0";
+                }
+                else if(isSell)
+                {
+                    whereStr = "where isMarket = 1";
+                }
+                else
+                {
+                    whereStr = "where isMarket = 2";
+                }
+                
                 adapter = new MySqlDataAdapter(
-                    "Select order_id as `Order Id`, store_name as Store, delivery_date as `Delivery Date`, ordered_date as `Ordered Date`, total as Total "+
-                    "from invoice_db.order as t1 inner join invoice_db.store as t2 "+
-                    "on t1.store_id = t2.store_id order by delivery_date desc, order_id desc;" , db.GetConnection());
+                    "Select order_id as `Order Id`, store_name as Store, delivery_date as `Delivery Date`, ordered_date as `Ordered Date`, total as Total " +
+                    "from invoice_db.order as t1 inner join invoice_db.store as t2 " +
+                    "on t1.store_id = t2.store_id "+whereStr+" order by delivery_date desc, order_id desc;", db.GetConnection());
                 // Create one DataTable with one column.
                 this.DS = new DataSet();
                 adapter.Fill(DS);
@@ -69,6 +93,13 @@ namespace Invoice
             String orderId = (String)this.OrderListView[1, e.RowIndex].Value.ToString();
             CreateOrder cs = new CreateOrder(orderId, this);
             cs.Show();
+        }
+
+        private void OptionCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            bool isBuy = this.BuyCheckBox.Checked;
+            bool isSell = this.SellCheckBox.Checked;
+            OrderLoad(isBuy, isSell);
         }
     }
 }
