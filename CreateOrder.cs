@@ -9,14 +9,14 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+using System.Data.SqlClient;
 namespace Invoice
 {
     public partial class CreateOrder : Form
     {
         private DbConnectorClass db;
         DataSet myDataSet = new DataSet();
-        MySqlDataAdapter adapter;
+        SqlDataAdapter adapter;
         String orderId;
         DataSet DS;
         private int PRODUCT = 0;
@@ -29,7 +29,7 @@ namespace Invoice
         private OrderList ol;
         private ArrayList qtyList = new ArrayList(); 
         private bool isSave = false;
-        private MySqlDataReader dbReader;
+        private SqlDataReader dbReader;
         private bool isMarket;
 
         public CreateOrder()
@@ -52,14 +52,14 @@ namespace Invoice
             try
             {
                 db = new DbConnectorClass();
-                dbReader = db.RunQuery("select * from invoice_db.product order by product asc");
+                dbReader = db.RunQuery("select * from invoice.dbo.product order by product asc");
                 while (dbReader.Read())
                 {
                     (this.orderDataView.Columns[0] as DataGridViewComboBoxColumn)
                         .Items.Add(db.NullToEmpty(dbReader, "product"));
                 }
                 dbReader.Close();
-                dbReader = db.RunQuery("select * from invoice_db.store order by store_id asc");
+                dbReader = db.RunQuery("select * from invoice.dbo.store order by store_id asc");
                 while (dbReader.Read())
                 {
                     ComboboxItem comboItem = new ComboboxItem
@@ -93,9 +93,9 @@ namespace Invoice
             try
             {
                 db = new DbConnectorClass();
-                adapter = new MySqlDataAdapter("SELECT Product, quantity AS QTY, " +
+                adapter = new SqlDataAdapter("SELECT Product, quantity AS QTY, " +
                     "Price, (price * quantity) AS Amount, Market, Note, Route " +
-                    "FROM invoice_db.cart where quantity > 0 and order_id = "+id, db.GetConnection());
+                    "FROM invoice.dbo.cart where quantity > 0 and order_id = "+id, db.GetConnection());
                 // Create one DataTable with one column.
                 this.DS = new DataSet();
                 adapter.Fill(DS);
@@ -114,7 +114,7 @@ namespace Invoice
                     this.orderDataView.Rows.Add(row);
                     qtyList.Add(myRow[QTY]);
                 }
-                dbReader = db.RunQuery("select * from invoice_db.store as s inner join invoice_db.order as o " +
+                dbReader = db.RunQuery("select * from invoice.dbo.store as s inner join invoice.dbo.order_list as o " +
                     "on s.store_id = o.store_id where order_id = "+id+";");
                 if(dbReader.Read())
                 {
@@ -204,7 +204,7 @@ namespace Invoice
             try
             {
                 db = new DbConnectorClass();
-                dbReader = db.RunQuery("select * from invoice_db.product where product ='"+prodName+"';");
+                dbReader = db.RunQuery("select * from invoice.dbo.product where product ='"+prodName+"';");
 
                 if (dbReader.Read())
                 {
@@ -341,18 +341,18 @@ namespace Invoice
                         String sqlQuery = "";
                         if (this.orderId == null)
                         {
-                            sqlQuery = "INSERT INTO invoice_db.order " +
+                            sqlQuery = "INSERT INTO invoice.dbo.order_list " +
                             "(store_id, ordered_date, delivery_date, total) VALUES " +
                             "('" + (this.StoreList.SelectedIndex + 1) + "', " +
-                            " CURDATE(), " +
+                            " getDATE(), " +
                             " '" + Convert.ToDateTime(this.DeliveryDate.Value.ToString()).ToString("yyyy-MM-dd") + "', " +
                             " '" + this.TotalTxt.Text + "') ";
                             db.RunQuery(sqlQuery).Close();
-                            MySqlDataReader dbReader = db.RunQuery("Select order_id from invoice_db.order order by order_id desc limit 1");
+                            SqlDataReader dbReader = db.RunQuery("Select top 1 order_id from invoice.dbo.order_list order by order_id desc");
                             if (dbReader.Read())
                             {
                                 //product, qty, price, amount, market, note
-                                this.orderId = db.NullToEmpty(dbReader, "order_id");
+                                this.orderId = (String)db.NullToEmpty(dbReader, "order_id");
                             }
                             dbReader.Close();
                             for (int i = 0; i < this.orderDataView.Rows.Count - 1; i++)
@@ -368,18 +368,18 @@ namespace Invoice
                                 {
                                     route = row.Cells[ROUTE].Value.ToString();
                                 }
-                                string InsertSql = "INSERT INTO invoice_db.cart(quantity, product, price, market, note, route, order_id) VALUES(" +
+                                string InsertSql = "INSERT INTO invoice.dbo.cart(quantity, product, price, market, note, route, order_id) VALUES(" +
                                     "'" + qty + "', '" + product + "', '" + price + "', '" +
                                     market + "', '" + note + "', '" + route + "', '" + this.orderId + "')";
                                 db.RunQuery(InsertSql).Close();
                                 String buyOrSell = this.isMarket ? "+" : "-";
-                                string updateQuantity = "UPDATE invoice_db.product set quantity = (quantity " + buyOrSell + " " + qty + ") where product ='" + product + "'";
+                                string updateQuantity = "UPDATE invoice.dbo.product set quantity = (quantity " + buyOrSell + " " + qty + ") where product ='" + product + "'";
                                 db.RunQuery(updateQuantity).Close();
                             }
                         }
                         else
                         {
-                            sqlQuery = "UPDATE invoice_db.order set " +
+                            sqlQuery = "UPDATE invoice.dbo.order_list set " +
                             "delivery_date = '" + Convert.ToDateTime(this.DeliveryDate.Value.ToString()).ToString("yyyy-MM-dd") + "', " +
                             "total = '" + this.TotalTxt.Text + "' WHERE order_id= " + this.orderId;
                             adapter.Update(this.DS);
@@ -398,18 +398,18 @@ namespace Invoice
                                     route = row.Cells[ROUTE].Value.ToString();
                                 }
                                 string whereStr = " WHERE product='" + product + "' and order_id='" + this.orderId + "'";
-                                string checkExist = "SELECT * FROM invoice_db.cart " + whereStr;
+                                string checkExist = "SELECT * FROM invoice.dbo.cart " + whereStr;
                                 dbReader = db.RunQuery(checkExist);
                                 string InsertSql = "";
                                 if (!dbReader.Read())
                                 {
-                                    InsertSql = "INSERT INTO invoice_db.cart(quantity, product, price, market, note, route, order_id) VALUES(" +
+                                    InsertSql = "INSERT INTO invoice.dbo.cart(quantity, product, price, market, note, route, order_id) VALUES(" +
                                     "'" + qty + "', '" + product + "', '" + price + "', '" +
                                     market + "', '" + note + "', '" + route + "', '" + this.orderId + "')";
                                 }
                                 else
                                 {
-                                    InsertSql = "UPDATE invoice_db.cart set quantity='" + qty +
+                                    InsertSql = "UPDATE invoice.dbo.cart set quantity='" + qty +
                                     "', price='" + price + "', market='" + market + "', note='" + note +
                                     "', route='" + route + "' " + whereStr;
                                 }
@@ -417,7 +417,7 @@ namespace Invoice
                                 db.RunQuery(InsertSql).Close();
                                 int diff = Int32.Parse(qty) - Int32.Parse(qtyList[i].ToString());
                                 String buyOrSell = this.isMarket ? "-" : "+";
-                                string updateQuantity = "UPDATE invoice_db.product set quantity = (quantity " + buyOrSell + " " + diff + ") where product ='" + product + "'";
+                                string updateQuantity = "UPDATE invoice.dbo.product set quantity = (quantity " + buyOrSell + " " + diff + ") where product ='" + product + "'";
                                 db.RunQuery(updateQuantity).Close();
                             }
                         }
@@ -459,9 +459,9 @@ namespace Invoice
                 var x = MessageBox.Show("Are you sure you want to delete? ", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (DialogResult.Yes == x)
                 {
-                    String sqlQuery = "DELETE FROM invoice_db.cart WHERE order_id= " + this.orderId;
+                    String sqlQuery = "DELETE FROM invoice.dbo.cart WHERE order_id= " + this.orderId;
                     db.RunQuery(sqlQuery);
-                    sqlQuery = "DELETE FROM invoice_db.order WHERE order_id= " + this.orderId;
+                    sqlQuery = "DELETE FROM invoice.dbo.order_list WHERE order_id= " + this.orderId;
                     db.RunQuery(sqlQuery).Close();
                     MessageBox.Show("Data Deleted successfully", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.None);
                     // need to close this form after click 'OK' button

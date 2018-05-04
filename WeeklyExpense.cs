@@ -7,13 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+using System.Data.SqlClient;
 namespace Invoice
 {
     public partial class WeeklyExpense : Form
     {
         private DbConnectorClass db;
-        private MySqlDataAdapter adapter;
+        private SqlDataAdapter adapter;
         private DataSet DS;
         private int MONDAY = 2;
         private int TUESDAY = 3;
@@ -50,22 +50,23 @@ namespace Invoice
                 db = new DbConnectorClass();
                 String query = "select s.Store_id as No, Store_name as Store, " +
                     "sum(case when delivery_date = '" + Mondate.ToString("yyyy-MM-dd")
-                    + "' then total else 0 end) as `" + MonStr + "`, " +
+                    + "' then total else 0 end) as '" + MonStr + "', " +
                     "sum(case when delivery_date = '" + Tuesdate.ToString("yyyy-MM-dd")
-                    + "' then total else 0 end) as `" + TuesStr + "`, " +
+                    + "' then total else 0 end) as '" + TuesStr + "', " +
                     "sum(case when delivery_date = '" + Wednesdate.ToString("yyyy-MM-dd")
-                    + "' then total else 0 end) as `" + WedStr + "`, " +
+                    + "' then total else 0 end) as '" + WedStr + "', " +
                     "sum(case when delivery_date = '" + Thursdate.ToString("yyyy-MM-dd")
-                    + "' then total else 0 end) as `" + ThurStr + "`, " +
+                    + "' then total else 0 end) as '" + ThurStr + "', " +
                     "sum(case when delivery_date = '" + Fridate.ToString("yyyy-MM-dd")
-                    + "' then total else 0 end) as `" + FriStr + "`, " +
+                    + "' then total else 0 end) as '" + FriStr + "', " +
                     "sum(case when delivery_date in ('" + Mondate.ToString("yyyy-MM-dd") + "','" +
                     Tuesdate.ToString("yyyy-MM-dd") + "','" + Wednesdate.ToString("yyyy-MM-dd") + "','" +
                     Thursdate.ToString("yyyy-MM-dd") + "','" + Fridate.ToString("yyyy-MM-dd") +
                     "') then total else 0 end) as Total " +
-                    "from invoice_db.store as s " +
-                    "left outer join invoice_db.order as o on o.store_id = s.store_id where isMarket = 1 group by s.Store_id;";
-                adapter = new MySqlDataAdapter(query, db.GetConnection());
+                    "from invoice.dbo.store as s " +
+                    "left outer join invoice.dbo.order_list as o on o.store_id = s.store_id where isMarket = 1 " +
+                    "group by s.Store_id, s.store_name;";
+                adapter = new SqlDataAdapter(query, db.GetConnection());
                 // Create one DataTable with one column.
                 this.DS = new DataSet();
                 adapter.Fill(DS);

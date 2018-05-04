@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+using System.Data.SqlClient;
 namespace Invoice
 {
     public partial class CreateProduct : Form
@@ -40,7 +40,7 @@ namespace Invoice
                 isEdit = true;
                 this.CreateProductTitleTxt.Text = "Edit Product";
                 db = new DbConnectorClass();
-                MySqlDataReader dbReader = db.RunQuery("select * from invoice_db.product where product_id = " + id);
+                SqlDataReader dbReader = db.RunQuery("select * from invoice.dbo.product where product_id = " + id);
                 if (dbReader.Read())
                 {
                     this.dbNo = id;
@@ -74,7 +74,7 @@ namespace Invoice
                     String sqlQuery = "";
                     if (this.dbNo == null)
                     {
-                        sqlQuery = "INSERT INTO invoice_db.product " +
+                        sqlQuery = "INSERT INTO invoice.dbo.product " +
                         "(product, price, quantity, note) VALUES " +
                         "('" + this.ProductTxt.Text + "', " +
                         " '" + this.PriceTxt.Text + "', " +
@@ -83,7 +83,7 @@ namespace Invoice
                     }
                     else
                     {
-                        sqlQuery = "UPDATE invoice_db.product set " +
+                        sqlQuery = "UPDATE invoice.dbo.product set " +
                         "product = '" + this.ProductTxt.Text + "', " +
                         "price = '" + this.PriceTxt.Text + "', " +
                         "quantity = '" + this.QuantityTxt.Text + "', " +
@@ -163,7 +163,7 @@ namespace Invoice
                 var x = MessageBox.Show("Are you sure you want to delete? ", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (DialogResult.Yes == x)
                 {
-                    String sqlQuery = "DELETE FROM invoice_db.product WHERE product_id= "+ this.dbNo;
+                    String sqlQuery = "DELETE FROM invoice.dbo.product WHERE product_id= "+ this.dbNo;
                     db.RunQuery(sqlQuery).Close();
                     MessageBox.Show("Data Deleted successfully", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.None);
                     // need to close this form after click 'OK' button

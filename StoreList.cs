@@ -7,13 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+using System.Data.SqlClient;
 namespace Invoice
 {
     public partial class StoreList : Form
     {
         DbConnectorClass db;
-        MySqlDataAdapter adapter;
+        SqlDataAdapter adapter;
         public StoreList()
         {
             InitializeComponent();
@@ -48,10 +48,11 @@ namespace Invoice
                     whereStr = "where isMarket = 2";
                 }
                 db = new DbConnectorClass();
-                adapter = new MySqlDataAdapter("SELECT store_id AS `Store Id`, store_name AS `Store Name`," +
+                adapter = new SqlDataAdapter("SELECT store_id AS 'Store Id', store_name AS 'Store Name'," +
                     "store_address AS Address, store_phone AS Phone, store_fax AS Fax, " +
-                    "contact_name AS `Contact Name`, contact_phone AS Phone, store_detail AS `Store Detail`, if(isMarket = 1, 'True', 'False') as `Is Market` " +
-                    "FROM invoice_db.store " + whereStr + " order by store_name ", db.GetConnection());
+                    "contact_name AS 'Contact Name', contact_phone AS Phone, store_detail AS 'Store Detail', " +
+                    "CASE WHEN  isMarket = 1 THEN 'True' ELSE 'False' END AS 'Is Market'" +
+                    "FROM invoice.dbo.store " + whereStr + " order by store_name ", db.GetConnection());
                 // Create one DataTable with one column.
                 DataSet DS = new DataSet();
                 adapter.Fill(DS);

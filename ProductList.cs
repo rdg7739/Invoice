@@ -7,13 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+using System.Data.SqlClient;
 namespace Invoice
 {
     public partial class ProductList : Form
     {
         private DbConnectorClass db;
-        private MySqlDataAdapter adapter;
+        private SqlDataAdapter adapter;
         public ProductList()
         {
             InitializeComponent();
@@ -24,7 +24,7 @@ namespace Invoice
             try
             {
                 db = new DbConnectorClass();
-                adapter = new MySqlDataAdapter("select product_id as No,Product, Price, Quantity, Note from invoice_db.product", db.GetConnection());
+                adapter = new SqlDataAdapter("select product_id as No,Product, Price, Quantity, Note from invoice.dbo.product", db.GetConnection());
                 // Create one DataTable with one column.
                 DataSet DS = new DataSet();
                 adapter.Fill(DS);

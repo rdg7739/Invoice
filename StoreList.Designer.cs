@@ -28,12 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.StoreDataView = new System.Windows.Forms.DataGridView();
             this.ShowMarketCheckBox = new System.Windows.Forms.CheckBox();
             this.ShowCustomerCheckBox = new System.Windows.Forms.CheckBox();
             this.ListOptionLbl = new System.Windows.Forms.Label();
+            this.invoice_dbDataSet = new Invoice.invoice_dbDataSet();
+            this.storeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.StoreDataView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.invoice_dbDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.storeBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -83,7 +88,6 @@
             this.ShowCustomerCheckBox.Text = "Show Customer";
             this.ShowCustomerCheckBox.UseVisualStyleBackColor = true;
             this.ShowCustomerCheckBox.CheckedChanged += new System.EventHandler(this.ShowOptionCheckBox_CheckedChanged);
-
             // 
             // ListOptionLbl
             // 
@@ -94,6 +98,16 @@
             this.ListOptionLbl.Size = new System.Drawing.Size(93, 20);
             this.ListOptionLbl.TabIndex = 4;
             this.ListOptionLbl.Text = "List Option: ";
+            // 
+            // invoice_dbDataSet
+            // 
+            this.invoice_dbDataSet.DataSetName = "invoice_dbDataSet";
+            this.invoice_dbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // storeBindingSource
+            // 
+            this.storeBindingSource.DataMember = "store";
+            this.storeBindingSource.DataSource = this.invoice_dbDataSet;
             // 
             // StoreList
             // 
@@ -108,6 +122,8 @@
             this.Name = "StoreList";
             this.Text = "CustomerList";
             ((System.ComponentModel.ISupportInitialize)(this.StoreDataView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.invoice_dbDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.storeBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -120,5 +136,7 @@
         private System.Windows.Forms.CheckBox ShowMarketCheckBox;
         private System.Windows.Forms.CheckBox ShowCustomerCheckBox;
         private System.Windows.Forms.Label ListOptionLbl;
+        private System.Windows.Forms.BindingSource storeBindingSource;
+        private invoice_dbDataSet invoice_dbDataSet;
     }
 }

@@ -1,35 +1,43 @@
 ﻿using System;
-using MySql.Data.MySqlClient;
+using System.Data;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 
 public class DbConnectorClass
 {
-    private static String connectStr = "datasource=localhost;port=3306;username=root;password=root;";
-    private MySqlConnection dbConnect;
+    private static String connectStr =
+        "Data Source=(localdb)\\MSSQLLocalDB;" +
+        "Integrated Security=False;" +
+        "User ID=admin;Password=admin;" +
+        "Connect Timeout=30;Encrypt=False;" +
+        "TrustServerCertificate=False;ApplicationIntent=ReadWrite;" +
+        "MultiSubnetFailover=False";
+
+    private SqlConnection dbConnect;
 
     public DbConnectorClass()
 	{
-        dbConnect = new MySqlConnection(connectStr);
+        dbConnect = new SqlConnection(connectStr);
         dbConnect.Open();
     }
 
-    public String NullToEmpty(MySqlDataReader dbReader, String columnName)
+    public String NullToEmpty(SqlDataReader dbReader, String columnName)
     {
         int idx = dbReader.GetOrdinal(columnName);
         if (dbReader.IsDBNull(idx))
         {
             return "";
         }
-        return dbReader.GetString(idx);
+        return dbReader.GetValue(idx).ToString();
     }
-    public MySqlConnection GetConnection() {
+    public SqlConnection GetConnection() {
         return this.dbConnect; 
     }
-    public MySqlDataReader RunQuery(String query)
+    public SqlDataReader RunQuery(String query)
     {
-        MySqlDataReader dbReader = null;
+        SqlDataReader dbReader = null;
 
-        MySqlCommand dbCmd = new MySqlCommand(query, dbConnect);
+        SqlCommand dbCmd = new SqlCommand(query, dbConnect);
         try
         {
             dbReader = dbCmd.ExecuteReader();

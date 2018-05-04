@@ -7,13 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+using System.Data.SqlClient;
 namespace Invoice
 {
     public partial class DeliverySchedule : Form
     {
         DbConnectorClass db;
-        MySqlDataAdapter adapter;
+        SqlDataAdapter adapter;
         DataSet DS;
         private int PRODUCT = 0;
         //private int QTY = 1;
@@ -33,16 +33,16 @@ namespace Invoice
             try
             {
                 db = new DbConnectorClass();
-                adapter = new MySqlDataAdapter(
+                adapter = new SqlDataAdapter(
                     "select product, sum(quantity) as QTY, Price, (price * quantity) as Amount, Market, Note, "+
-                    "sum(case when route = 1 then quantity else 0 end) as `route 1`, " +
-                    "sum(case when route = 2 then quantity else 0 end) as `route 2`, "+
-                    "sum(case when route = 3 then quantity else 0 end) as `route 3` "+
-                    "from invoice_db.cart where order_id in " +
-                    "(select order_id from invoice_db.order as o inner join invoice_db.store as s " +
+                    "sum(case when route = 1 then quantity else 0 end) as 'route 1', " +
+                    "sum(case when route = 2 then quantity else 0 end) as 'route 2', "+
+                    "sum(case when route = 3 then quantity else 0 end) as 'route 3' "+
+                    "from invoice.dbo.cart as c where order_id in " +
+                    "(select order_id from invoice.dbo.order_list as o inner join invoice.dbo.store as s " +
                     "on s.store_id = o.store_id where isMarket = '0' AND delivery_date = '" +
                 Convert.ToDateTime(this.DeliveryScheduleDate.Value.ToString()).ToString("yyyy-MM-dd")+
-                    "') group by product;", db.GetConnection());
+                    "') group by c.Product, c.quantity, c.price, c.market, c.note;", db.GetConnection());
                 // Create one DataTable with one column.
                 this.DS = new DataSet();
                 adapter.Fill(DS);
@@ -81,8 +81,8 @@ namespace Invoice
                         String product = row.Cells[PRODUCT].Value.ToString();
                         String market = row.Cells[MARKET].Value.ToString();
                         String note = row.Cells[NOTE].Value.ToString();
-                        string InsertSql = "update invoice_db.cart set market='"+market+"', note='"+note+"' where order_id in "+
-                        "(select order_id from invoice_db.order where delivery_date = '"+
+                        string InsertSql = "update invoice.dbo.cart set market='"+market+"', note='"+note+"' where order_id in "+
+                        "(select order_id from invoice.dbo.order_list where delivery_date = '"+
                         Convert.ToDateTime(this.DeliveryScheduleDate.Value.ToString()).ToString("yyyy-MM-dd") + "') "+
                         "and product = '"+ product + "'";
                         db.RunQuery(InsertSql).Close();

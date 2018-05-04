@@ -7,13 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+using System.Data.SqlClient;
 namespace Invoice
 {
     public partial class OrderList : Form
     {
         DbConnectorClass db;
-        MySqlDataAdapter adapter;
+        SqlDataAdapter adapter;
         DataSet DS;
         public OrderList()
         {
@@ -51,9 +51,9 @@ namespace Invoice
                     whereStr = "where isMarket = 2";
                 }
                 
-                adapter = new MySqlDataAdapter(
-                    "Select order_id as `Order Id`, store_name as Store, delivery_date as `Delivery Date`, ordered_date as `Ordered Date`, total as Total " +
-                    "from invoice_db.order as t1 inner join invoice_db.store as t2 " +
+                adapter = new SqlDataAdapter(
+                    "Select order_id as 'Order Id', store_name as Store, delivery_date as 'Delivery Date', ordered_date as 'Ordered Date', total as Total " +
+                    "from invoice.dbo.order_list as t1 inner join invoice.dbo.store as t2 " +
                     "on t1.store_id = t2.store_id "+whereStr+" order by delivery_date desc, order_id desc;", db.GetConnection());
                 // Create one DataTable with one column.
                 this.DS = new DataSet();

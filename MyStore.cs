@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+using System.Data.SqlClient;
 namespace Invoice
 {
     public partial class MyStore : Form
@@ -30,7 +30,7 @@ namespace Invoice
                 var x = MessageBox.Show("Are you sure you want to save? ", "Save", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if(DialogResult.Yes == x)
                 {
-                    String sqlQuery = "UPDATE invoice_db.store SET " +
+                    String sqlQuery = "UPDATE invoice.dbo.store SET " +
                     "store_name='" + this.storeNameTxt.Text + "', " +
                     " store_phone = '" + this.storePhoneTxt.Text + "', " +
                     " store_address = '" + this.storeAddressTxt.Text + "', " +
@@ -53,7 +53,7 @@ namespace Invoice
             try
             {
                 db = new DbConnectorClass();
-                MySqlDataReader dbReader =  db.RunQuery("select * from invoice_db.store where store_id = 1");
+                SqlDataReader dbReader =  db.RunQuery("select * from invoice.dbo.store where store_id = 1");
                 if (dbReader.Read())
                 {
                     this.storeNameTxt.Text = db.NullToEmpty(dbReader, "store_name");

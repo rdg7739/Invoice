@@ -25,3 +25,5 @@ C:\Users\yomiguri\source\repos\Invoice\Invoice\obj\Release\Invoice.application
 C:\Users\yomiguri\source\repos\Invoice\Invoice\obj\Release\Invoice.csproj.CopyComplete
 C:\Users\yomiguri\source\repos\Invoice\Invoice\obj\Release\Invoice.exe
 C:\Users\yomiguri\source\repos\Invoice\Invoice\obj\Release\Invoice.pdb
+C:\Users\yomiguri\source\repos\Invoice\Invoice\bin\Release\invoice_db.mdf
+C:\Users\yomiguri\source\repos\Invoice\Invoice\bin\Release\invoice_db_log.ldf
