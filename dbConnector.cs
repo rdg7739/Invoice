@@ -7,8 +7,9 @@ public class DbConnectorClass
 {
     private static String connectStr =
         "Data Source=(localdb)\\MSSQLLocalDB;" +
-        "Integrated Security=False;" +
-        "User ID=admin;Password=admin;" +
+        "Initial Catalog = invoice; " +
+        "Integrated Security = False;" +
+        "User ID=invoice_user;Password=invoice_user" +
         "Connect Timeout=30;Encrypt=False;" +
         "TrustServerCertificate=False;ApplicationIntent=ReadWrite;" +
         "MultiSubnetFailover=False";

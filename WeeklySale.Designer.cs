@@ -28,26 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.WeeklySaleLbl = new System.Windows.Forms.Label();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WeeklySale));
             this.WeeklySaleDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.WeeklySaleDataView = new System.Windows.Forms.DataGridView();
+            this.titlePanel = new System.Windows.Forms.Panel();
+            this.closeBtn = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.Title = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.WeeklySaleDataView)).BeginInit();
+            this.titlePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // WeeklySaleLbl
-            // 
-            this.WeeklySaleLbl.AutoSize = true;
-            this.WeeklySaleLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WeeklySaleLbl.Location = new System.Drawing.Point(85, 43);
-            this.WeeklySaleLbl.Name = "WeeklySaleLbl";
-            this.WeeklySaleLbl.Size = new System.Drawing.Size(207, 39);
-            this.WeeklySaleLbl.TabIndex = 0;
-            this.WeeklySaleLbl.Text = "Weekly Sale";
             // 
             // WeeklySaleDateTimePicker
             // 
             this.WeeklySaleDateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WeeklySaleDateTimePicker.Location = new System.Drawing.Point(456, 53);
+            this.WeeklySaleDateTimePicker.Location = new System.Drawing.Point(468, 39);
             this.WeeklySaleDateTimePicker.Name = "WeeklySaleDateTimePicker";
             this.WeeklySaleDateTimePicker.Size = new System.Drawing.Size(263, 26);
             this.WeeklySaleDateTimePicker.TabIndex = 1;
@@ -58,34 +56,102 @@
             this.WeeklySaleDataView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.WeeklySaleDataView.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.WeeklySaleDataView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.WeeklySaleDataView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.WeeklySaleDataView.Location = new System.Drawing.Point(43, 108);
+            this.WeeklySaleDataView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.WeeklySaleDataView.Location = new System.Drawing.Point(32, 117);
             this.WeeklySaleDataView.Name = "WeeklySaleDataView";
             this.WeeklySaleDataView.ReadOnly = true;
             this.WeeklySaleDataView.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.WeeklySaleDataView.Size = new System.Drawing.Size(697, 409);
+            this.WeeklySaleDataView.Size = new System.Drawing.Size(722, 419);
             this.WeeklySaleDataView.TabIndex = 2;
+            // 
+            // titlePanel
+            // 
+            this.titlePanel.BackColor = System.Drawing.Color.SteelBlue;
+            this.titlePanel.Controls.Add(this.closeBtn);
+            this.titlePanel.Controls.Add(this.pictureBox2);
+            this.titlePanel.Controls.Add(this.WeeklySaleDateTimePicker);
+            this.titlePanel.Controls.Add(this.pictureBox1);
+            this.titlePanel.Controls.Add(this.Title);
+            this.titlePanel.Location = new System.Drawing.Point(1, 1);
+            this.titlePanel.Name = "titlePanel";
+            this.titlePanel.Size = new System.Drawing.Size(782, 91);
+            this.titlePanel.TabIndex = 21;
+            this.titlePanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DragTitlePanel);
+            // 
+            // closeBtn
+            // 
+            this.closeBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.closeBtn.Location = new System.Drawing.Point(761, 3);
+            this.closeBtn.Name = "closeBtn";
+            this.closeBtn.Size = new System.Drawing.Size(20, 20);
+            this.closeBtn.TabIndex = 4;
+            this.closeBtn.Text = "X";
+            this.closeBtn.UseVisualStyleBackColor = true;
+            this.closeBtn.Click += new System.EventHandler(this.CloseBtn_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox2.Location = new System.Drawing.Point(66, 44);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(29, 32);
+            this.pictureBox2.TabIndex = 3;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Location = new System.Drawing.Point(31, 19);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(57, 55);
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
+            // 
+            // Title
+            // 
+            this.Title.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Title.Font = new System.Drawing.Font("Arial", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Title.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.Title.Location = new System.Drawing.Point(73, 16);
+            this.Title.Name = "Title";
+            this.Title.Size = new System.Drawing.Size(280, 60);
+            this.Title.TabIndex = 1;
+            this.Title.Text = "Weekly Sale";
+            this.Title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // WeeklySale
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.titlePanel);
             this.Controls.Add(this.WeeklySaleDataView);
-            this.Controls.Add(this.WeeklySaleDateTimePicker);
-            this.Controls.Add(this.WeeklySaleLbl);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "WeeklySale";
             this.Text = "WeeklySale";
             ((System.ComponentModel.ISupportInitialize)(this.WeeklySaleDataView)).EndInit();
+            this.titlePanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label WeeklySaleLbl;
         private System.Windows.Forms.DateTimePicker WeeklySaleDateTimePicker;
         private System.Windows.Forms.DataGridView WeeklySaleDataView;
+        private System.Windows.Forms.Panel titlePanel;
+        private System.Windows.Forms.Button closeBtn;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label Title;
     }
 }

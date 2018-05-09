@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateOrder));
             this.orderDataView = new System.Windows.Forms.DataGridView();
             this.ProductCol = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.QTYCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,12 +42,23 @@
             this.DeliveryDate = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.TotalTxt = new System.Windows.Forms.TextBox();
-            this.SaveBtn = new System.Windows.Forms.Button();
-            this.CancelBtn = new System.Windows.Forms.Button();
+            this.SaveBtn = new Invoice.ButtonModified();
+            this.CancelBtn = new Invoice.ButtonModified();
             this.RouteLbl = new System.Windows.Forms.Label();
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RouteComboBox = new System.Windows.Forms.ComboBox();
+            this.titlePanel = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.closeBtn = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.PrintBtn = new Invoice.ButtonModified();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             ((System.ComponentModel.ISupportInitialize)(this.orderDataView)).BeginInit();
+            this.titlePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // orderDataView
@@ -54,6 +66,8 @@
             this.orderDataView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.orderDataView.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.orderDataView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.orderDataView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.orderDataView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ProductCol,
@@ -63,9 +77,10 @@
             this.MarketCol,
             this.NoteCol,
             this.RouteCol});
-            this.orderDataView.Location = new System.Drawing.Point(29, 108);
+            this.orderDataView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.orderDataView.Location = new System.Drawing.Point(29, 113);
             this.orderDataView.Name = "orderDataView";
-            this.orderDataView.Size = new System.Drawing.Size(729, 386);
+            this.orderDataView.Size = new System.Drawing.Size(822, 386);
             this.orderDataView.TabIndex = 5;
             this.orderDataView.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Grid_EditingControlShowing);
             // 
@@ -118,20 +133,21 @@
             // BillToLbl
             // 
             this.BillToLbl.AutoSize = true;
-            this.BillToLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BillToLbl.Location = new System.Drawing.Point(25, 33);
+            this.BillToLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BillToLbl.ForeColor = System.Drawing.SystemColors.Window;
+            this.BillToLbl.Location = new System.Drawing.Point(77, 15);
             this.BillToLbl.Name = "BillToLbl";
-            this.BillToLbl.Size = new System.Drawing.Size(142, 20);
+            this.BillToLbl.Size = new System.Drawing.Size(181, 25);
             this.BillToLbl.TabIndex = 6;
             this.BillToLbl.Text = "Bill To (Customer): ";
             // 
             // StoreList
             // 
-            this.StoreList.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StoreList.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StoreList.FormattingEnabled = true;
-            this.StoreList.Location = new System.Drawing.Point(174, 30);
+            this.StoreList.Location = new System.Drawing.Point(264, 11);
             this.StoreList.Name = "StoreList";
-            this.StoreList.Size = new System.Drawing.Size(584, 28);
+            this.StoreList.Size = new System.Drawing.Size(584, 33);
             this.StoreList.TabIndex = 1;
             this.StoreList.SelectedIndexChanged += new System.EventHandler(this.StoreList_SelectedIndexChanged);
             // 
@@ -139,7 +155,7 @@
             // 
             this.DeliveryDate.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DeliveryDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DeliveryDate.Location = new System.Drawing.Point(29, 68);
+            this.DeliveryDate.Location = new System.Drawing.Point(147, 53);
             this.DeliveryDate.Name = "DeliveryDate";
             this.DeliveryDate.Size = new System.Drawing.Size(258, 26);
             this.DeliveryDate.TabIndex = 2;
@@ -148,27 +164,29 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label1.Location = new System.Drawing.Point(604, 71);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.Window;
+            this.label1.Location = new System.Drawing.Point(652, 54);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(48, 20);
+            this.label1.Size = new System.Drawing.Size(62, 25);
             this.label1.TabIndex = 12;
             this.label1.Text = "Total:";
             // 
             // TotalTxt
             // 
-            this.TotalTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TotalTxt.Location = new System.Drawing.Point(658, 68);
+            this.TotalTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TotalTxt.Location = new System.Drawing.Point(720, 51);
             this.TotalTxt.Name = "TotalTxt";
-            this.TotalTxt.Size = new System.Drawing.Size(100, 26);
+            this.TotalTxt.Size = new System.Drawing.Size(130, 30);
             this.TotalTxt.TabIndex = 4;
             // 
             // SaveBtn
             // 
-            this.SaveBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SaveBtn.Location = new System.Drawing.Point(674, 501);
+            this.SaveBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaveBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.SaveBtn.Location = new System.Drawing.Point(721, 509);
             this.SaveBtn.Name = "SaveBtn";
-            this.SaveBtn.Size = new System.Drawing.Size(84, 34);
+            this.SaveBtn.Size = new System.Drawing.Size(130, 34);
             this.SaveBtn.TabIndex = 7;
             this.SaveBtn.Text = "Save";
             this.SaveBtn.UseVisualStyleBackColor = true;
@@ -176,10 +194,11 @@
             // 
             // CancelBtn
             // 
-            this.CancelBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CancelBtn.Location = new System.Drawing.Point(568, 501);
+            this.CancelBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CancelBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.CancelBtn.Location = new System.Drawing.Point(557, 509);
             this.CancelBtn.Name = "CancelBtn";
-            this.CancelBtn.Size = new System.Drawing.Size(84, 34);
+            this.CancelBtn.Size = new System.Drawing.Size(130, 34);
             this.CancelBtn.TabIndex = 6;
             this.CancelBtn.Text = "Cancel";
             this.CancelBtn.UseVisualStyleBackColor = true;
@@ -188,10 +207,11 @@
             // RouteLbl
             // 
             this.RouteLbl.AutoSize = true;
-            this.RouteLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RouteLbl.Location = new System.Drawing.Point(314, 71);
+            this.RouteLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RouteLbl.ForeColor = System.Drawing.SystemColors.Window;
+            this.RouteLbl.Location = new System.Drawing.Point(429, 54);
             this.RouteLbl.Name = "RouteLbl";
-            this.RouteLbl.Size = new System.Drawing.Size(61, 20);
+            this.RouteLbl.Size = new System.Drawing.Size(74, 25);
             this.RouteLbl.TabIndex = 16;
             this.RouteLbl.Text = "Route: ";
             // 
@@ -205,38 +225,129 @@
             // 
             this.RouteComboBox.AllowDrop = true;
             this.RouteComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.RouteComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RouteComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RouteComboBox.FormattingEnabled = true;
             this.RouteComboBox.Items.AddRange(new object[] {
             "1",
             "2",
             "3"});
-            this.RouteComboBox.Location = new System.Drawing.Point(381, 68);
+            this.RouteComboBox.Location = new System.Drawing.Point(509, 51);
             this.RouteComboBox.Name = "RouteComboBox";
-            this.RouteComboBox.Size = new System.Drawing.Size(100, 28);
+            this.RouteComboBox.Size = new System.Drawing.Size(130, 33);
             this.RouteComboBox.TabIndex = 17;
             this.RouteComboBox.SelectedIndexChanged += new System.EventHandler(this.RouteComboBox_SelectedIndexChanged);
+            // 
+            // titlePanel
+            // 
+            this.titlePanel.BackColor = System.Drawing.Color.SteelBlue;
+            this.titlePanel.Controls.Add(this.label2);
+            this.titlePanel.Controls.Add(this.closeBtn);
+            this.titlePanel.Controls.Add(this.RouteComboBox);
+            this.titlePanel.Controls.Add(this.RouteLbl);
+            this.titlePanel.Controls.Add(this.TotalTxt);
+            this.titlePanel.Controls.Add(this.label1);
+            this.titlePanel.Controls.Add(this.pictureBox2);
+            this.titlePanel.Controls.Add(this.pictureBox1);
+            this.titlePanel.Controls.Add(this.StoreList);
+            this.titlePanel.Controls.Add(this.BillToLbl);
+            this.titlePanel.Controls.Add(this.DeliveryDate);
+            this.titlePanel.Location = new System.Drawing.Point(1, 1);
+            this.titlePanel.Name = "titlePanel";
+            this.titlePanel.Size = new System.Drawing.Size(882, 91);
+            this.titlePanel.TabIndex = 23;
+            this.titlePanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DragTitlePanel);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.Window;
+            this.label2.Location = new System.Drawing.Point(82, 54);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(59, 25);
+            this.label2.TabIndex = 18;
+            this.label2.Text = "Date:";
+            // 
+            // closeBtn
+            // 
+            this.closeBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.closeBtn.Location = new System.Drawing.Point(859, 3);
+            this.closeBtn.Name = "closeBtn";
+            this.closeBtn.Size = new System.Drawing.Size(20, 20);
+            this.closeBtn.TabIndex = 4;
+            this.closeBtn.Text = "X";
+            this.closeBtn.UseVisualStyleBackColor = true;
+            this.closeBtn.Click += new System.EventHandler(this.CloseBtn_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox2.Location = new System.Drawing.Point(46, 41);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(30, 32);
+            this.pictureBox2.TabIndex = 3;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Location = new System.Drawing.Point(11, 16);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(58, 55);
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
+            // 
+            // PrintBtn
+            // 
+            this.PrintBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PrintBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.PrintBtn.Location = new System.Drawing.Point(29, 509);
+            this.PrintBtn.Name = "PrintBtn";
+            this.PrintBtn.Size = new System.Drawing.Size(130, 34);
+            this.PrintBtn.TabIndex = 24;
+            this.PrintBtn.Text = "Print";
+            this.PrintBtn.UseVisualStyleBackColor = true;
+            this.PrintBtn.Click += new System.EventHandler(this.PrintBtn_Click);
+            // 
+            // printDocument1
+            // 
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.PrintDocument1_PrintPage);
+            // 
+            // printPreviewDialog1
+            // 
+            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialog1.Document = this.printDocument1;
+            this.printPreviewDialog1.Enabled = true;
+            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
+            this.printPreviewDialog1.Name = "printPreviewDialog1";
+            this.printPreviewDialog1.Visible = false;
             // 
             // CreateOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 561);
-            this.Controls.Add(this.RouteComboBox);
-            this.Controls.Add(this.RouteLbl);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(884, 561);
+            this.Controls.Add(this.PrintBtn);
+            this.Controls.Add(this.titlePanel);
             this.Controls.Add(this.CancelBtn);
             this.Controls.Add(this.SaveBtn);
-            this.Controls.Add(this.TotalTxt);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.DeliveryDate);
-            this.Controls.Add(this.StoreList);
-            this.Controls.Add(this.BillToLbl);
             this.Controls.Add(this.orderDataView);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
             this.Name = "CreateOrder";
             this.Text = "CreateOrder";
             ((System.ComponentModel.ISupportInitialize)(this.orderDataView)).EndInit();
+            this.titlePanel.ResumeLayout(false);
+            this.titlePanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
         private void Init_deleteBtn()
@@ -259,8 +370,6 @@
         private System.Windows.Forms.DateTimePicker DeliveryDate;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox TotalTxt;
-        private System.Windows.Forms.Button SaveBtn;
-        private System.Windows.Forms.Button CancelBtn;
         private System.Windows.Forms.Button DeleteBtn;
         private System.Windows.Forms.Label RouteLbl;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
@@ -272,5 +381,15 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn MarketCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn NoteCol;
         private System.Windows.Forms.DataGridViewComboBoxColumn RouteCol;
+        private System.Windows.Forms.Panel titlePanel;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button closeBtn;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private ButtonModified SaveBtn;
+        private ButtonModified CancelBtn;
+        private ButtonModified PrintBtn;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
     }
 }

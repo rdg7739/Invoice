@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Runtime.InteropServices;
 namespace Invoice
 {
     public partial class OrderList : Form
@@ -15,6 +10,13 @@ namespace Invoice
         DbConnectorClass db;
         SqlDataAdapter adapter;
         DataSet DS;
+
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+        [DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
         public OrderList()
         {
             InitializeComponent();
@@ -40,11 +42,11 @@ namespace Invoice
                 }
                 else if (isBuy)
                 {
-                    whereStr = "where isMarket = 0";
+                    whereStr = "where isMarket = 1";
                 }
                 else if(isSell)
                 {
-                    whereStr = "where isMarket = 1";
+                    whereStr = "where isMarket = 0";
                 }
                 else
                 {
@@ -54,7 +56,7 @@ namespace Invoice
                 adapter = new SqlDataAdapter(
                     "Select order_id as 'Order Id', store_name as Store, delivery_date as 'Delivery Date', ordered_date as 'Ordered Date', total as Total " +
                     "from invoice.dbo.order_list as t1 inner join invoice.dbo.store as t2 " +
-                    "on t1.store_id = t2.store_id "+whereStr+" order by delivery_date desc, order_id desc;", db.GetConnection());
+                    "on t1.store_id = t2.store_id "+whereStr+ "  order by delivery_date desc, order_id desc;", db.GetConnection());
                 // Create one DataTable with one column.
                 this.DS = new DataSet();
                 adapter.Fill(DS);
@@ -100,6 +102,24 @@ namespace Invoice
             bool isBuy = this.BuyCheckBox.Checked;
             bool isSell = this.SellCheckBox.Checked;
             OrderLoad(isBuy, isSell);
+        }
+
+        private void CloseBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        private void DragTitlePanel(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+
+        private void OrderDate_ValueChanged(object sender, EventArgs e)
+        {
+            OrderLoad();
         }
     }
 }

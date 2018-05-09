@@ -5,7 +5,6 @@ C:\Users\yomiguri\source\repos\Invoice\Invoice\bin\Debug\Invoice.exe.manifest
 C:\Users\yomiguri\source\repos\Invoice\Invoice\bin\Debug\Invoice.application
 C:\Users\yomiguri\source\repos\Invoice\Invoice\bin\Debug\Invoice.exe
 C:\Users\yomiguri\source\repos\Invoice\Invoice\bin\Debug\Invoice.pdb
-C:\Users\yomiguri\source\repos\Invoice\Invoice\bin\Debug\MySql.Data.dll
 C:\Users\yomiguri\source\repos\Invoice\Invoice\bin\Debug\MySql.Data.xml
 C:\Users\yomiguri\source\repos\Invoice\Invoice\obj\Debug\Invoice.CreateProduct.resources
 C:\Users\yomiguri\source\repos\Invoice\Invoice\obj\Debug\Invoice.DeliverySchedule.resources
@@ -26,3 +25,4 @@ C:\Users\yomiguri\source\repos\Invoice\Invoice\obj\Debug\Invoice.application
 C:\Users\yomiguri\source\repos\Invoice\Invoice\obj\Debug\Invoice.csproj.CopyComplete
 C:\Users\yomiguri\source\repos\Invoice\Invoice\obj\Debug\Invoice.exe
 C:\Users\yomiguri\source\repos\Invoice\Invoice\obj\Debug\Invoice.pdb
+C:\Users\yomiguri\source\repos\Invoice\Invoice\obj\Debug\Invoice.csprojResolveAssemblyReference.cache

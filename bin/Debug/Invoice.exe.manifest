@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="Invoice.exe" version="1.0.0.3" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
+  <asmv1:assemblyIdentity name="Invoice.exe" version="1.0.0.12" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="Invoice" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="Invoice" version="1.0.0.0" publicKeyToken="9887E5538A68AC07" language="neutral" processorArchitecture="msil" />
     <commandLine file="Invoice.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Invoice.exe" size="124400">
-      <assemblyIdentity name="Invoice" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Invoice.exe" size="1897456">
+      <assemblyIdentity name="Invoice" version="1.0.0.0" publicKeyToken="9887E5538A68AC07" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>i3TCgcGAdOAWKQurf2EyRONiRjZ2L7T6xh41ROkB9rI=</dsig:DigestValue>
+        <dsig:DigestValue>F2IN4TZlbTL8HMQkIIiDN/E0geWI3S5svOE8nxtjTCw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -65,16 +65,16 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="Invoice.exe.config" size="548">
+  <file name="Invoice.exe.config" size="520">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>opcbYCG7YOAW2DvrCSwNF6472EVwrhZcYP9Fis0URJg=</dsig:DigestValue>
+      <dsig:DigestValue>Ndb4fDjm8xK7dbj/9Y1hFqTl9ZHimkMM1cLKHgh1GG0=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="invoice_db.mdf" size="8388608" writeableType="applicationData">
+  <file name="invoice_db.mdf" size="8388608">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
@@ -83,7 +83,7 @@
       <dsig:DigestValue>jr9oWmQNDYs1bpoSqGWPziCYgL3Q3NGPaeE0+8Wyvsw=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="invoice_db_log.ldf" size="8388608" writeableType="applicationData">
+  <file name="invoice_db_log.ldf" size="8388608">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />

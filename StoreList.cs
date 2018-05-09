@@ -1,19 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Runtime.InteropServices;
 namespace Invoice
 {
     public partial class StoreList : Form
     {
         DbConnectorClass db;
         SqlDataAdapter adapter;
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+        [DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
         public StoreList()
         {
             InitializeComponent();
@@ -37,11 +38,11 @@ namespace Invoice
                 }
                 else if (isMarket)
                 {
-                    whereStr = "where isMarket = 0";
+                    whereStr = "where isMarket = 1";
                 }
                 else if (isCustomer)
                 {
-                    whereStr = "where isMarket = 1";
+                    whereStr = "where isMarket = 0";
                 }
                 else
                 {
@@ -50,7 +51,7 @@ namespace Invoice
                 db = new DbConnectorClass();
                 adapter = new SqlDataAdapter("SELECT store_id AS 'Store Id', store_name AS 'Store Name'," +
                     "store_address AS Address, store_phone AS Phone, store_fax AS Fax, " +
-                    "contact_name AS 'Contact Name', contact_phone AS Phone, store_detail AS 'Store Detail', " +
+                    "contact_name AS 'Contact Name', contact_phone AS 'Contact #', store_detail AS 'Store Detail', " +
                     "CASE WHEN  isMarket = 1 THEN 'True' ELSE 'False' END AS 'Is Market'" +
                     "FROM invoice.dbo.store " + whereStr + " order by store_name ", db.GetConnection());
                 // Create one DataTable with one column.
@@ -96,6 +97,19 @@ namespace Invoice
             bool isMarket = this.ShowMarketCheckBox.Checked;
             bool isCustomer = this.ShowCustomerCheckBox.Checked;
             GetStoreList(isMarket, isCustomer);
+        }
+
+        private void CloseBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        private void DragTitlePanel(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
         }
     }
 }
