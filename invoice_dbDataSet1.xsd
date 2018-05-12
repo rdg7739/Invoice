@@ -46,7 +46,7 @@ SELECT cart_id, order_id, product, quantity, price, market, note, route FROM car
                 </InsertCommand>
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT cart_id, order_id, product, quantity, price, market, note, route FROM invoice.dbo.cart</CommandText>
+                    <CommandText>SELECT cart_id, order_id, product, quantity, price, market, note, route FROM dbo.cart</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -122,7 +122,7 @@ SELECT order_id, store_id, ordered_date, delivery_date, total FROM [order] WHERE
                 </InsertCommand>
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT order_id, store_id, ordered_date, delivery_date, total FROM invoice.dbo.[order]</CommandText>
+                    <CommandText>SELECT order_id, store_id, ordered_date, delivery_date, total FROM dbo.[order]</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -189,7 +189,7 @@ SELECT product_id, product, price, quantity, note FROM product WHERE (product_id
                 </InsertCommand>
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT product_id, product, price, quantity, note FROM invoice.dbo.product</CommandText>
+                    <CommandText>SELECT product_id, product, price, quantity, note FROM dbo.product</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -267,7 +267,7 @@ SELECT store_id, store_name, store_phone, store_address, contact_name, contact_p
                 </InsertCommand>
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT store_id, store_name, store_phone, store_address, contact_name, contact_phone, store_detail, store_fax, isMarket FROM invoice.dbo.store</CommandText>
+                    <CommandText>SELECT store_id, store_name, store_phone, store_address, contact_name, contact_phone, store_detail, store_fax, isMarket FROM dbo.store</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>

@@ -39,8 +39,8 @@ namespace Invoice
                     "sum(case when route = 1 then quantity else 0 end) as 'route 1', " +
                     "sum(case when route = 2 then quantity else 0 end) as 'route 2', "+
                     "sum(case when route = 3 then quantity else 0 end) as 'route 3' "+
-                    "from invoice.dbo.cart as c where order_id in " +
-                    "(select order_id from invoice.dbo.order_list as o inner join invoice.dbo.store as s " +
+                    "from dbo.cart as c where order_id in " +
+                    "(select order_id from dbo.order_list as o inner join dbo.store as s " +
                     "on s.store_id = o.store_id where isMarket = '0' AND delivery_date = '" +
                 Convert.ToDateTime(this.DeliveryScheduleDate.Value.ToString()).ToString("yyyy-MM-dd")+
                     "') group by c.Product, c.quantity, c.price, c.market, c.note;", db.GetConnection());
@@ -55,6 +55,7 @@ namespace Invoice
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                db.Close();
             }
         }
 
@@ -82,8 +83,8 @@ namespace Invoice
                         String product = row.Cells[PRODUCT].Value.ToString();
                         String market = row.Cells[MARKET].Value.ToString();
                         String note = row.Cells[NOTE].Value.ToString();
-                        string InsertSql = "update invoice.dbo.cart set market='"+market+"', note='"+note+"' where order_id in "+
-                        "(select order_id from invoice.dbo.order_list where delivery_date = '"+
+                        string InsertSql = "update dbo.cart set market='"+market+"', note='"+note+"' where order_id in "+
+                        "(select order_id from dbo.order_list where delivery_date = '"+
                         Convert.ToDateTime(this.DeliveryScheduleDate.Value.ToString()).ToString("yyyy-MM-dd") + "') "+
                         "and product = '"+ product + "'";
                         db.RunQuery(InsertSql).Close();

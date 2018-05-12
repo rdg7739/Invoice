@@ -30,7 +30,7 @@ namespace Invoice
                 var x = MessageBox.Show("Are you sure you want to save? ", "Save", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if(DialogResult.Yes == x)
                 {
-                    String sqlQuery = "UPDATE invoice.dbo.store SET " +
+                    String sqlQuery = "UPDATE dbo.store SET " +
                     "store_name='" + this.storeNameTxt.Text + "', " +
                     " store_phone = '" + this.storePhoneTxt.Text + "', " +
                     " store_address = '" + this.storeAddressTxt.Text + "', " +
@@ -53,7 +53,7 @@ namespace Invoice
             try
             {
                 db = new DbConnectorClass();
-                SqlDataReader dbReader =  db.RunQuery("select * from invoice.dbo.store where store_id = 1");
+                SqlDataReader dbReader =  db.RunQuery("select * from dbo.store where store_id = 1");
                 if (dbReader.Read())
                 {
                     this.storeNameTxt.Text = db.NullToEmpty(dbReader, "store_name");

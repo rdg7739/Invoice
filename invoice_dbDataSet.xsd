@@ -20,7 +20,7 @@
                 </InsertCommand>
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT product FROM invoice.dbo.product</CommandText>
+                    <CommandText>SELECT product FROM dbo.product</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>

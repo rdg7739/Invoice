@@ -2,27 +2,23 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using System.IO;
 
 public class DbConnectorClass
 {
-    private static String connectStr =
-        "Data Source=(localdb)\\MSSQLLocalDB;" +
-        "Initial Catalog = invoice; " +
-        "Integrated Security = False;" +
-        "User ID=invoice_user;Password=invoice_user" +
-        "Connect Timeout=30;Encrypt=False;" +
-        "TrustServerCertificate=False;ApplicationIntent=ReadWrite;" +
-        "MultiSubnetFailover=False";
-
+    private static string path = Path.GetFullPath(Environment.CurrentDirectory);
+    private static string databaseName = "invoice_db.mdf";
     private SqlConnection dbConnect;
 
     public DbConnectorClass()
 	{
-        dbConnect = new SqlConnection(connectStr);
+        dbConnect = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB;"+
+            "Initial Catalog = invoice_db;" +
+            "AttachDbFilename =" + path + @"\" + databaseName+
+            ";User ID = invoice_user; Password=invoice_user");
         dbConnect.Open();
     }
-
-    public String NullToEmpty(SqlDataReader dbReader, String columnName)
+     public String NullToEmpty(SqlDataReader dbReader, String columnName)
     {
         int idx = dbReader.GetOrdinal(columnName);
         if (dbReader.IsDBNull(idx))

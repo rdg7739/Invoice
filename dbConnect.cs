@@ -25,7 +25,7 @@ public class dbConnectClass
     {
         MySqlDataReader dbReader = null;
 
-        MySqlCommand dbCmd = new MySqlCommand("select * from invoice.dbo.store where store_id = 1", dbConnect);
+        MySqlCommand dbCmd = new MySqlCommand("select * from dbo.store where store_id = 1", dbConnect);
         try
         {
             dbConnect.Open();

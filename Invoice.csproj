@@ -51,11 +51,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>9E823B71164E59EBAD352D02B4EEEABFB7936B32</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>EF03D3E4331BE9F700B1E86AB87CF14B58C7A8C5</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>
-    </ManifestKeyFile>
+    <ManifestKeyFile>invoice_user.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -67,7 +66,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>invoice_user.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>invoice_admin.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>Invoice.Program</StartupObject>
@@ -227,6 +226,7 @@
     <EmbeddedResource Include="WeeklySale.resx">
       <DependentUpon>WeeklySale.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="invoice_admin.snk" />
     <None Include="invoice_dbDataSet.xsc">
       <DependentUpon>invoice_dbDataSet.xsd</DependentUpon>
     </None>

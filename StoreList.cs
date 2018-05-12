@@ -53,7 +53,7 @@ namespace Invoice
                     "store_address AS Address, store_phone AS Phone, store_fax AS Fax, " +
                     "contact_name AS 'Contact Name', contact_phone AS 'Contact #', store_detail AS 'Store Detail', " +
                     "CASE WHEN  isMarket = 1 THEN 'True' ELSE 'False' END AS 'Is Market'" +
-                    "FROM invoice.dbo.store " + whereStr + " order by store_name ", db.GetConnection());
+                    "FROM dbo.store " + whereStr + " order by store_name ", db.GetConnection());
                 // Create one DataTable with one column.
                 DataSet DS = new DataSet();
                 adapter.Fill(DS);

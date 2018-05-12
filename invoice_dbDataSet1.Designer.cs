@@ -2686,7 +2686,7 @@ SELECT cart_id, order_id, product, quantity, price, market, note, route FROM car
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT cart_id, order_id, product, quantity, price, market, note, route FROM invoice.dbo." +
+            this._commandCollection[0].CommandText = "SELECT cart_id, order_id, product, quantity, price, market, note, route FROM dbo." +
                 "cart";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
@@ -3158,7 +3158,7 @@ SELECT order_id, store_id, ordered_date, delivery_date, total FROM [order] WHERE
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT order_id, store_id, ordered_date, delivery_date, total FROM invoice.dbo.[order]";
+            this._commandCollection[0].CommandText = "SELECT order_id, store_id, ordered_date, delivery_date, total FROM dbo.[order]";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -3514,7 +3514,7 @@ SELECT product_id, product, price, quantity, note FROM product WHERE (product_id
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT product_id, product, price, quantity, note FROM invoice.dbo.product";
+            this._commandCollection[0].CommandText = "SELECT product_id, product, price, quantity, note FROM dbo.product";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -3962,7 +3962,7 @@ SELECT store_id, store_name, store_phone, store_address, contact_name, contact_p
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT store_id, store_name, store_phone, store_address, contact_name, contact_ph" +
-                "one, store_detail, store_fax, isMarket FROM invoice.dbo.store";
+                "one, store_detail, store_fax, isMarket FROM dbo.store";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         

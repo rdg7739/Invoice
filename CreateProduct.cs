@@ -41,7 +41,7 @@ namespace Invoice
                 isEdit = true;
                 this.titlePanel.Text = "Edit Product";
                 db = new DbConnectorClass();
-                SqlDataReader dbReader = db.RunQuery("select * from invoice.dbo.product where product_id = " + id);
+                SqlDataReader dbReader = db.RunQuery("select * from dbo.product where product_id = " + id);
                 if (dbReader.Read())
                 {
                     this.dbNo = id;
@@ -75,7 +75,7 @@ namespace Invoice
                     String sqlQuery = "";
                     if (this.dbNo == null)
                     {
-                        sqlQuery = "INSERT INTO invoice.dbo.product " +
+                        sqlQuery = "INSERT INTO dbo.product " +
                         "(product, price, quantity, note) VALUES " +
                         "('" + this.ProductTxt.Text + "', " +
                         " '" + this.PriceTxt.Text + "', " +
@@ -84,7 +84,7 @@ namespace Invoice
                     }
                     else
                     {
-                        sqlQuery = "UPDATE invoice.dbo.product set " +
+                        sqlQuery = "UPDATE dbo.product set " +
                         "product = '" + this.ProductTxt.Text + "', " +
                         "price = '" + this.PriceTxt.Text + "', " +
                         "quantity = '" + this.QuantityTxt.Text + "', " +
@@ -164,7 +164,7 @@ namespace Invoice
                 var x = MessageBox.Show("Are you sure you want to delete? ", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (DialogResult.Yes == x)
                 {
-                    String sqlQuery = "DELETE FROM invoice.dbo.product WHERE product_id= "+ this.dbNo;
+                    String sqlQuery = "DELETE FROM dbo.product WHERE product_id= "+ this.dbNo;
                     db.RunQuery(sqlQuery).Close();
                     MessageBox.Show("Data Deleted successfully", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.None);
                     // need to close this form after click 'OK' button

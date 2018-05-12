@@ -55,7 +55,7 @@ namespace Invoice
                 
                 adapter = new SqlDataAdapter(
                     "Select order_id as 'Order Id', store_name as Store, delivery_date as 'Delivery Date', ordered_date as 'Ordered Date', total as Total " +
-                    "from invoice.dbo.order_list as t1 inner join invoice.dbo.store as t2 " +
+                    "from dbo.order_list as t1 inner join dbo.store as t2 " +
                     "on t1.store_id = t2.store_id "+whereStr+ "  order by delivery_date desc, order_id desc;", db.GetConnection());
                 // Create one DataTable with one column.
                 this.DS = new DataSet();

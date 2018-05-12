@@ -44,7 +44,7 @@ namespace Invoice
                 isEdit = true;
                 this.titlePanel.Text = "Edit Product";
                 db = new DbConnectorClass();
-                SqlDataReader dbReader = db.RunQuery("select * from invoice.dbo.store where store_id = " + id);
+                SqlDataReader dbReader = db.RunQuery("select * from dbo.store where store_id = " + id);
                 if (dbReader.Read())
                 {
                     this.dbId = id;
@@ -88,7 +88,7 @@ namespace Invoice
                     String sqlQuery = "";
                     if (this.dbId ==null)
                     {
-                        sqlQuery = "INSERT INTO invoice.dbo.store " +
+                        sqlQuery = "INSERT INTO dbo.store " +
                         "(store_name, store_phone, store_address, store_fax, store_detail, contact_phone, contact_name, isMarket) VALUES " +
                         "('" + this.storeNameTxt.Text + "', " +
                         " '" + this.storePhoneTxt.Text + "', " +
@@ -101,7 +101,7 @@ namespace Invoice
                     }
                     else
                     {
-                        sqlQuery = "UPDATE invoice.dbo.store set " +
+                        sqlQuery = "UPDATE dbo.store set " +
                         "store_name = '" + this.storeNameTxt.Text + "', " +
                         "store_phone = '" + this.storePhoneTxt.Text + "', " +
                         "store_address = '" + this.storeAddressTxt.Text + "', " +
@@ -192,7 +192,7 @@ namespace Invoice
                 var x = MessageBox.Show("Are you sure you want to delete? ", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (DialogResult.Yes == x)
                 {
-                    String sqlQuery = "DELETE FROM invoice.dbo.store WHERE store_id= " + this.dbId;
+                    String sqlQuery = "DELETE FROM dbo.store WHERE store_id= " + this.dbId;
                     db.RunQuery(sqlQuery).Close();
                     MessageBox.Show("Data Deleted successfully", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.None);
                     // need to close this form after click 'OK' button

@@ -3,7 +3,7 @@
   <asmv1:assemblyIdentity name="Invoice.exe" version="1.0.0.12" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="Invoice" version="1.0.0.0" publicKeyToken="9887E5538A68AC07" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="Invoice" version="1.0.0.0" publicKeyToken="579BB53D7D274B6E" language="neutral" processorArchitecture="msil" />
     <commandLine file="Invoice.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Invoice.exe" size="1897456">
-      <assemblyIdentity name="Invoice" version="1.0.0.0" publicKeyToken="9887E5538A68AC07" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Invoice.exe" size="1897032">
+      <assemblyIdentity name="Invoice" version="1.0.0.0" publicKeyToken="579BB53D7D274B6E" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>F2IN4TZlbTL8HMQkIIiDN/E0geWI3S5svOE8nxtjTCw=</dsig:DigestValue>
+        <dsig:DigestValue>Fn4Wla9jLjnC8nunJsC2zknnhW3Q/7A26n4FG23cTwU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -80,7 +80,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>jr9oWmQNDYs1bpoSqGWPziCYgL3Q3NGPaeE0+8Wyvsw=</dsig:DigestValue>
+      <dsig:DigestValue>RtbwjDE2v9ka7Acxb0C73aILFKao281hQaqAsHs7dJ4=</dsig:DigestValue>
     </hash>
   </file>
   <file name="invoice_db_log.ldf" size="8388608">
@@ -89,7 +89,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>V13WgU1BtTc2PMc+eckveevl3QyGURn6N4PLTJhIQRc=</dsig:DigestValue>
+      <dsig:DigestValue>lb0gHqlsHGYacu8JHD+W7+JtfDk1qNTf7jZGLnGMZxI=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

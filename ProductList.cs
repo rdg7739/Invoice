@@ -25,7 +25,7 @@ namespace Invoice
             try
             {
                 db = new DbConnectorClass();
-                adapter = new SqlDataAdapter("select product_id as No,Product, Price, Quantity, Note from invoice.dbo.product", db.GetConnection());
+                adapter = new SqlDataAdapter("select product_id as No,Product, Price, Quantity, Note from dbo.product", db.GetConnection());
                 // Create one DataTable with one column.
                 DataSet DS = new DataSet();
                 adapter.Fill(DS);

@@ -66,8 +66,8 @@ namespace Invoice
                     Tuesdate.ToString("yyyy-MM-dd") + "','" + Wednesdate.ToString("yyyy-MM-dd") + "','" +
                     Thursdate.ToString("yyyy-MM-dd") + "','" + Fridate.ToString("yyyy-MM-dd") +
                     "') then total else 0 end) as Total " +
-                    "from invoice.dbo.store as s " +
-                    "left outer join invoice.dbo.order_list as o on o.store_id = s.store_id where isMarket = 1 " +
+                    "from dbo.store as s " +
+                    "left outer join dbo.order_list as o on o.store_id = s.store_id where isMarket = 1 " +
                     "group by s.Store_id, s.store_name;";
                 adapter = new SqlDataAdapter(query, db.GetConnection());
                 // Create one DataTable with one column.
