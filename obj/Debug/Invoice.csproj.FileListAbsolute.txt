@@ -38,6 +38,7 @@ C:\Users\yomiguri\Documents\GitHub\Invoice\obj\Debug\Invoice.DeliverySchedule.re
 C:\Users\yomiguri\Documents\GitHub\Invoice\obj\Debug\Invoice.MyStore.resources
 C:\Users\yomiguri\Documents\GitHub\Invoice\obj\Debug\Invoice.CreateStore.resources
 C:\Users\yomiguri\Documents\GitHub\Invoice\obj\Debug\Invoice.CreateOrder.resources
+C:\Users\yomiguri\Documents\GitHub\Invoice\obj\Debug\Invoice.ProductCollection.resources
 C:\Users\yomiguri\Documents\GitHub\Invoice\obj\Debug\Invoice.StoreList.resources
 C:\Users\yomiguri\Documents\GitHub\Invoice\obj\Debug\Invoice.ProductList.resources
 C:\Users\yomiguri\Documents\GitHub\Invoice\obj\Debug\Invoice.MainPage.resources

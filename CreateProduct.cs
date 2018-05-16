@@ -25,6 +25,8 @@ namespace Invoice
         public CreateProduct()
         {
             InitializeComponent();
+            this.QuantityTxt.Text = "0";
+            this.PriceTxt.Text = "0.00";
         }
         public CreateProduct(String id, ProductList pl)
         {
@@ -91,7 +93,6 @@ namespace Invoice
                         "note = '" + this.NoteTxt.Text + "' WHERE product_id = " + this.dbNo;
                     }
                     db.RunQuery(sqlQuery).Close();
-                    MessageBox.Show("Data Saved successfully", "Saved", MessageBoxButtons.OK, MessageBoxIcon.None);
                     // need to close this form after click 'OK' button
                     isSave = true;
                     if (this.pl != null)
@@ -166,7 +167,6 @@ namespace Invoice
                 {
                     String sqlQuery = "DELETE FROM dbo.product WHERE product_id= "+ this.dbNo;
                     db.RunQuery(sqlQuery).Close();
-                    MessageBox.Show("Data Deleted successfully", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.None);
                     // need to close this form after click 'OK' button
                 }
             }
@@ -193,5 +193,6 @@ namespace Invoice
         {
             this.Close();
         }
+
     }
 }

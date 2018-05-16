@@ -89,8 +89,6 @@ namespace Invoice
                         "and product = '"+ product + "'";
                         db.RunQuery(InsertSql).Close();
                 }
-                MessageBox.Show("Data Saved successfully", "Saved", MessageBoxButtons.OK, MessageBoxIcon.None);
-                    // need to close createStore form after click 'OK' button
                 }
             }
             catch (Exception ex)

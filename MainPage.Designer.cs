@@ -55,9 +55,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Title.Font = new System.Drawing.Font("Arial", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Title.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Title.Location = new System.Drawing.Point(192, 18);
+            this.Title.Location = new System.Drawing.Point(201, 18);
             this.Title.Name = "Title";
-            this.Title.Size = new System.Drawing.Size(238, 60);
+            this.Title.Size = new System.Drawing.Size(203, 60);
             this.Title.TabIndex = 1;
             this.Title.Text = "Invoice";
             this.Title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

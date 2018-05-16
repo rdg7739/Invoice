@@ -55,6 +55,7 @@
             this.PrintBtn = new Invoice.ButtonModified();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
+            this.ProdListBtn = new Invoice.ButtonModified();
             ((System.ComponentModel.ISupportInitialize)(this.orderDataView)).BeginInit();
             this.titlePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -149,7 +150,7 @@
             this.StoreList.Name = "StoreList";
             this.StoreList.Size = new System.Drawing.Size(584, 33);
             this.StoreList.TabIndex = 1;
-            this.StoreList.SelectedIndexChanged += new System.EventHandler(this.StoreList_SelectedIndexChanged);
+            this.StoreList.SelectedIndexChanged += new System.EventHandler(this.SelectedIndexChanged);
             // 
             // DeliveryDate
             // 
@@ -182,6 +183,7 @@
             // 
             // SaveBtn
             // 
+            this.SaveBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.SaveBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaveBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.SaveBtn.Location = new System.Drawing.Point(721, 509);
@@ -194,6 +196,7 @@
             // 
             // CancelBtn
             // 
+            this.CancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.CancelBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CancelBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.CancelBtn.Location = new System.Drawing.Point(557, 509);
@@ -235,10 +238,12 @@
             this.RouteComboBox.Name = "RouteComboBox";
             this.RouteComboBox.Size = new System.Drawing.Size(130, 33);
             this.RouteComboBox.TabIndex = 17;
-            this.RouteComboBox.SelectedIndexChanged += new System.EventHandler(this.RouteComboBox_SelectedIndexChanged);
+            this.RouteComboBox.SelectedIndexChanged += new System.EventHandler(this.ComboBox_SelectedIndexChanged);
             // 
             // titlePanel
             // 
+            this.titlePanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.titlePanel.BackColor = System.Drawing.Color.SteelBlue;
             this.titlePanel.Controls.Add(this.label2);
             this.titlePanel.Controls.Add(this.closeBtn);
@@ -270,6 +275,7 @@
             // 
             // closeBtn
             // 
+            this.closeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.closeBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.closeBtn.Location = new System.Drawing.Point(859, 3);
             this.closeBtn.Name = "closeBtn";
@@ -301,6 +307,7 @@
             // 
             // PrintBtn
             // 
+            this.PrintBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.PrintBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PrintBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.PrintBtn.Location = new System.Drawing.Point(29, 509);
@@ -326,19 +333,32 @@
             this.printPreviewDialog1.Name = "printPreviewDialog1";
             this.printPreviewDialog1.Visible = false;
             // 
+            // ProdListBtn
+            // 
+            this.ProdListBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ProdListBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ProdListBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.ProdListBtn.Location = new System.Drawing.Point(177, 509);
+            this.ProdListBtn.Name = "ProdListBtn";
+            this.ProdListBtn.Size = new System.Drawing.Size(148, 34);
+            this.ProdListBtn.TabIndex = 25;
+            this.ProdListBtn.Text = "Product List";
+            this.ProdListBtn.UseVisualStyleBackColor = true;
+            this.ProdListBtn.Click += new System.EventHandler(this.ProdListBtn_Click);
+            // 
             // CreateOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(884, 561);
+            this.Controls.Add(this.ProdListBtn);
             this.Controls.Add(this.PrintBtn);
             this.Controls.Add(this.titlePanel);
             this.Controls.Add(this.CancelBtn);
             this.Controls.Add(this.SaveBtn);
             this.Controls.Add(this.orderDataView);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.Name = "CreateOrder";
             this.Text = "CreateOrder";
@@ -391,5 +411,6 @@
         private ButtonModified PrintBtn;
         private System.Drawing.Printing.PrintDocument printDocument1;
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
+        private ButtonModified ProdListBtn;
     }
 }

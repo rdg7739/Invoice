@@ -178,7 +178,7 @@
             // 
             this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Location = new System.Drawing.Point(91, 40);
+            this.pictureBox2.Location = new System.Drawing.Point(104, 44);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(29, 32);
             this.pictureBox2.TabIndex = 3;
@@ -188,7 +188,7 @@
             // 
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(56, 15);
+            this.pictureBox1.Location = new System.Drawing.Point(69, 19);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(57, 55);
             this.pictureBox1.TabIndex = 2;
@@ -202,7 +202,7 @@
             this.Title.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.Title.Location = new System.Drawing.Point(116, 16);
             this.Title.Name = "Title";
-            this.Title.Size = new System.Drawing.Size(387, 60);
+            this.Title.Size = new System.Drawing.Size(406, 60);
             this.Title.TabIndex = 1;
             this.Title.Text = "Create Product";
             this.Title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

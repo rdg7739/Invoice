@@ -112,7 +112,6 @@ namespace Invoice
                         "isMarket = '" + ((this.isMarket.Checked) ? 1: 0) + "' WHERE store_id= " + this.dbId;
                     }
                     db.RunQuery(sqlQuery).Close();
-                    MessageBox.Show("Data Saved successfully", "Saved", MessageBoxButtons.OK, MessageBoxIcon.None);
                     // need to close createStore form after click 'OK' button
                 }
                 isSave = true;
@@ -194,7 +193,6 @@ namespace Invoice
                 {
                     String sqlQuery = "DELETE FROM dbo.store WHERE store_id= " + this.dbId;
                     db.RunQuery(sqlQuery).Close();
-                    MessageBox.Show("Data Deleted successfully", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.None);
                     // need to close this form after click 'OK' button
                 }
             }

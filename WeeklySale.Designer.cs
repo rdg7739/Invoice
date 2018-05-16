@@ -44,6 +44,7 @@
             // 
             // WeeklySaleDateTimePicker
             // 
+            this.WeeklySaleDateTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.WeeklySaleDateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.WeeklySaleDateTimePicker.Location = new System.Drawing.Point(468, 39);
             this.WeeklySaleDateTimePicker.Name = "WeeklySaleDateTimePicker";
@@ -83,6 +84,7 @@
             // 
             // closeBtn
             // 
+            this.closeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.closeBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.closeBtn.Location = new System.Drawing.Point(761, 3);
             this.closeBtn.Name = "closeBtn";
@@ -114,8 +116,6 @@
             // 
             // Title
             // 
-            this.Title.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.Title.Font = new System.Drawing.Font("Arial", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Title.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.Title.Location = new System.Drawing.Point(73, 16);

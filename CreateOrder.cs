@@ -9,7 +9,7 @@ using System.Drawing;
 
 namespace Invoice
 {
-    public partial class CreateOrder : Form
+    public partial class CreateOrder : ResizeForm
     {
         private DbConnectorClass db;
         DataSet myDataSet = new DataSet();
@@ -39,7 +39,18 @@ namespace Invoice
         {
             InitializeComponent();
             SetComboBox();
-            this.DeliveryDate.Value = DateTime.Today;
+            SetDateInWeekDay();
+        }
+        private void SetDateInWeekDay()
+        {
+            DateTime pickedDate = DateTime.Today;
+            if (pickedDate.DayOfWeek.Equals(DayOfWeek.Sunday)) {
+                pickedDate = pickedDate.AddDays(1);
+            }
+            else if(pickedDate.DayOfWeek.Equals(DayOfWeek.Saturday)){
+                pickedDate = pickedDate.AddDays(2);
+            }
+            this.DeliveryDate.Value = pickedDate;
         }
         public CreateOrder(String id, OrderList ol)
         {
@@ -80,7 +91,7 @@ namespace Invoice
                 this.StoreList.AutoCompleteSource = AutoCompleteSource.ListItems;
                 dbReader.Close();
                this.orderDataView.EditingControlShowing += 
-                    new DataGridViewEditingControlShowingEventHandler(DataGridView1_EditingControlShowing);
+                    new DataGridViewEditingControlShowingEventHandler(DataGridView_EditingControlShowing);
                 this.orderDataView.CellValueChanged += 
                     new DataGridViewCellEventHandler(DataGridView1_CellValueChanged);
                 this.orderDataView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -187,7 +198,7 @@ namespace Invoice
             this.TotalTxt.Text = total.ToString();
         }
 
-        private void DataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        public void DataGridView_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
             {
             if (e.Control is ComboBox combo)
             {
@@ -338,7 +349,7 @@ namespace Invoice
                 }
                 else
                 {
-                    var x = MessageBox.Show("Are you sure you want to save? ", "Save", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    var x = MessageBox.Show("Do you want to save? ", "Save", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (DialogResult.Yes == x && !CheckIfEmpty())
                     {
                         String sqlQuery = "";
@@ -424,7 +435,6 @@ namespace Invoice
                                 db.RunQuery(updateQuantity).Close();
                             }
                         }
-                        MessageBox.Show("Data Saved successfully", "Saved", MessageBoxButtons.OK, MessageBoxIcon.None);
                         // need to close createStore form after click 'OK' button
                         isSave = true;
                         if (this.ol != null)
@@ -442,7 +452,7 @@ namespace Invoice
         {
             if (!isSave)
             {
-                var x = MessageBox.Show("Are you sure you want to really exit?\n unsaved data will be lost. ",
+                var x = MessageBox.Show("Do you want to exit?\n unsaved data will be lost. ",
                     "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (x == DialogResult.Yes)
                 {
@@ -459,7 +469,7 @@ namespace Invoice
         {
             try
             {
-                var x = MessageBox.Show("Are you sure you want to delete? ", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                var x = MessageBox.Show("Do you want to delete? ", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (DialogResult.Yes == x)
                 {
                     String sqlQuery = "DELETE FROM dbo.cart WHERE order_id= " + this.orderId;
@@ -476,7 +486,7 @@ namespace Invoice
             }
         }
 
-        private void RouteComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             String routeIdx = ""+(this.RouteComboBox.SelectedIndex + 1);
             for (int i = 0; i < this.orderDataView.Rows.Count - 1; i++)
@@ -487,9 +497,9 @@ namespace Invoice
             }
         }
 
-        private void StoreList_SelectedIndexChanged(object sender, EventArgs e)
+        private void SelectedIndexChanged(object sender, EventArgs e)
         {
-            String isMarket = ((sender as ComboBox).SelectedItem as ComboboxItem).Value.ToString();
+            //String isMarket = ((sender as ComboBox).SelectedItem as ComboboxItem).Value.ToString();
             //(comboBox1.SelectedItem as ComboboxItem).Value.ToString()
             this.isMarket = isMarket.Equals("1") ? true : false;
             if (this.isMarket)
@@ -528,5 +538,27 @@ namespace Invoice
         {
             e.Graphics.DrawImage(bmp, 0, 0);
         }
+
+        public DataGridView getOrderDataView()
+        {
+            return this.orderDataView;
+        }
+        public void setOrderDataView(DataGridView orderDataView)
+        {
+            this.orderDataView = orderDataView;
+        }
+
+        private void ProdListBtn_Click(object sender, EventArgs e)
+        {
+            DataGridViewRowCollection rows = this.orderDataView.Rows;
+            ArrayList products = new ArrayList();
+            for (int i = 0; i < rows.Count; i++ )
+            {
+                products.Add(rows[i].Cells[0].Value);
+            }
+            ProductCollection pc = new ProductCollection(this, products);
+            pc.Show();
+        }
+
     }
 }

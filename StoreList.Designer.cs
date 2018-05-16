@@ -69,6 +69,7 @@
             // 
             // ShowMarketCheckBox
             // 
+            this.ShowMarketCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ShowMarketCheckBox.AutoSize = true;
             this.ShowMarketCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.ShowMarketCheckBox.ForeColor = System.Drawing.SystemColors.Window;
@@ -82,6 +83,7 @@
             // 
             // ShowCustomerCheckBox
             // 
+            this.ShowCustomerCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ShowCustomerCheckBox.AutoSize = true;
             this.ShowCustomerCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.ShowCustomerCheckBox.ForeColor = System.Drawing.SystemColors.Window;
@@ -95,6 +97,7 @@
             // 
             // ListOptionLbl
             // 
+            this.ListOptionLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ListOptionLbl.AutoSize = true;
             this.ListOptionLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.ListOptionLbl.ForeColor = System.Drawing.SystemColors.Window;
@@ -136,8 +139,6 @@
             // 
             // Title
             // 
-            this.Title.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.Title.Font = new System.Drawing.Font("Arial", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Title.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.Title.Location = new System.Drawing.Point(73, 16);
@@ -165,6 +166,7 @@
             // 
             // closeBtn
             // 
+            this.closeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.closeBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.closeBtn.Location = new System.Drawing.Point(761, 3);
             this.closeBtn.Name = "closeBtn";
@@ -183,7 +185,6 @@
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.titlePanel);
             this.Controls.Add(this.StoreDataView);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "StoreList";
             this.Text = "CustomerList";
             ((System.ComponentModel.ISupportInitialize)(this.StoreDataView)).EndInit();

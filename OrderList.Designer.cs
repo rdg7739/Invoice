@@ -35,10 +35,10 @@
             this.OptionLbl = new System.Windows.Forms.Label();
             this.Title = new System.Windows.Forms.Label();
             this.titlePanel = new System.Windows.Forms.Panel();
+            this.OrderDate = new System.Windows.Forms.DateTimePicker();
             this.closeBtn = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.OrderDate = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.OrderListView)).BeginInit();
             this.titlePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -62,6 +62,7 @@
             // 
             // BuyCheckBox
             // 
+            this.BuyCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BuyCheckBox.AutoSize = true;
             this.BuyCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.BuyCheckBox.ForeColor = System.Drawing.SystemColors.Window;
@@ -75,6 +76,7 @@
             // 
             // SellCheckBox
             // 
+            this.SellCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.SellCheckBox.AutoSize = true;
             this.SellCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.SellCheckBox.ForeColor = System.Drawing.SystemColors.Window;
@@ -88,6 +90,7 @@
             // 
             // OptionLbl
             // 
+            this.OptionLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.OptionLbl.AutoSize = true;
             this.OptionLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.OptionLbl.ForeColor = System.Drawing.SystemColors.Window;
@@ -99,8 +102,6 @@
             // 
             // Title
             // 
-            this.Title.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.Title.Font = new System.Drawing.Font("Arial", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Title.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.Title.Location = new System.Drawing.Point(73, 13);
@@ -112,6 +113,8 @@
             // 
             // titlePanel
             // 
+            this.titlePanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.titlePanel.BackColor = System.Drawing.Color.SteelBlue;
             this.titlePanel.Controls.Add(this.OrderDate);
             this.titlePanel.Controls.Add(this.closeBtn);
@@ -127,8 +130,20 @@
             this.titlePanel.TabIndex = 23;
             this.titlePanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DragTitlePanel);
             // 
+            // OrderDate
+            // 
+            this.OrderDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.OrderDate.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OrderDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OrderDate.Location = new System.Drawing.Point(446, 12);
+            this.OrderDate.Name = "OrderDate";
+            this.OrderDate.Size = new System.Drawing.Size(307, 29);
+            this.OrderDate.TabIndex = 5;
+            this.OrderDate.ValueChanged += new System.EventHandler(this.OrderDate_ValueChanged);
+            // 
             // closeBtn
             // 
+            this.closeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.closeBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.closeBtn.Location = new System.Drawing.Point(761, 3);
             this.closeBtn.Name = "closeBtn";
@@ -158,16 +173,6 @@
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
-            // OrderDate
-            // 
-            this.OrderDate.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OrderDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OrderDate.Location = new System.Drawing.Point(446, 12);
-            this.OrderDate.Name = "OrderDate";
-            this.OrderDate.Size = new System.Drawing.Size(307, 29);
-            this.OrderDate.TabIndex = 5;
-            this.OrderDate.ValueChanged += new System.EventHandler(this.OrderDate_ValueChanged);
-            // 
             // OrderList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -177,7 +182,6 @@
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.titlePanel);
             this.Controls.Add(this.OrderListView);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "OrderList";
             this.Text = "OrderList";
             ((System.ComponentModel.ISupportInitialize)(this.OrderListView)).EndInit();

@@ -7,15 +7,14 @@ using System.IO;
 public class DbConnectorClass
 {
     private static string path = Path.GetFullPath(Environment.CurrentDirectory);
-    private static string databaseName = "invoice_db.mdf";
+    private static string databaseName = "Client.mdf";
     private SqlConnection dbConnect;
 
     public DbConnectorClass()
 	{
         dbConnect = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB;"+
-            "Initial Catalog = invoice_db;" +
             "AttachDbFilename =" + path + @"\" + databaseName+
-            ";User ID = invoice_user; Password=invoice_user");
+            ";Integrated Security=True");
         dbConnect.Open();
     }
      public String NullToEmpty(SqlDataReader dbReader, String columnName)
