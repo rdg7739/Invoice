@@ -5,7 +5,6 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Runtime.InteropServices;
-using System.Drawing;
 
 namespace Invoice
 {
@@ -17,14 +16,16 @@ namespace Invoice
         String orderId;
         DataSet DS;
         private int PRODUCT = 0;
-        private int QTY = 1;
-        private int PRICE = 2;
-        private int AMOUNT = 3;
-        private int MARKET = 4;
-        private int NOTE = 5;
-        private int ROUTE = 6;
+        private int BOX     = 1;
+        private int EACH    = 2;
+        private int POUND   = 3;
+        private int PRICE   = 4;
+        private int AMOUNT  = 5;
+        private int MARKET  = 6;
+        private int NOTE    = 7;
+        private int ROUTE   = 8;
         private OrderList ol;
-        private ArrayList qtyList = new ArrayList(); 
+        private Hashtable qtyList = new Hashtable(); 
         private bool isSave = false;
         private SqlDataReader dbReader;
         private bool isMarket;
@@ -40,6 +41,7 @@ namespace Invoice
             InitializeComponent();
             SetComboBox();
             SetDateInWeekDay();
+            this.PrintBtn.Hide();
         }
         private void SetDateInWeekDay()
         {
@@ -60,6 +62,7 @@ namespace Invoice
             OrderLoad(id);
             this.orderId = id;
             this.ol = ol;
+            this.PrintBtn.Show();
         }
         private void SetComboBox()
         {
@@ -73,7 +76,9 @@ namespace Invoice
                         .Items.Add(db.NullToEmpty(dbReader, "product"));
                 }
                 dbReader.Close();
-                dbReader = db.RunQuery("select * from dbo.store order by store_id asc");
+                dbReader = db.RunQuery("select store_name, store_phone, store_address, contact_name, contact_phone, store_detail, store_fax, isMarket, count(*) as count "+
+                    " from dbo.store as s full outer join dbo.order_list as o on s.store_id = o.store_id "+
+                    " group by store_name, store_phone, store_address, contact_name, contact_phone, store_detail, store_fax, isMarket order by count(*) desc; ");
                 while (dbReader.Read())
                 {
                     ComboboxItem comboItem = new ComboboxItem
@@ -107,8 +112,8 @@ namespace Invoice
             try
             {
                 db = new DbConnectorClass();
-                adapter = new SqlDataAdapter("SELECT Product, quantity AS QTY, " +
-                    "Price, (price * quantity) AS Amount, Market, Note, Route " +
+                adapter = new SqlDataAdapter("SELECT Product, Box, Each, Pound" +
+                    "Price, ((Box+Each+Pound) * quantity) AS Amount, Market, Note, Route " +
                     "FROM dbo.cart where quantity > 0 and order_id = "+id, db.GetConnection());
                 // Create one DataTable with one column.
                 this.DS = new DataSet();
@@ -117,16 +122,9 @@ namespace Invoice
                 for (int i = 0; i < DS.Tables[0].Rows.Count; i++)
                 {
                     DataRow myRow = DS.Tables[0].Rows[i];
-                    DataGridViewRow row = (DataGridViewRow)this.orderDataView.Rows[0].Clone();
-                    row.Cells[PRODUCT].Value = myRow[PRODUCT];
-                    row.Cells[QTY].Value = myRow[QTY];
-                    row.Cells[PRICE].Value = myRow[PRICE];
-                    row.Cells[AMOUNT].Value = myRow[AMOUNT];
-                    row.Cells[MARKET].Value = myRow[MARKET];
-                    row.Cells[NOTE].Value = myRow[NOTE];
-                    row.Cells[ROUTE].Value = myRow[ROUTE];
-                    this.orderDataView.Rows.Add(row);
-                    qtyList.Add(myRow[QTY]);
+                    this.orderDataView.Rows.Add(myRow[PRODUCT], myRow[BOX], myRow[EACH], myRow[POUND], myRow[PRICE], myRow[AMOUNT], myRow[MARKET], myRow[NOTE], myRow[ROUTE]);
+                    int qty = getQty(myRow[BOX], myRow[EACH], myRow[POUND]);
+                    qtyList.Add(myRow[PRODUCT], myRow[BOX]);
                 }
                 dbReader = db.RunQuery("select * from dbo.store as s inner join dbo.order_list as o " +
                     "on s.store_id = o.store_id where order_id = "+id+";");
@@ -157,6 +155,17 @@ namespace Invoice
             // Update the balance column whenever the value of any cell changes.
             UpdateBalance();
         }
+        private int getQty(object box, object each, object pound)
+        {
+            int qty = 0;
+            if ((int)box > 0)
+                qty = (int)box;
+            else if ((int)each > 0)
+                qty = (int)each;
+            else if ((int)pound > 0)
+                qty = (int)pound;
+            return qty;
+        }
         private void UpdateBalance()
         {
             int counter;
@@ -168,19 +177,13 @@ namespace Invoice
             for (counter = 0; counter < (this.orderDataView.Rows.Count); counter++)
             {
                 price = 0;
-                qty = 0;
                 DataGridViewRow dataRow = this.orderDataView.Rows[counter];
-                Object qtyValue = dataRow.Cells[QTY].Value;
+                Object boxValue = dataRow.Cells[BOX].Value;
+                Object eachValue = dataRow.Cells[EACH].Value;
+                Object poundValue = dataRow.Cells[POUND].Value;
                 Object priceValue = dataRow.Cells[PRICE].Value;
-               
-                if (qtyValue != null)
-                {
-                    // Verify that the cell value is not an empty string.
-                    if (qtyValue.ToString().Length != 0)
-                    {
-                        qty = Convert.ToDouble(qtyValue.ToString());
-                    }
-                }
+                int qtyValue = getQty(boxValue, eachValue, poundValue);
+                qty = Convert.ToDouble(qtyValue.ToString());
 
                 if (priceValue != null)
                 {
@@ -196,6 +199,7 @@ namespace Invoice
                 total += (qty * price);
             }
             this.TotalTxt.Text = total.ToString();
+            
         }
 
         public void DataGridView_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
@@ -244,33 +248,7 @@ namespace Invoice
                 ((ComboBox)e.Control).AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             }
         }
-
-        //use some variable to store the last edited value
-        /*string editingValue;
-        //EditingControlShowing event handler
-        private void DataGridView1_EidtingControlShowing(object sender,
-                                          DataGridViewEditingControlShowingEventArgs e)
-        {
-            var combo = e.Control as ComboBox;
-            if (combo != null)
-            {
-                combo.DropDownStyle = ComboBoxStyle.DropDown;
-                combo.TextChanged += (s, ev) => {
-                    editingValue = combo.Text;
-                };
-            }
-        }
-        //CellEndEdit event handler for your dataGridView1
-        private void DataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            var comboColumn = this.orderDataView.Columns[e.ColumnIndex] as DataGridViewComboBoxColumn;
-            if (comboColumn != null && editingValue != "" &&
-               !comboColumn.Items.Contains(editingValue))
-            {
-                comboColumn.Items.Add(editingValue);
-                this.orderDataView[e.ColumnIndex, e.RowIndex].Value = editingValue;
-            }
-        }*/
+        
         private void CancelBtn_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -281,7 +259,7 @@ namespace Invoice
             String msg = "";
 
             //ignore last row
-            for (int i=0; i< this.orderDataView.Rows.Count-1; i++)
+            for (int i=0; i< this.orderDataView.Rows.Count; i++)
             {
                 DataGridViewRow row = this.orderDataView.Rows[i];
                 
@@ -290,9 +268,9 @@ namespace Invoice
                    msg = "You have to set product on row "+i;
                    ErrorFound = true;
                 }
-                else if (!HasValue(row.Cells[QTY].Value))
+                else if (getQty(row.Cells[BOX].Value, row.Cells[EACH].Value, row.Cells[POUND].Value) < 1)
                 {
-                    msg = "You have to set quantity on row " + i ;
+                    msg = "You have to set quantity on row " + i;
                     ErrorFound = true;
                 }
                 else if (!HasValue(row.Cells[PRICE].Value))
@@ -341,6 +319,10 @@ namespace Invoice
         private void SaveBtn_Click(object sender, EventArgs e)
         {
             //myDataSet.AcceptChanges();EDIT:Don't know why, but this line wasn't letting the chane in db happen.
+            saveData(true);
+        }
+        private void saveData(bool saveFromBtn)
+        {
             try
             {
                 if (IsWeekend())
@@ -349,10 +331,19 @@ namespace Invoice
                 }
                 else
                 {
-                    var x = MessageBox.Show("Do you want to save? ", "Save", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    var x = DialogResult.None;
+                    if (saveFromBtn)
+                    {
+                        x = MessageBox.Show("Do you want to save? ", "Save", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    }
+                    else
+                    {
+                        x = DialogResult.Yes;
+                    }
                     if (DialogResult.Yes == x && !CheckIfEmpty())
                     {
                         String sqlQuery = "";
+                        String routeIdx = "" + (this.RouteComboBox.SelectedIndex + 1);
                         if (this.orderId == null)
                         {
                             sqlQuery = "INSERT INTO dbo.order_list " +
@@ -373,21 +364,27 @@ namespace Invoice
                             {
                                 DataGridViewRow row = this.orderDataView.Rows[i];
                                 String product = row.Cells[PRODUCT].Value.ToString();
-                                String qty = row.Cells[QTY].Value.ToString();
+                                String box = row.Cells[BOX].Value.ToString();
+                                String each = row.Cells[EACH].Value.ToString();
+                                String pound = row.Cells[POUND].Value.ToString();
                                 String price = row.Cells[PRICE].Value.ToString().Substring(1);
                                 String market = row.Cells[MARKET].Value.ToString();
                                 String note = row.Cells[NOTE].Value.ToString();
                                 String route = "";
+                                
                                 if (row.Cells[ROUTE].Value != null)
                                 {
                                     route = row.Cells[ROUTE].Value.ToString();
+                                }else if(!routeIdx.Equals("0"))
+                                {
+                                    route = routeIdx;
                                 }
-                                string InsertSql = "INSERT INTO dbo.cart(quantity, product, price, market, note, route, order_id) VALUES(" +
-                                    "'" + qty + "', '" + product + "', '" + price + "', '" +
+                                string InsertSql = "INSERT INTO dbo.cart(box, each, pound, product, price, market, note, route, order_id) VALUES(" +
+                                    "'" + box + "', ''" + each + "', ''" + pound + "', '" + product + "', '" + price + "', '" +
                                     market + "', '" + note + "', '" + route + "', '" + this.orderId + "')";
                                 db.RunQuery(InsertSql).Close();
                                 String buyOrSell = this.isMarket ? "+" : "-";
-                                string updateQuantity = "UPDATE dbo.product set quantity = (quantity " + buyOrSell + " " + qty + ") where product ='" + product + "'";
+                                string updateQuantity = "UPDATE dbo.product set box = (box " + buyOrSell + " " + box + ") where product ='" + product + "'";
                                 db.RunQuery(updateQuantity).Close();
                             }
                         }
@@ -398,11 +395,13 @@ namespace Invoice
                             "total = '" + this.TotalTxt.Text + "' WHERE order_id= " + this.orderId;
                             adapter.Update(this.DS);
                             db.RunQuery(sqlQuery).Close();
-                            for (int i = 0; i < this.orderDataView.Rows.Count - 1; i++)
+                            for (int i = 0; i < this.orderDataView.Rows.Count; i++)
                             {
                                 DataGridViewRow row = this.orderDataView.Rows[i];
                                 String product = row.Cells[PRODUCT].Value.ToString();
-                                String qty = row.Cells[QTY].Value.ToString();
+                                String box = row.Cells[BOX].Value.ToString();
+                                String each = row.Cells[EACH].Value.ToString();
+                                String pound = row.Cells[POUND].Value.ToString();
                                 String price = row.Cells[PRICE].Value.ToString().Substring(1);
                                 String market = row.Cells[MARKET].Value.ToString();
                                 String note = row.Cells[NOTE].Value.ToString();
@@ -411,35 +410,53 @@ namespace Invoice
                                 {
                                     route = row.Cells[ROUTE].Value.ToString();
                                 }
+                                else if (!routeIdx.Equals("0"))
+                                {
+                                    route = routeIdx;
+                                }
                                 string whereStr = " WHERE product='" + product + "' and order_id='" + this.orderId + "'";
                                 string checkExist = "SELECT * FROM dbo.cart " + whereStr;
                                 dbReader = db.RunQuery(checkExist);
                                 string InsertSql = "";
                                 if (!dbReader.Read())
                                 {
-                                    InsertSql = "INSERT INTO dbo.cart(quantity, product, price, market, note, route, order_id) VALUES(" +
-                                    "'" + qty + "', '" + product + "', '" + price + "', '" +
+                                    InsertSql = "INSERT INTO dbo.cart(box, each, pound, product, price, market, note, route, order_id) VALUES(" +
+                                    "'" + box + "','" + each + "','" + pound + "', '" + product + "', '" + price + "', '" +
                                     market + "', '" + note + "', '" + route + "', '" + this.orderId + "')";
+
                                 }
                                 else
                                 {
-                                    InsertSql = "UPDATE dbo.cart set quantity='" + qty +
+                                    InsertSql = "UPDATE dbo.cart set box='" + box +
                                     "', price='" + price + "', market='" + market + "', note='" + note +
                                     "', route='" + route + "' " + whereStr;
                                 }
                                 dbReader.Close();
                                 db.RunQuery(InsertSql).Close();
-                                int diff = Int32.Parse(qty) - Int32.Parse(qtyList[i].ToString());
+
+                                String updateQuantity = "";
                                 String buyOrSell = this.isMarket ? "-" : "+";
-                                string updateQuantity = "UPDATE dbo.product set quantity = (quantity " + buyOrSell + " " + diff + ") where product ='" + product + "'";
-                                db.RunQuery(updateQuantity).Close();
+                                int diff = Int32.Parse(box);
+                                if (qtyList.ContainsKey(product))
+                                {
+                                    diff = Int32.Parse(box) - Int32.Parse(qtyList[product].ToString());
+                                }
+                                if (diff != 0)
+                                {
+                                    updateQuantity = "UPDATE dbo.product set quantity = (quantity " + buyOrSell + " " + diff + ") where product ='" + product + "'";
+                                    db.RunQuery(updateQuantity).Close();
+                                }
+
                             }
                         }
                         // need to close createStore form after click 'OK' button
                         isSave = true;
-                        if (this.ol != null)
-                            this.ol.OrderLoad();
-                        this.Close();
+                        if (saveFromBtn)
+                        {
+                            if (this.ol != null)
+                                this.ol.OrderLoad();
+                            this.Close();
+                        }
                     }
                 }
             }
@@ -489,10 +506,10 @@ namespace Invoice
         private void ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             String routeIdx = ""+(this.RouteComboBox.SelectedIndex + 1);
-            for (int i = 0; i < this.orderDataView.Rows.Count - 1; i++)
+            for (int i = 0; i < this.orderDataView.Rows.Count; i++)
             {
                 DataGridViewRow row = this.orderDataView.Rows[i];
-                if(row.Cells[ROUTE].Value == null)
+                if(row.Cells[ROUTE].Value.Equals(""))
                     row.Cells[ROUTE].Value = routeIdx;
             }
         }
@@ -524,19 +541,18 @@ namespace Invoice
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
         }
-        Bitmap bmp;
         private void PrintBtn_Click(object sender, EventArgs e)
         {
-            Graphics g = this.CreateGraphics();
-            bmp = new Bitmap(this.Size.Width, this.Size.Height, g);
-            Graphics mg = Graphics.FromImage(bmp);
-            mg.CopyFromScreen(this.Location.X, this.Location.Y, 0, 0, this.Size);
-            printPreviewDialog1.ShowDialog();
-        }
-
-        private void PrintDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
-        {
-            e.Graphics.DrawImage(bmp, 0, 0);
+            var x = MessageBox.Show("Unsaved data will not show on invoice, Do you want to SAVE order?", "Open Invoice", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+            if (DialogResult.Cancel == x)
+            {
+                return;
+            }
+            else if(DialogResult.Yes == x) {
+                saveData(false);
+            }
+            printPreview preview = new printPreview(this.orderId, this.TotalTxt.Text, this.orderDataView);
+            preview.Show();
         }
 
         public DataGridView getOrderDataView()
@@ -559,6 +575,6 @@ namespace Invoice
             ProductCollection pc = new ProductCollection(this, products);
             pc.Show();
         }
-
+        
     }
 }

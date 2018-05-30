@@ -15,7 +15,8 @@ public class DbConnectorClass
         dbConnect = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB;"+
             "AttachDbFilename =" + path + @"\" + databaseName+
             ";Integrated Security=True");
-        dbConnect.Open();
+        if(dbConnect.State == ConnectionState.Closed)
+            dbConnect.Open();
     }
      public String NullToEmpty(SqlDataReader dbReader, String columnName)
     {

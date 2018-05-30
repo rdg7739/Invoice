@@ -35,10 +35,13 @@
             this.OptionLbl = new System.Windows.Forms.Label();
             this.Title = new System.Windows.Forms.Label();
             this.titlePanel = new System.Windows.Forms.Panel();
-            this.OrderDate = new System.Windows.Forms.DateTimePicker();
+            this.showAllOrderCheckBox = new System.Windows.Forms.CheckBox();
+            this.StoreList = new System.Windows.Forms.ComboBox();
+            this.DeliveryDate = new System.Windows.Forms.DateTimePicker();
             this.closeBtn = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.reportAction1 = new Microsoft.AnalysisServices.ReportAction();
             ((System.ComponentModel.ISupportInitialize)(this.OrderListView)).BeginInit();
             this.titlePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -57,6 +60,7 @@
             this.OrderListView.Location = new System.Drawing.Point(32, 118);
             this.OrderListView.Name = "OrderListView";
             this.OrderListView.ReadOnly = true;
+            this.OrderListView.RowHeadersVisible = false;
             this.OrderListView.Size = new System.Drawing.Size(722, 406);
             this.OrderListView.TabIndex = 1;
             // 
@@ -94,7 +98,7 @@
             this.OptionLbl.AutoSize = true;
             this.OptionLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.OptionLbl.ForeColor = System.Drawing.SystemColors.Window;
-            this.OptionLbl.Location = new System.Drawing.Point(296, 48);
+            this.OptionLbl.Location = new System.Drawing.Point(127, 48);
             this.OptionLbl.Name = "OptionLbl";
             this.OptionLbl.Size = new System.Drawing.Size(136, 25);
             this.OptionLbl.TabIndex = 4;
@@ -104,9 +108,9 @@
             // 
             this.Title.Font = new System.Drawing.Font("Arial", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Title.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Title.Location = new System.Drawing.Point(73, 13);
+            this.Title.Location = new System.Drawing.Point(73, 4);
             this.Title.Name = "Title";
-            this.Title.Size = new System.Drawing.Size(238, 60);
+            this.Title.Size = new System.Drawing.Size(238, 46);
             this.Title.TabIndex = 1;
             this.Title.Text = "Order List";
             this.Title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -116,7 +120,9 @@
             this.titlePanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.titlePanel.BackColor = System.Drawing.Color.SteelBlue;
-            this.titlePanel.Controls.Add(this.OrderDate);
+            this.titlePanel.Controls.Add(this.showAllOrderCheckBox);
+            this.titlePanel.Controls.Add(this.StoreList);
+            this.titlePanel.Controls.Add(this.DeliveryDate);
             this.titlePanel.Controls.Add(this.closeBtn);
             this.titlePanel.Controls.Add(this.OptionLbl);
             this.titlePanel.Controls.Add(this.SellCheckBox);
@@ -130,16 +136,42 @@
             this.titlePanel.TabIndex = 23;
             this.titlePanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DragTitlePanel);
             // 
-            // OrderDate
+            // showAllOrderCheckBox
             // 
-            this.OrderDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.OrderDate.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OrderDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OrderDate.Location = new System.Drawing.Point(446, 12);
-            this.OrderDate.Name = "OrderDate";
-            this.OrderDate.Size = new System.Drawing.Size(307, 29);
-            this.OrderDate.TabIndex = 5;
-            this.OrderDate.ValueChanged += new System.EventHandler(this.OrderDate_ValueChanged);
+            this.showAllOrderCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.showAllOrderCheckBox.AutoSize = true;
+            this.showAllOrderCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.showAllOrderCheckBox.ForeColor = System.Drawing.SystemColors.Window;
+            this.showAllOrderCheckBox.Location = new System.Drawing.Point(269, 47);
+            this.showAllOrderCheckBox.Name = "showAllOrderCheckBox";
+            this.showAllOrderCheckBox.Size = new System.Drawing.Size(163, 29);
+            this.showAllOrderCheckBox.TabIndex = 7;
+            this.showAllOrderCheckBox.Text = "Show All Order";
+            this.showAllOrderCheckBox.UseVisualStyleBackColor = true;
+            this.showAllOrderCheckBox.CheckedChanged += new System.EventHandler(this.showAllOrderCheckBox_CheckedChanged);
+            // 
+            // StoreList
+            // 
+            this.StoreList.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StoreList.FormattingEnabled = true;
+            this.StoreList.Location = new System.Drawing.Point(301, 11);
+            this.StoreList.Name = "StoreList";
+            this.StoreList.Size = new System.Drawing.Size(292, 33);
+            this.StoreList.TabIndex = 6;
+            this.StoreList.SelectedIndexChanged += new System.EventHandler(this.StoreList_SelectedIndexChanged);
+            // 
+            // DeliveryDate
+            // 
+            this.DeliveryDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.DeliveryDate.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeliveryDate.CustomFormat = " ";
+            this.DeliveryDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeliveryDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.DeliveryDate.Location = new System.Drawing.Point(599, 12);
+            this.DeliveryDate.Name = "DeliveryDate";
+            this.DeliveryDate.Size = new System.Drawing.Size(154, 29);
+            this.DeliveryDate.TabIndex = 5;
+            this.DeliveryDate.ValueChanged += new System.EventHandler(this.OrderDate_ValueChanged);
             // 
             // closeBtn
             // 
@@ -157,7 +189,7 @@
             // 
             this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Location = new System.Drawing.Point(66, 44);
+            this.pictureBox2.Location = new System.Drawing.Point(66, 35);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(29, 32);
             this.pictureBox2.TabIndex = 3;
@@ -167,11 +199,21 @@
             // 
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(31, 19);
+            this.pictureBox1.Location = new System.Drawing.Point(31, 10);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(57, 55);
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
+            // 
+            // reportAction1
+            // 
+            this.reportAction1.Application = null;
+            this.reportAction1.Description = null;
+            this.reportAction1.Name = null;
+            this.reportAction1.OwningCollection = null;
+            this.reportAction1.Path = null;
+            this.reportAction1.ReportServer = null;
+            //this.reportAction1.SiteID = "reportAction1";
             // 
             // OrderList
             // 
@@ -203,6 +245,9 @@
         private System.Windows.Forms.Button closeBtn;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.DateTimePicker OrderDate;
+        private System.Windows.Forms.DateTimePicker DeliveryDate;
+        private Microsoft.AnalysisServices.ReportAction reportAction1;
+        private System.Windows.Forms.ComboBox StoreList;
+        private System.Windows.Forms.CheckBox showAllOrderCheckBox;
     }
 }

@@ -38,8 +38,8 @@
             this.storePhoneTxt = new System.Windows.Forms.TextBox();
             this.storeAddressTxt = new System.Windows.Forms.TextBox();
             this.storeDetailTxt = new System.Windows.Forms.TextBox();
-            this.cancelBtn = new Invoice.ButtonModified();
-            this.saveBtn = new Invoice.ButtonModified();
+            this.cancelBtn = new ButtonModified();
+            this.saveBtn = new ButtonModified();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.storeFaxTxt = new System.Windows.Forms.TextBox();
             this.storeFaxLabel = new System.Windows.Forms.Label();

@@ -46,7 +46,9 @@
             // WeeklyExpenseDateTimePicker
             // 
             this.WeeklyExpenseDateTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.WeeklyExpenseDateTimePicker.CustomFormat = "MMM/dd/yy dddd";
             this.WeeklyExpenseDateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WeeklyExpenseDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.WeeklyExpenseDateTimePicker.Location = new System.Drawing.Point(470, 39);
             this.WeeklyExpenseDateTimePicker.Name = "WeeklyExpenseDateTimePicker";
             this.WeeklyExpenseDateTimePicker.Size = new System.Drawing.Size(263, 26);
@@ -55,6 +57,8 @@
             // 
             // WeeklyExpenseDataView
             // 
+            this.WeeklyExpenseDataView.AllowUserToAddRows = false;
+            this.WeeklyExpenseDataView.AllowUserToDeleteRows = false;
             this.WeeklyExpenseDataView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -74,6 +78,7 @@
             this.WeeklyExpenseDataView.Name = "WeeklyExpenseDataView";
             this.WeeklyExpenseDataView.ReadOnly = true;
             this.WeeklyExpenseDataView.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.WeeklyExpenseDataView.RowHeadersVisible = false;
             this.WeeklyExpenseDataView.Size = new System.Drawing.Size(722, 419);
             this.WeeklyExpenseDataView.TabIndex = 3;
             // 
@@ -144,7 +149,6 @@
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.titlePanel);
             this.Controls.Add(this.WeeklyExpenseDataView);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "WeeklyExpense";
             this.Text = "WeeklyExpense";
             ((System.ComponentModel.ISupportInitialize)(this.WeeklyExpenseDataView)).EndInit();

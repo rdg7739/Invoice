@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Runtime.InteropServices;
 namespace Invoice
 {
-    public partial class CreateStore : Form
+    public partial class CreateStore : ResizeForm
     {
         private DbConnectorClass db;
         private Boolean isEdit = false;

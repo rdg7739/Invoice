@@ -9,14 +9,14 @@
     <framework targetVersion="4.6.1" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="Invoice.exe.manifest" size="4991">
+    <dependentAssembly dependencyType="install" codebase="Invoice.exe.manifest" size="77060">
       <assemblyIdentity name="Invoice.exe" version="1.0.0.12" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>84iU73P1RUOyKZs+JV2+4O4psHHYSl8htCO1DbL7I5s=</dsig:DigestValue>
+        <dsig:DigestValue>8pPxSKB1Evatb/HE0jHyq8kY3dp5X3GjkhDSiTt1CoI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

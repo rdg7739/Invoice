@@ -72,10 +72,41 @@
     <StartupObject>Invoice.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=1.50.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Dapper.1.50.5\lib\net451\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AnalysisServices.AppLocal, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.AnalysisServices.AppLocal.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.AnalysisServices.AppLocal.Tabular, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.1000.523\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.1000.523\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.1000.523\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.1000.523\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Report.Viewer.11.0.0.0\lib\net\Microsoft.ReportViewer.WebForms.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.1000.523\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="MySql.Data, Version=6.10.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -91,12 +122,19 @@
     <Compile Include="ButtonModified.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ComboboxItem.cs" />
-    <Compile Include="CreateProduct.cs">
+    <Compile Include="cartDetail.cs" />
+    <Compile Include="Catagory.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CreateProduct.Designer.cs">
-      <DependentUpon>CreateProduct.cs</DependentUpon>
+    <Compile Include="Catagory.Designer.cs">
+      <DependentUpon>Catagory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComboboxItem.cs" />
+    <Compile Include="CreateCatagory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateCatagory.Designer.cs">
+      <DependentUpon>CreateCatagory.cs</DependentUpon>
     </Compile>
     <Compile Include="DbConnector.cs" />
     <Compile Include="Form1.cs">
@@ -105,6 +143,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Cart.cs" />
     <Compile Include="invoice_dbDataSet.cs">
       <DependentUpon>invoice_dbDataSet.xsd</DependentUpon>
     </Compile>
@@ -131,6 +170,12 @@
     <Compile Include="CreateOrder.Designer.cs">
       <DependentUpon>CreateOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="printPreview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="printPreview.Designer.cs">
+      <DependentUpon>printPreview.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProductCollection.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,17 +185,12 @@
     <Compile Include="ResizeForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="StoreList.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="StoreList.Designer.cs">
       <DependentUpon>StoreList.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DeliveryDetail.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DeliveryDetail.Designer.cs">
-      <DependentUpon>DeliveryDetail.cs</DependentUpon>
     </Compile>
     <Compile Include="DeliverySchedule.cs">
       <SubType>Form</SubType>
@@ -193,12 +233,16 @@
     <Compile Include="WeeklySale.Designer.cs">
       <DependentUpon>WeeklySale.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="CreateProduct.resx">
-      <DependentUpon>CreateProduct.cs</DependentUpon>
+    <EmbeddedResource Include="Catagory.resx">
+      <DependentUpon>Catagory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateCatagory.resx">
+      <DependentUpon>CreateCatagory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DeliverySchedule.resx">
       <DependentUpon>DeliverySchedule.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Invoice.rdlc" />
     <EmbeddedResource Include="MyStore.resx">
       <DependentUpon>MyStore.cs</DependentUpon>
     </EmbeddedResource>
@@ -207,6 +251,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CreateOrder.resx">
       <DependentUpon>CreateOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="printPreview.resx">
+      <DependentUpon>printPreview.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProductCollection.resx">
       <DependentUpon>ProductCollection.cs</DependentUpon>
@@ -251,6 +298,7 @@
       <DependentUpon>invoice_dbDataSet.xsd</DependentUpon>
     </None>
     <None Include="invoice_user.pfx" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -291,6 +339,19 @@
     <Content Include="invoice_db_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>invoice_db.mdf</DependentUpon>
+    </Content>
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>

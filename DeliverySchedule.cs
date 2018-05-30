@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Runtime.InteropServices;
 namespace Invoice
 {
-    public partial class DeliverySchedule : Form
+    public partial class DeliverySchedule : ResizeForm
     {
         DbConnectorClass db;
         SqlDataAdapter adapter;

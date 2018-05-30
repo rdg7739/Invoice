@@ -34,15 +34,15 @@
             this.ShowMarketCheckBox = new System.Windows.Forms.CheckBox();
             this.ShowCustomerCheckBox = new System.Windows.Forms.CheckBox();
             this.ListOptionLbl = new System.Windows.Forms.Label();
-            this.invoice_dbDataSet = new Invoice.invoice_dbDataSet();
             this.storeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Title = new System.Windows.Forms.Label();
             this.titlePanel = new System.Windows.Forms.Panel();
             this.closeBtn = new System.Windows.Forms.Button();
+            this.saveBtn = new Invoice.ButtonModified();
+            this.cancelBtn = new Invoice.ButtonModified();
             ((System.ComponentModel.ISupportInitialize)(this.StoreDataView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.invoice_dbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.storeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -51,8 +51,7 @@
             // 
             // StoreDataView
             // 
-            this.StoreDataView.AllowUserToAddRows = false;
-            this.StoreDataView.AllowUserToDeleteRows = false;
+            this.StoreDataView.AllowUserToOrderColumns = true;
             this.StoreDataView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -63,9 +62,10 @@
             this.StoreDataView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.StoreDataView.Location = new System.Drawing.Point(32, 114);
             this.StoreDataView.Name = "StoreDataView";
-            this.StoreDataView.ReadOnly = true;
-            this.StoreDataView.Size = new System.Drawing.Size(722, 416);
+            this.StoreDataView.RowHeadersVisible = false;
+            this.StoreDataView.Size = new System.Drawing.Size(722, 393);
             this.StoreDataView.TabIndex = 1;
+            this.StoreDataView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.StoreDataView_CellContentClick);
             // 
             // ShowMarketCheckBox
             // 
@@ -107,16 +107,6 @@
             this.ListOptionLbl.TabIndex = 4;
             this.ListOptionLbl.Text = "List Option: ";
             // 
-            // invoice_dbDataSet
-            // 
-            this.invoice_dbDataSet.DataSetName = "invoice_dbDataSet";
-            this.invoice_dbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // storeBindingSource
-            // 
-            this.storeBindingSource.DataMember = "store";
-            this.storeBindingSource.DataSource = this.invoice_dbDataSet;
-            // 
             // pictureBox2
             // 
             this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
@@ -150,6 +140,8 @@
             // 
             // titlePanel
             // 
+            this.titlePanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.titlePanel.BackColor = System.Drawing.Color.SteelBlue;
             this.titlePanel.Controls.Add(this.closeBtn);
             this.titlePanel.Controls.Add(this.ListOptionLbl);
@@ -176,6 +168,32 @@
             this.closeBtn.UseVisualStyleBackColor = true;
             this.closeBtn.Click += new System.EventHandler(this.CloseBtn_Click);
             // 
+            // saveBtn
+            // 
+            this.saveBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.saveBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.saveBtn.Location = new System.Drawing.Point(624, 519);
+            this.saveBtn.Name = "saveBtn";
+            this.saveBtn.Size = new System.Drawing.Size(130, 30);
+            this.saveBtn.TabIndex = 27;
+            this.saveBtn.Text = "Save";
+            this.saveBtn.UseVisualStyleBackColor = true;
+            this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
+            // 
+            // cancelBtn
+            // 
+            this.cancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cancelBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cancelBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.cancelBtn.Location = new System.Drawing.Point(472, 519);
+            this.cancelBtn.Name = "cancelBtn";
+            this.cancelBtn.Size = new System.Drawing.Size(130, 30);
+            this.cancelBtn.TabIndex = 26;
+            this.cancelBtn.Text = "Cancel";
+            this.cancelBtn.UseVisualStyleBackColor = true;
+            this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
+            // 
             // StoreList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -183,12 +201,13 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.saveBtn);
+            this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.titlePanel);
             this.Controls.Add(this.StoreDataView);
             this.Name = "StoreList";
             this.Text = "CustomerList";
             ((System.ComponentModel.ISupportInitialize)(this.StoreDataView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.invoice_dbDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.storeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -204,11 +223,12 @@
         private System.Windows.Forms.CheckBox ShowCustomerCheckBox;
         private System.Windows.Forms.Label ListOptionLbl;
         private System.Windows.Forms.BindingSource storeBindingSource;
-        private invoice_dbDataSet invoice_dbDataSet;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label Title;
         private System.Windows.Forms.Panel titlePanel;
         private System.Windows.Forms.Button closeBtn;
+        private ButtonModified saveBtn;
+        private ButtonModified cancelBtn;
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Invoice
+﻿using System.Windows.Forms;
+
+namespace Invoice
 {
     partial class ProductList
     {
@@ -30,11 +32,20 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductList));
             this.ProductDataView = new System.Windows.Forms.DataGridView();
+            this.No = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Product = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Catagory = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.SubCatagory = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Note = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Title = new System.Windows.Forms.Label();
             this.titlePanel = new System.Windows.Forms.Panel();
             this.closeBtn = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.saveBtn = new Invoice.ButtonModified();
+            this.cancelBtn = new Invoice.ButtonModified();
             ((System.ComponentModel.ISupportInitialize)(this.ProductDataView)).BeginInit();
             this.titlePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -43,19 +54,79 @@
             // 
             // ProductDataView
             // 
+            this.ProductDataView.AllowUserToOrderColumns = true;
             this.ProductDataView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ProductDataView.BackgroundColor = System.Drawing.SystemColors.Window;
             this.ProductDataView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ProductDataView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ProductDataView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.No,
+            this.Product,
+            this.Price,
+            this.Quantity,
+            this.Catagory,
+            this.SubCatagory,
+            this.Note});
+            this.ProductDataView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.ProductDataView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.ProductDataView.Location = new System.Drawing.Point(36, 113);
             this.ProductDataView.Name = "ProductDataView";
-            this.ProductDataView.ReadOnly = true;
-            this.ProductDataView.Size = new System.Drawing.Size(722, 310);
+            this.ProductDataView.RowHeadersVisible = false;
+            this.ProductDataView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.ProductDataView.Size = new System.Drawing.Size(722, 342);
             this.ProductDataView.TabIndex = 1;
-            this.ProductDataView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ProductDataView_CellContentClick);
+            this.ProductDataView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellClick);
+            this.ProductDataView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.DataGridView1_DataError);
+            // 
+            // No
+            // 
+            this.No.FillWeight = 50F;
+            this.No.HeaderText = "No";
+            this.No.Name = "No";
+            this.No.Width = 50;
+            // 
+            // Product
+            // 
+            this.Product.HeaderText = "Product";
+            this.Product.Name = "Product";
+            // 
+            // Price
+            // 
+            this.Price.FillWeight = 50F;
+            this.Price.HeaderText = "Price";
+            this.Price.Name = "Price";
+            this.Price.Width = 50;
+            // 
+            // Quantity
+            // 
+            this.Quantity.FillWeight = 60F;
+            this.Quantity.HeaderText = "Quantity";
+            this.Quantity.Name = "Quantity";
+            this.Quantity.Width = 60;
+            // 
+            // Catagory
+            // 
+            this.Catagory.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
+            this.Catagory.HeaderText = "Catagory";
+            this.Catagory.Name = "Catagory";
+            this.Catagory.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Catagory.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // SubCatagory
+            // 
+            this.SubCatagory.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
+            this.SubCatagory.HeaderText = "SubCatagory";
+            this.SubCatagory.Name = "SubCatagory";
+            this.SubCatagory.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.SubCatagory.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // Note
+            // 
+            this.Note.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Note.HeaderText = "Note";
+            this.Note.Name = "Note";
             // 
             // Title
             // 
@@ -118,16 +189,43 @@
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
+            // saveBtn
+            // 
+            this.saveBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.saveBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.saveBtn.Location = new System.Drawing.Point(628, 461);
+            this.saveBtn.Name = "saveBtn";
+            this.saveBtn.Size = new System.Drawing.Size(130, 30);
+            this.saveBtn.TabIndex = 25;
+            this.saveBtn.Text = "Save";
+            this.saveBtn.UseVisualStyleBackColor = true;
+            this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
+            // 
+            // cancelBtn
+            // 
+            this.cancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cancelBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cancelBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.cancelBtn.Location = new System.Drawing.Point(476, 461);
+            this.cancelBtn.Name = "cancelBtn";
+            this.cancelBtn.Size = new System.Drawing.Size(130, 30);
+            this.cancelBtn.TabIndex = 24;
+            this.cancelBtn.Text = "Cancel";
+            this.cancelBtn.UseVisualStyleBackColor = true;
+            this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
+            // 
             // ProductList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(784, 450);
+            this.ClientSize = new System.Drawing.Size(784, 503);
+            this.Controls.Add(this.saveBtn);
+            this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.titlePanel);
             this.Controls.Add(this.ProductDataView);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ProductList";
             this.Text = "ItemList";
             ((System.ComponentModel.ISupportInitialize)(this.ProductDataView)).EndInit();
@@ -145,5 +243,14 @@
         private System.Windows.Forms.Button closeBtn;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private DataGridViewTextBoxColumn No;
+        private DataGridViewTextBoxColumn Product;
+        private DataGridViewTextBoxColumn Price;
+        private DataGridViewTextBoxColumn Quantity;
+        private DataGridViewComboBoxColumn Catagory;
+        private DataGridViewComboBoxColumn SubCatagory;
+        private DataGridViewTextBoxColumn Note;
+        private ButtonModified saveBtn;
+        private ButtonModified cancelBtn;
     }
 }

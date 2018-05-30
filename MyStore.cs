@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 using System.Runtime.InteropServices;
 namespace Invoice
 {
-    public partial class MyStore : Form
+    public partial class MyStore : ResizeForm
     {
         private DbConnectorClass db;
         private String dbStoreName;

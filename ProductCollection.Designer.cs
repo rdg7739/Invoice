@@ -44,8 +44,8 @@
             this.GroceryListBox = new System.Windows.Forms.CheckedListBox();
             this.ProduceListBox = new System.Windows.Forms.CheckedListBox();
             this.EtcListBox = new System.Windows.Forms.CheckedListBox();
-            this.cancelBtn = new Invoice.ButtonModified();
-            this.saveBtn = new Invoice.ButtonModified();
+            this.cancelBtn = new ButtonModified();
+            this.saveBtn = new ButtonModified();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -176,6 +176,7 @@
             // 
             // MeatListBox
             // 
+            this.MeatListBox.CheckOnClick = true;
             this.MeatListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MeatListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.MeatListBox.FormattingEnabled = true;
@@ -186,6 +187,7 @@
             // 
             // FrozenListBox
             // 
+            this.FrozenListBox.CheckOnClick = true;
             this.FrozenListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FrozenListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.FrozenListBox.FormattingEnabled = true;
@@ -196,6 +198,7 @@
             // 
             // GroceryListBox
             // 
+            this.GroceryListBox.CheckOnClick = true;
             this.GroceryListBox.Cursor = System.Windows.Forms.Cursors.Default;
             this.GroceryListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GroceryListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -207,6 +210,7 @@
             // 
             // ProduceListBox
             // 
+            this.ProduceListBox.CheckOnClick = true;
             this.ProduceListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ProduceListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.ProduceListBox.FormattingEnabled = true;
@@ -217,6 +221,7 @@
             // 
             // EtcListBox
             // 
+            this.EtcListBox.CheckOnClick = true;
             this.EtcListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.EtcListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.EtcListBox.FormattingEnabled = true;
@@ -230,7 +235,7 @@
             this.cancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cancelBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.cancelBtn.Location = new System.Drawing.Point(712, 803);
+            this.cancelBtn.Location = new System.Drawing.Point(712, 603);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(130, 35);
             this.cancelBtn.TabIndex = 25;
@@ -243,7 +248,7 @@
             this.saveBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.saveBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.saveBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.saveBtn.Location = new System.Drawing.Point(848, 803);
+            this.saveBtn.Location = new System.Drawing.Point(848, 603);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(130, 35);
             this.saveBtn.TabIndex = 26;
@@ -279,7 +284,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(976, 699);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(976, 499);
             this.tableLayoutPanel1.TabIndex = 27;
             // 
             // ProductCollection
@@ -288,7 +293,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1000, 850);
+            this.ClientSize = new System.Drawing.Size(1000, 650);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.saveBtn);
             this.Controls.Add(this.cancelBtn);

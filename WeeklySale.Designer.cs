@@ -45,7 +45,9 @@
             // WeeklySaleDateTimePicker
             // 
             this.WeeklySaleDateTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.WeeklySaleDateTimePicker.CustomFormat = "MMM/dd/yy dddd";
             this.WeeklySaleDateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WeeklySaleDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.WeeklySaleDateTimePicker.Location = new System.Drawing.Point(468, 39);
             this.WeeklySaleDateTimePicker.Name = "WeeklySaleDateTimePicker";
             this.WeeklySaleDateTimePicker.Size = new System.Drawing.Size(263, 26);
@@ -54,6 +56,8 @@
             // 
             // WeeklySaleDataView
             // 
+            this.WeeklySaleDataView.AllowUserToAddRows = false;
+            this.WeeklySaleDataView.AllowUserToDeleteRows = false;
             this.WeeklySaleDataView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -65,6 +69,7 @@
             this.WeeklySaleDataView.Name = "WeeklySaleDataView";
             this.WeeklySaleDataView.ReadOnly = true;
             this.WeeklySaleDataView.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.WeeklySaleDataView.RowHeadersVisible = false;
             this.WeeklySaleDataView.Size = new System.Drawing.Size(722, 419);
             this.WeeklySaleDataView.TabIndex = 2;
             // 
@@ -134,7 +139,6 @@
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.titlePanel);
             this.Controls.Add(this.WeeklySaleDataView);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "WeeklySale";
             this.Text = "WeeklySale";
             ((System.ComponentModel.ISupportInitialize)(this.WeeklySaleDataView)).EndInit();

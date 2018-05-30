@@ -36,14 +36,13 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.WeeklyExpenseBtn = new Invoice.ButtonModified();
             this.WeeklySaleBtn = new Invoice.ButtonModified();
-            this.CreatProductBtn = new Invoice.ButtonModified();
             this.MyStoreBtn = new Invoice.ButtonModified();
-            this.CreateStoreBtn = new Invoice.ButtonModified();
             this.StoreListBtn = new Invoice.ButtonModified();
             this.ProductListBtn = new Invoice.ButtonModified();
             this.DeliveryScheduleBtn = new Invoice.ButtonModified();
             this.OrderListBtn = new Invoice.ButtonModified();
             this.createOrderBtn = new Invoice.ButtonModified();
+            this.CatagoryBtn = new Invoice.ButtonModified();
             this.titlePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -111,7 +110,7 @@
             this.WeeklyExpenseBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.WeeklyExpenseBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.WeeklyExpenseBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.WeeklyExpenseBtn.Location = new System.Drawing.Point(318, 316);
+            this.WeeklyExpenseBtn.Location = new System.Drawing.Point(318, 265);
             this.WeeklyExpenseBtn.Name = "WeeklyExpenseBtn";
             this.WeeklyExpenseBtn.Size = new System.Drawing.Size(200, 40);
             this.WeeklyExpenseBtn.TabIndex = 10;
@@ -125,27 +124,13 @@
             this.WeeklySaleBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.WeeklySaleBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.WeeklySaleBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.WeeklySaleBtn.Location = new System.Drawing.Point(80, 316);
+            this.WeeklySaleBtn.Location = new System.Drawing.Point(80, 265);
             this.WeeklySaleBtn.Name = "WeeklySaleBtn";
             this.WeeklySaleBtn.Size = new System.Drawing.Size(200, 40);
             this.WeeklySaleBtn.TabIndex = 9;
             this.WeeklySaleBtn.Text = "Weekly Sale";
             this.WeeklySaleBtn.UseVisualStyleBackColor = true;
             this.WeeklySaleBtn.Click += new System.EventHandler(this.WeeklySaleBtn_Click);
-            // 
-            // CreatProductBtn
-            // 
-            this.CreatProductBtn.BackColor = System.Drawing.Color.White;
-            this.CreatProductBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CreatProductBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CreatProductBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.CreatProductBtn.Location = new System.Drawing.Point(318, 266);
-            this.CreatProductBtn.Name = "CreatProductBtn";
-            this.CreatProductBtn.Size = new System.Drawing.Size(200, 40);
-            this.CreatProductBtn.TabIndex = 8;
-            this.CreatProductBtn.Text = "Create Product";
-            this.CreatProductBtn.UseVisualStyleBackColor = true;
-            this.CreatProductBtn.Click += new System.EventHandler(this.CreatItemBtn_Click);
             // 
             // MyStoreBtn
             // 
@@ -160,20 +145,6 @@
             this.MyStoreBtn.Text = "My Store";
             this.MyStoreBtn.UseVisualStyleBackColor = true;
             this.MyStoreBtn.Click += new System.EventHandler(this.MyStoreBtn_Click);
-            // 
-            // CreateStoreBtn
-            // 
-            this.CreateStoreBtn.BackColor = System.Drawing.Color.White;
-            this.CreateStoreBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CreateStoreBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CreateStoreBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.CreateStoreBtn.Location = new System.Drawing.Point(80, 166);
-            this.CreateStoreBtn.Name = "CreateStoreBtn";
-            this.CreateStoreBtn.Size = new System.Drawing.Size(200, 40);
-            this.CreateStoreBtn.TabIndex = 6;
-            this.CreateStoreBtn.Text = "Create Store";
-            this.CreateStoreBtn.UseVisualStyleBackColor = true;
-            this.CreateStoreBtn.Click += new System.EventHandler(this.CreateStoreBtn_Click);
             // 
             // StoreListBtn
             // 
@@ -195,7 +166,7 @@
             this.ProductListBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ProductListBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ProductListBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.ProductListBtn.Location = new System.Drawing.Point(80, 266);
+            this.ProductListBtn.Location = new System.Drawing.Point(80, 166);
             this.ProductListBtn.Name = "ProductListBtn";
             this.ProductListBtn.Size = new System.Drawing.Size(200, 40);
             this.ProductListBtn.TabIndex = 4;
@@ -247,6 +218,20 @@
             this.createOrderBtn.UseVisualStyleBackColor = false;
             this.createOrderBtn.Click += new System.EventHandler(this.CreateStore_Click);
             // 
+            // CatagoryBtn
+            // 
+            this.CatagoryBtn.BackColor = System.Drawing.Color.White;
+            this.CatagoryBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CatagoryBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CatagoryBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.CatagoryBtn.Location = new System.Drawing.Point(80, 314);
+            this.CatagoryBtn.Name = "CatagoryBtn";
+            this.CatagoryBtn.Size = new System.Drawing.Size(200, 40);
+            this.CatagoryBtn.TabIndex = 12;
+            this.CatagoryBtn.Text = "Catagory List";
+            this.CatagoryBtn.UseVisualStyleBackColor = true;
+            this.CatagoryBtn.Click += new System.EventHandler(this.CatagoryBtn_Click);
+            // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -254,13 +239,12 @@
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(584, 411);
+            this.ClientSize = new System.Drawing.Size(584, 373);
+            this.Controls.Add(this.CatagoryBtn);
             this.Controls.Add(this.titlePanel);
             this.Controls.Add(this.WeeklyExpenseBtn);
             this.Controls.Add(this.WeeklySaleBtn);
-            this.Controls.Add(this.CreatProductBtn);
             this.Controls.Add(this.MyStoreBtn);
-            this.Controls.Add(this.CreateStoreBtn);
             this.Controls.Add(this.StoreListBtn);
             this.Controls.Add(this.ProductListBtn);
             this.Controls.Add(this.DeliveryScheduleBtn);
@@ -285,12 +269,11 @@
         private ButtonModified DeliveryScheduleBtn;
         private ButtonModified ProductListBtn;
         private ButtonModified StoreListBtn;
-        private ButtonModified CreateStoreBtn;
         private ButtonModified MyStoreBtn;
-        private ButtonModified CreatProductBtn;
         private ButtonModified WeeklySaleBtn;
         private ButtonModified WeeklyExpenseBtn;
         private System.Windows.Forms.Button closeBtn;
+        private ButtonModified CatagoryBtn;
     }
 }
 

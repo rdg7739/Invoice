@@ -46,18 +46,23 @@
             // 
             // DeliveryScheduleView
             // 
+            this.DeliveryScheduleView.AllowUserToAddRows = false;
+            this.DeliveryScheduleView.AllowUserToDeleteRows = false;
             this.DeliveryScheduleView.BackgroundColor = System.Drawing.SystemColors.Window;
             this.DeliveryScheduleView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DeliveryScheduleView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.DeliveryScheduleView.Location = new System.Drawing.Point(32, 108);
             this.DeliveryScheduleView.Name = "DeliveryScheduleView";
+            this.DeliveryScheduleView.RowHeadersVisible = false;
             this.DeliveryScheduleView.Size = new System.Drawing.Size(722, 286);
             this.DeliveryScheduleView.TabIndex = 1;
             // 
             // DeliveryScheduleDate
             // 
             this.DeliveryScheduleDate.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeliveryScheduleDate.CustomFormat = "MMM/dd/yy dddd";
             this.DeliveryScheduleDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeliveryScheduleDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.DeliveryScheduleDate.Location = new System.Drawing.Point(446, 35);
             this.DeliveryScheduleDate.Name = "DeliveryScheduleDate";
             this.DeliveryScheduleDate.Size = new System.Drawing.Size(307, 29);
@@ -132,7 +137,6 @@
             this.titlePanel.Size = new System.Drawing.Size(782, 91);
             this.titlePanel.TabIndex = 22;
             this.titlePanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DragTitlePanel);
-
             // 
             // closeBtn
             // 
