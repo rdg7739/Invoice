@@ -28,6 +28,7 @@ namespace Invoice
         {
             InitializeComponent();
             OrderLoad();
+            this.MaximizedBounds = Screen.GetWorkingArea(this);
         }
         public void OrderLoad()
         {

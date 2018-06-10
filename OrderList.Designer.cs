@@ -42,6 +42,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.reportAction1 = new Microsoft.AnalysisServices.ReportAction();
+            this.CancelBtn = new Invoice.ButtonModified();
             ((System.ComponentModel.ISupportInitialize)(this.OrderListView)).BeginInit();
             this.titlePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -61,7 +62,7 @@
             this.OrderListView.Name = "OrderListView";
             this.OrderListView.ReadOnly = true;
             this.OrderListView.RowHeadersVisible = false;
-            this.OrderListView.Size = new System.Drawing.Size(722, 406);
+            this.OrderListView.Size = new System.Drawing.Size(722, 391);
             this.OrderListView.TabIndex = 1;
             // 
             // BuyCheckBox
@@ -111,9 +112,9 @@
             // 
             this.Title.Font = new System.Drawing.Font("Arial", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Title.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Title.Location = new System.Drawing.Point(73, 4);
+            this.Title.Location = new System.Drawing.Point(93, 12);
             this.Title.Name = "Title";
-            this.Title.Size = new System.Drawing.Size(238, 46);
+            this.Title.Size = new System.Drawing.Size(202, 37);
             this.Title.TabIndex = 1;
             this.Title.Text = "Order List";
             this.Title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -222,6 +223,19 @@
             this.reportAction1.Path = null;
             this.reportAction1.ReportServer = null;
             // 
+            // CancelBtn
+            // 
+            this.CancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.CancelBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CancelBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.CancelBtn.Location = new System.Drawing.Point(624, 515);
+            this.CancelBtn.Name = "CancelBtn";
+            this.CancelBtn.Size = new System.Drawing.Size(130, 34);
+            this.CancelBtn.TabIndex = 24;
+            this.CancelBtn.Text = "Cancel";
+            this.CancelBtn.UseVisualStyleBackColor = true;
+            this.CancelBtn.Click += new System.EventHandler(this.CancelBtn_Click);
+            // 
             // OrderList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -229,6 +243,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.CancelBtn);
             this.Controls.Add(this.titlePanel);
             this.Controls.Add(this.OrderListView);
             this.Name = "OrderList";
@@ -256,5 +271,6 @@
         private Microsoft.AnalysisServices.ReportAction reportAction1;
         private System.Windows.Forms.ComboBox StoreList;
         private System.Windows.Forms.CheckBox showAllOrderCheckBox;
+        private ButtonModified CancelBtn;
     }
 }

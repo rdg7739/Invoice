@@ -29,6 +29,7 @@ namespace Invoice
             this.routeValue = routeValue;
             InitializeComponent();
             ProductLoad();
+            this.MaximizedBounds = Screen.GetWorkingArea(this);
         }
 
         public void ProductLoad()
@@ -40,7 +41,6 @@ namespace Invoice
                 setComboBox(this.FrozenListBox, "FROZEN");
                 setComboBox(this.GroceryListBox, "GROCERY");
                 setComboBox(this.ProduceListBox, "PRODUCE");
-
                 adapter = new SqlDataAdapter(
                     "Select product_id, product from dbo.product where (catagory != 'MEAT' and catagory != 'FROZEN' and catagory != 'GROCERY' and catagory != 'PRODUCE')  order by product;", db.GetConnection());
                 // Create one DataTable with one column.
@@ -49,13 +49,11 @@ namespace Invoice
                 this.EtcListBox.DataSource = DS.Tables[0];
                 this.EtcListBox.DisplayMember = "product";
                 this.EtcListBox.ValueMember = "product_id";
-
                 setChecked(this.MeatListBox);
                 setChecked(this.FrozenListBox);
                 setChecked(this.GroceryListBox);
                 setChecked(this.ProduceListBox);
                 setChecked(this.EtcListBox);
-
             }
             catch (Exception ex)
             {

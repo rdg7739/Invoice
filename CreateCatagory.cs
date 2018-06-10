@@ -21,6 +21,7 @@ namespace Invoice
             InitializeComponent();
             Catagory_Load();
             AddBtns();
+            this.MaximizedBounds = Screen.GetWorkingArea(this);
         }
 
         private void Catagory_Load()
@@ -176,5 +177,9 @@ namespace Invoice
             this.Close();
         }
 
+        private void CancelBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

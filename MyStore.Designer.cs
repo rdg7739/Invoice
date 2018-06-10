@@ -138,7 +138,7 @@
             this.cancelBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.cancelBtn.Location = new System.Drawing.Point(202, 441);
             this.cancelBtn.Name = "cancelBtn";
-            this.cancelBtn.Size = new System.Drawing.Size(130, 32);
+            this.cancelBtn.Size = new System.Drawing.Size(130, 34);
             this.cancelBtn.TabIndex = 13;
             this.cancelBtn.Text = "Cancel";
             this.cancelBtn.UseVisualStyleBackColor = true;
@@ -150,7 +150,7 @@
             this.saveBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.saveBtn.Location = new System.Drawing.Point(372, 441);
             this.saveBtn.Name = "saveBtn";
-            this.saveBtn.Size = new System.Drawing.Size(130, 32);
+            this.saveBtn.Size = new System.Drawing.Size(130, 34);
             this.saveBtn.TabIndex = 14;
             this.saveBtn.Text = "Save";
             this.saveBtn.UseVisualStyleBackColor = true;
@@ -240,7 +240,7 @@
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(584, 505);
+            this.ClientSize = new System.Drawing.Size(584, 489);
             this.Controls.Add(this.titlePanel);
             this.Controls.Add(this.storeFaxTxt);
             this.Controls.Add(this.storeFaxLabel);

@@ -31,6 +31,7 @@ namespace Invoice
         {
             InitializeComponent();
             LoadWeeklySale();
+            this.MaximizedBounds = Screen.GetWorkingArea(this);
         }
 
         private void LoadWeeklySale()
@@ -199,6 +200,11 @@ namespace Invoice
             {
                 return new DateTime(1, 1, 1);
             }
+        }
+
+        private void cancelBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

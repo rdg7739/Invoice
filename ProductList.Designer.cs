@@ -246,7 +246,7 @@ namespace Invoice
             this.saveBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.saveBtn.Location = new System.Drawing.Point(628, 461);
             this.saveBtn.Name = "saveBtn";
-            this.saveBtn.Size = new System.Drawing.Size(130, 30);
+            this.saveBtn.Size = new System.Drawing.Size(130, 34);
             this.saveBtn.TabIndex = 25;
             this.saveBtn.Text = "Save";
             this.saveBtn.UseVisualStyleBackColor = true;
@@ -259,7 +259,7 @@ namespace Invoice
             this.cancelBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.cancelBtn.Location = new System.Drawing.Point(476, 461);
             this.cancelBtn.Name = "cancelBtn";
-            this.cancelBtn.Size = new System.Drawing.Size(130, 30);
+            this.cancelBtn.Size = new System.Drawing.Size(130, 34);
             this.cancelBtn.TabIndex = 24;
             this.cancelBtn.Text = "Cancel";
             this.cancelBtn.UseVisualStyleBackColor = true;

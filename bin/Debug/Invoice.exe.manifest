@@ -238,14 +238,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Invoice.exe" size="2479176">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Invoice.exe" size="2480712">
       <assemblyIdentity name="Invoice" version="1.0.0.0" publicKeyToken="579BB53D7D274B6E" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>wTyyxHKXky3EsidCgY0kGzEvq8/SzAH3ohS4Ys/lIk0=</dsig:DigestValue>
+        <dsig:DigestValue>sPg8MVCZPVFarl70qi1GBySRSfYRxm5MslYNkZXy4qU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -38,6 +38,7 @@
             this.No = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Catagory = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SubCatagory = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CancelBtn = new Invoice.ButtonModified();
             this.titlePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -55,7 +56,7 @@
             this.titlePanel.Controls.Add(this.Title);
             this.titlePanel.Location = new System.Drawing.Point(1, 1);
             this.titlePanel.Name = "titlePanel";
-            this.titlePanel.Size = new System.Drawing.Size(582, 91);
+            this.titlePanel.Size = new System.Drawing.Size(544, 91);
             this.titlePanel.TabIndex = 13;
             this.titlePanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DragTitlePanel);
             // 
@@ -63,7 +64,7 @@
             // 
             this.closeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.closeBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.closeBtn.Location = new System.Drawing.Point(561, 3);
+            this.closeBtn.Location = new System.Drawing.Point(523, 3);
             this.closeBtn.Name = "closeBtn";
             this.closeBtn.Size = new System.Drawing.Size(20, 20);
             this.closeBtn.TabIndex = 4;
@@ -76,7 +77,7 @@
             this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Location = new System.Drawing.Point(92, 44);
+            this.pictureBox2.Location = new System.Drawing.Point(63, 46);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(29, 32);
             this.pictureBox2.TabIndex = 3;
@@ -88,7 +89,7 @@
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(57, 19);
+            this.pictureBox1.Location = new System.Drawing.Point(28, 21);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(57, 55);
             this.pictureBox1.TabIndex = 2;
@@ -101,9 +102,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Title.Font = new System.Drawing.Font("Arial", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Title.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Title.Location = new System.Drawing.Point(116, 16);
+            this.Title.Location = new System.Drawing.Point(82, 18);
             this.Title.Name = "Title";
-            this.Title.Size = new System.Drawing.Size(424, 60);
+            this.Title.Size = new System.Drawing.Size(425, 60);
             this.Title.TabIndex = 1;
             this.Title.Text = "Create Catagory";
             this.Title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -128,7 +129,7 @@
             this.CatagoryDataView.Name = "CatagoryDataView";
             this.CatagoryDataView.RowHeadersVisible = false;
             this.CatagoryDataView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.CatagoryDataView.Size = new System.Drawing.Size(560, 340);
+            this.CatagoryDataView.Size = new System.Drawing.Size(522, 302);
             this.CatagoryDataView.TabIndex = 5;
             this.CatagoryDataView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CatagoryDataView_CellClick);
             // 
@@ -154,6 +155,19 @@
             this.SubCatagory.Name = "SubCatagory";
             this.SubCatagory.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
+            // CancelBtn
+            // 
+            this.CancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.CancelBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CancelBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.CancelBtn.Location = new System.Drawing.Point(404, 406);
+            this.CancelBtn.Name = "CancelBtn";
+            this.CancelBtn.Size = new System.Drawing.Size(130, 34);
+            this.CancelBtn.TabIndex = 25;
+            this.CancelBtn.Text = "Cancel";
+            this.CancelBtn.UseVisualStyleBackColor = true;
+            this.CancelBtn.Click += new System.EventHandler(this.CancelBtn_Click);
+            // 
             // CreateCatagory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -161,10 +175,10 @@
             this.BackColor = System.Drawing.SystemColors.HighlightText;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(584, 450);
+            this.ClientSize = new System.Drawing.Size(546, 450);
+            this.Controls.Add(this.CancelBtn);
             this.Controls.Add(this.CatagoryDataView);
             this.Controls.Add(this.titlePanel);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "CreateCatagory";
             this.Text = "CreateItem";
             this.titlePanel.ResumeLayout(false);
@@ -185,5 +199,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn No;
         private System.Windows.Forms.DataGridViewTextBoxColumn Catagory;
         private System.Windows.Forms.DataGridViewTextBoxColumn SubCatagory;
+        private ButtonModified CancelBtn;
     }
 }

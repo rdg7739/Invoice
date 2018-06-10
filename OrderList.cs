@@ -25,16 +25,19 @@ namespace Invoice
             InitializeComponent();
             OrderLoad(true, true);
             AddBtns();
+            this.MaximizedBounds = Screen.GetWorkingArea(this);
         }
         public OrderList(bool isBuy, bool isSell, DateTime searchDate)
         {
             OrderLoad(isBuy, isSell, searchDate, "");
             AddBtns();
+            this.MaximizedBounds = Screen.GetWorkingArea(this);
         }
         public OrderList(bool isBuy, bool isSell, DateTime searchDate, String storeId)
         {
             OrderLoad(isBuy, isSell, searchDate, storeId);
             AddBtns();
+            this.MaximizedBounds = Screen.GetWorkingArea(this);
         }
 
         public void OrderLoad(bool isBuy, bool isSell, DateTime searchDate, String storeId)
@@ -264,5 +267,9 @@ namespace Invoice
             
         }
 
+        private void CancelBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

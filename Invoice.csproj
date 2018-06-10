@@ -141,6 +141,9 @@
     </Compile>
     <Compile Include="DbConnector.cs" />
     <Compile Include="Cart.cs" />
+    <Compile Include="DBLayoutPanel .cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="delieveryReport.cs">
       <SubType>Form</SubType>
     </Compile>

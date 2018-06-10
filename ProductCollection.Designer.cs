@@ -46,7 +46,7 @@
             this.EtcListBox = new System.Windows.Forms.CheckedListBox();
             this.cancelBtn = new Invoice.ButtonModified();
             this.saveBtn = new Invoice.ButtonModified();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel1 = new Invoice.DBLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.titlePanel.SuspendLayout();
@@ -63,6 +63,7 @@
             this.pictureBox2.Size = new System.Drawing.Size(29, 32);
             this.pictureBox2.TabIndex = 3;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DragTitlePanel);
             // 
             // pictureBox1
             // 
@@ -74,6 +75,7 @@
             this.pictureBox1.Size = new System.Drawing.Size(57, 55);
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DragTitlePanel);
             // 
             // Title
             // 
@@ -86,6 +88,7 @@
             this.Title.TabIndex = 1;
             this.Title.Text = "Select Product";
             this.Title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Title.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DragTitlePanel);
             // 
             // titlePanel
             // 
@@ -247,7 +250,7 @@
             this.cancelBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.cancelBtn.Location = new System.Drawing.Point(712, 603);
             this.cancelBtn.Name = "cancelBtn";
-            this.cancelBtn.Size = new System.Drawing.Size(130, 35);
+            this.cancelBtn.Size = new System.Drawing.Size(130, 34);
             this.cancelBtn.TabIndex = 25;
             this.cancelBtn.Text = "Cancel";
             this.cancelBtn.UseVisualStyleBackColor = true;
@@ -260,7 +263,7 @@
             this.saveBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.saveBtn.Location = new System.Drawing.Point(848, 603);
             this.saveBtn.Name = "saveBtn";
-            this.saveBtn.Size = new System.Drawing.Size(130, 35);
+            this.saveBtn.Size = new System.Drawing.Size(130, 34);
             this.saveBtn.TabIndex = 26;
             this.saveBtn.Text = "Save";
             this.saveBtn.UseVisualStyleBackColor = true;
@@ -336,6 +339,6 @@
         private System.Windows.Forms.CheckedListBox EtcListBox;
         private ButtonModified cancelBtn;
         private ButtonModified saveBtn;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private DBLayoutPanel tableLayoutPanel1;
     }
 }

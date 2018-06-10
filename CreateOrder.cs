@@ -43,6 +43,7 @@ namespace Invoice
             SetComboBox();
             SetDateInWeekDay();
             this.PrintBtn.Hide();
+            this.MaximizedBounds = Screen.GetWorkingArea(this);
         }
         private void SetDateInWeekDay()
         {

@@ -33,6 +33,7 @@ namespace Invoice
             dbReader.Close();
             GetProductList();
             AddBtns();
+            this.MaximizedBounds = Screen.GetWorkingArea(this);
         }
         public void GetProductList() {
             try

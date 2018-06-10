@@ -29,6 +29,7 @@ namespace Invoice
             InitializeComponent();
             GetStoreList();
             AddBtns();
+            this.MaximizedBounds = Screen.GetWorkingArea(this);
         }
         public void GetStoreList()
         {

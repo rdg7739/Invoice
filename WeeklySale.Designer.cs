@@ -37,6 +37,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Title = new System.Windows.Forms.Label();
             this.PrintBtn = new Invoice.ButtonModified();
+            this.cancelBtn = new Invoice.ButtonModified();
             ((System.ComponentModel.ISupportInitialize)(this.WeeklySaleDataView)).BeginInit();
             this.titlePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -73,8 +74,8 @@
             this.WeeklySaleDataView.RowHeadersVisible = false;
             this.WeeklySaleDataView.Size = new System.Drawing.Size(722, 396);
             this.WeeklySaleDataView.TabIndex = 2;
-            this.WeeklySaleDataView.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.WeeklyExpenseDataView_ColumnHeaderClick);
             this.WeeklySaleDataView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.WeeklyExpenseDataView_CellContentClick);
+            this.WeeklySaleDataView.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.WeeklyExpenseDataView_ColumnHeaderClick);
             // 
             // titlePanel
             // 
@@ -151,6 +152,19 @@
             this.PrintBtn.UseVisualStyleBackColor = true;
             this.PrintBtn.Click += new System.EventHandler(this.PrintBtn_Click);
             // 
+            // cancelBtn
+            // 
+            this.cancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cancelBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cancelBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.cancelBtn.Location = new System.Drawing.Point(399, 519);
+            this.cancelBtn.Name = "cancelBtn";
+            this.cancelBtn.Size = new System.Drawing.Size(130, 34);
+            this.cancelBtn.TabIndex = 27;
+            this.cancelBtn.Text = "Cancel";
+            this.cancelBtn.UseVisualStyleBackColor = true;
+            this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
+            // 
             // WeeklySale
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -158,6 +172,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(784, 563);
+            this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.PrintBtn);
             this.Controls.Add(this.titlePanel);
             this.Controls.Add(this.WeeklySaleDataView);
@@ -180,5 +195,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label Title;
         private ButtonModified PrintBtn;
+        private ButtonModified cancelBtn;
     }
 }
