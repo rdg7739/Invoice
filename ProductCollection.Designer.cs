@@ -44,8 +44,8 @@
             this.GroceryListBox = new System.Windows.Forms.CheckedListBox();
             this.ProduceListBox = new System.Windows.Forms.CheckedListBox();
             this.EtcListBox = new System.Windows.Forms.CheckedListBox();
-            this.cancelBtn = new ButtonModified();
-            this.saveBtn = new ButtonModified();
+            this.cancelBtn = new Invoice.ButtonModified();
+            this.saveBtn = new Invoice.ButtonModified();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -176,58 +176,68 @@
             // 
             // MeatListBox
             // 
+            this.MeatListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.MeatListBox.CheckOnClick = true;
-            this.MeatListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MeatListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.MeatListBox.FormattingEnabled = true;
             this.MeatListBox.Location = new System.Drawing.Point(3, 43);
             this.MeatListBox.Name = "MeatListBox";
-            this.MeatListBox.Size = new System.Drawing.Size(189, 653);
+            this.MeatListBox.Size = new System.Drawing.Size(189, 445);
             this.MeatListBox.TabIndex = 20;
             // 
             // FrozenListBox
             // 
+            this.FrozenListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.FrozenListBox.CheckOnClick = true;
-            this.FrozenListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FrozenListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.FrozenListBox.FormattingEnabled = true;
             this.FrozenListBox.Location = new System.Drawing.Point(198, 43);
             this.FrozenListBox.Name = "FrozenListBox";
-            this.FrozenListBox.Size = new System.Drawing.Size(189, 653);
+            this.FrozenListBox.Size = new System.Drawing.Size(189, 445);
             this.FrozenListBox.TabIndex = 21;
             // 
             // GroceryListBox
             // 
+            this.GroceryListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.GroceryListBox.CheckOnClick = true;
             this.GroceryListBox.Cursor = System.Windows.Forms.Cursors.Default;
-            this.GroceryListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GroceryListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.GroceryListBox.FormattingEnabled = true;
             this.GroceryListBox.Location = new System.Drawing.Point(393, 43);
             this.GroceryListBox.Name = "GroceryListBox";
-            this.GroceryListBox.Size = new System.Drawing.Size(189, 653);
+            this.GroceryListBox.Size = new System.Drawing.Size(189, 445);
             this.GroceryListBox.TabIndex = 22;
             // 
             // ProduceListBox
             // 
+            this.ProduceListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ProduceListBox.CheckOnClick = true;
-            this.ProduceListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ProduceListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.ProduceListBox.FormattingEnabled = true;
             this.ProduceListBox.Location = new System.Drawing.Point(588, 43);
             this.ProduceListBox.Name = "ProduceListBox";
-            this.ProduceListBox.Size = new System.Drawing.Size(189, 653);
+            this.ProduceListBox.Size = new System.Drawing.Size(189, 445);
             this.ProduceListBox.TabIndex = 23;
             // 
             // EtcListBox
             // 
+            this.EtcListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.EtcListBox.CheckOnClick = true;
-            this.EtcListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.EtcListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.EtcListBox.FormattingEnabled = true;
             this.EtcListBox.Location = new System.Drawing.Point(783, 43);
             this.EtcListBox.Name = "EtcListBox";
-            this.EtcListBox.Size = new System.Drawing.Size(190, 653);
+            this.EtcListBox.Size = new System.Drawing.Size(190, 445);
             this.EtcListBox.TabIndex = 24;
             // 
             // cancelBtn
@@ -261,7 +271,6 @@
             this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.AutoScroll = true;
             this.tableLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
             this.tableLayoutPanel1.ColumnCount = 5;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));

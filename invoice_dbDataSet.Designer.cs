@@ -28,7 +28,7 @@ namespace Invoice {
         
         private cartDataTable tablecart;
         
-        private orderDataTable tableorder;
+        private order_listDataTable tableorder_list;
         
         private storeDataTable tablestore;
         
@@ -70,8 +70,8 @@ namespace Invoice {
                 if ((ds.Tables["cart"] != null)) {
                     base.Tables.Add(new cartDataTable(ds.Tables["cart"]));
                 }
-                if ((ds.Tables["order"] != null)) {
-                    base.Tables.Add(new orderDataTable(ds.Tables["order"]));
+                if ((ds.Tables["order_list"] != null)) {
+                    base.Tables.Add(new order_listDataTable(ds.Tables["order_list"]));
                 }
                 if ((ds.Tables["store"] != null)) {
                     base.Tables.Add(new storeDataTable(ds.Tables["store"]));
@@ -118,9 +118,9 @@ namespace Invoice {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public orderDataTable order {
+        public order_listDataTable order_list {
             get {
-                return this.tableorder;
+                return this.tableorder_list;
             }
         }
         
@@ -207,8 +207,8 @@ namespace Invoice {
                 if ((ds.Tables["cart"] != null)) {
                     base.Tables.Add(new cartDataTable(ds.Tables["cart"]));
                 }
-                if ((ds.Tables["order"] != null)) {
-                    base.Tables.Add(new orderDataTable(ds.Tables["order"]));
+                if ((ds.Tables["order_list"] != null)) {
+                    base.Tables.Add(new order_listDataTable(ds.Tables["order_list"]));
                 }
                 if ((ds.Tables["store"] != null)) {
                     base.Tables.Add(new storeDataTable(ds.Tables["store"]));
@@ -258,10 +258,10 @@ namespace Invoice {
                     this.tablecart.InitVars();
                 }
             }
-            this.tableorder = ((orderDataTable)(base.Tables["order"]));
+            this.tableorder_list = ((order_listDataTable)(base.Tables["order_list"]));
             if ((initTable == true)) {
-                if ((this.tableorder != null)) {
-                    this.tableorder.InitVars();
+                if ((this.tableorder_list != null)) {
+                    this.tableorder_list.InitVars();
                 }
             }
             this.tablestore = ((storeDataTable)(base.Tables["store"]));
@@ -286,16 +286,16 @@ namespace Invoice {
             base.Tables.Add(this.tableproduct);
             this.tablecart = new cartDataTable();
             base.Tables.Add(this.tablecart);
-            this.tableorder = new orderDataTable();
-            base.Tables.Add(this.tableorder);
+            this.tableorder_list = new order_listDataTable();
+            base.Tables.Add(this.tableorder_list);
             this.tablestore = new storeDataTable();
             base.Tables.Add(this.tablestore);
             this.relationcart_order = new global::System.Data.DataRelation("cart_order", new global::System.Data.DataColumn[] {
                         this.tablecart.order_idColumn}, new global::System.Data.DataColumn[] {
-                        this.tableorder.order_idColumn}, false);
+                        this.tableorder_list.order_idColumn}, false);
             this.Relations.Add(this.relationcart_order);
             this.relationorder_store = new global::System.Data.DataRelation("order_store", new global::System.Data.DataColumn[] {
-                        this.tableorder.store_idColumn}, new global::System.Data.DataColumn[] {
+                        this.tableorder_list.store_idColumn}, new global::System.Data.DataColumn[] {
                         this.tablestore.store_idColumn}, false);
             this.Relations.Add(this.relationorder_store);
         }
@@ -314,7 +314,7 @@ namespace Invoice {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializeorder() {
+        private bool ShouldSerializeorder_list() {
             return false;
         }
         
@@ -386,7 +386,7 @@ namespace Invoice {
         public delegate void cartRowChangeEventHandler(object sender, cartRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void orderRowChangeEventHandler(object sender, orderRowChangeEvent e);
+        public delegate void order_listRowChangeEventHandler(object sender, order_listRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void storeRowChangeEventHandler(object sender, storeRowChangeEvent e);
@@ -719,7 +719,7 @@ namespace Invoice {
             
             private global::System.Data.DataColumn columnproduct;
             
-            private global::System.Data.DataColumn columnquantity;
+            private global::System.Data.DataColumn columnbox;
             
             private global::System.Data.DataColumn columnprice;
             
@@ -728,6 +728,10 @@ namespace Invoice {
             private global::System.Data.DataColumn columnnote;
             
             private global::System.Data.DataColumn columnroute;
+            
+            private global::System.Data.DataColumn columneach;
+            
+            private global::System.Data.DataColumn columnpound;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -788,9 +792,9 @@ namespace Invoice {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn quantityColumn {
+            public global::System.Data.DataColumn boxColumn {
                 get {
-                    return this.columnquantity;
+                    return this.columnbox;
                 }
             }
             
@@ -823,6 +827,22 @@ namespace Invoice {
             public global::System.Data.DataColumn routeColumn {
                 get {
                     return this.columnroute;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn eachColumn {
+                get {
+                    return this.columneach;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn poundColumn {
+                get {
+                    return this.columnpound;
                 }
             }
             
@@ -863,17 +883,19 @@ namespace Invoice {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public cartRow AddcartRow(string cart_id, string order_id, string product, string quantity, string price, string market, string note, string route) {
+            public cartRow AddcartRow(string cart_id, string order_id, string product, string box, string price, string market, string note, string route, string each, string pound) {
                 cartRow rowcartRow = ((cartRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         cart_id,
                         order_id,
                         product,
-                        quantity,
+                        box,
                         price,
                         market,
                         note,
-                        route};
+                        route,
+                        each,
+                        pound};
                 rowcartRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowcartRow);
                 return rowcartRow;
@@ -906,11 +928,13 @@ namespace Invoice {
                 this.columncart_id = base.Columns["cart_id"];
                 this.columnorder_id = base.Columns["order_id"];
                 this.columnproduct = base.Columns["product"];
-                this.columnquantity = base.Columns["quantity"];
+                this.columnbox = base.Columns["box"];
                 this.columnprice = base.Columns["price"];
                 this.columnmarket = base.Columns["market"];
                 this.columnnote = base.Columns["note"];
                 this.columnroute = base.Columns["route"];
+                this.columneach = base.Columns["each"];
+                this.columnpound = base.Columns["pound"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -922,8 +946,8 @@ namespace Invoice {
                 base.Columns.Add(this.columnorder_id);
                 this.columnproduct = new global::System.Data.DataColumn("product", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnproduct);
-                this.columnquantity = new global::System.Data.DataColumn("quantity", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnquantity);
+                this.columnbox = new global::System.Data.DataColumn("box", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnbox);
                 this.columnprice = new global::System.Data.DataColumn("price", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnprice);
                 this.columnmarket = new global::System.Data.DataColumn("market", typeof(string), null, global::System.Data.MappingType.Element);
@@ -932,6 +956,10 @@ namespace Invoice {
                 base.Columns.Add(this.columnnote);
                 this.columnroute = new global::System.Data.DataColumn("route", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnroute);
+                this.columneach = new global::System.Data.DataColumn("each", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columneach);
+                this.columnpound = new global::System.Data.DataColumn("pound", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnpound);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("cartKey1", new global::System.Data.DataColumn[] {
                                 this.columncart_id}, true));
                 this.columncart_id.AllowDBNull = false;
@@ -1067,7 +1095,7 @@ namespace Invoice {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class orderDataTable : global::System.Data.TypedTableBase<orderRow> {
+        public partial class order_listDataTable : global::System.Data.TypedTableBase<order_listRow> {
             
             private global::System.Data.DataColumn columnorder_id;
             
@@ -1081,8 +1109,8 @@ namespace Invoice {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public orderDataTable() {
-                this.TableName = "order";
+            public order_listDataTable() {
+                this.TableName = "order_list";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -1090,7 +1118,7 @@ namespace Invoice {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal orderDataTable(global::System.Data.DataTable table) {
+            internal order_listDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -1107,7 +1135,7 @@ namespace Invoice {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected orderDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected order_listDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -1163,34 +1191,34 @@ namespace Invoice {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public orderRow this[int index] {
+            public order_listRow this[int index] {
                 get {
-                    return ((orderRow)(this.Rows[index]));
+                    return ((order_listRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event orderRowChangeEventHandler orderRowChanging;
+            public event order_listRowChangeEventHandler order_listRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event orderRowChangeEventHandler orderRowChanged;
+            public event order_listRowChangeEventHandler order_listRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event orderRowChangeEventHandler orderRowDeleting;
+            public event order_listRowChangeEventHandler order_listRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event orderRowChangeEventHandler orderRowDeleted;
+            public event order_listRowChangeEventHandler order_listRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddorderRow(orderRow row) {
+            public void Addorder_listRow(order_listRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public orderRow AddorderRow(cartRow parentcartRowBycart_order, string store_id, string ordered_date, string delivery_date, string total) {
-                orderRow roworderRow = ((orderRow)(this.NewRow()));
+            public order_listRow Addorder_listRow(cartRow parentcartRowBycart_order, string store_id, string ordered_date, string delivery_date, string total) {
+                order_listRow roworder_listRow = ((order_listRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         store_id,
@@ -1200,22 +1228,22 @@ namespace Invoice {
                 if ((parentcartRowBycart_order != null)) {
                     columnValuesArray[0] = parentcartRowBycart_order[1];
                 }
-                roworderRow.ItemArray = columnValuesArray;
-                this.Rows.Add(roworderRow);
-                return roworderRow;
+                roworder_listRow.ItemArray = columnValuesArray;
+                this.Rows.Add(roworder_listRow);
+                return roworder_listRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public orderRow FindByorder_id(string order_id) {
-                return ((orderRow)(this.Rows.Find(new object[] {
+            public order_listRow FindByorder_id(string order_id) {
+                return ((order_listRow)(this.Rows.Find(new object[] {
                             order_id})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                orderDataTable cln = ((orderDataTable)(base.Clone()));
+                order_listDataTable cln = ((order_listDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -1223,7 +1251,7 @@ namespace Invoice {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new orderDataTable();
+                return new order_listDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1257,28 +1285,28 @@ namespace Invoice {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public orderRow NeworderRow() {
-                return ((orderRow)(this.NewRow()));
+            public order_listRow Neworder_listRow() {
+                return ((order_listRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new orderRow(builder);
+                return new order_listRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(orderRow);
+                return typeof(order_listRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.orderRowChanged != null)) {
-                    this.orderRowChanged(this, new orderRowChangeEvent(((orderRow)(e.Row)), e.Action));
+                if ((this.order_listRowChanged != null)) {
+                    this.order_listRowChanged(this, new order_listRowChangeEvent(((order_listRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1286,8 +1314,8 @@ namespace Invoice {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.orderRowChanging != null)) {
-                    this.orderRowChanging(this, new orderRowChangeEvent(((orderRow)(e.Row)), e.Action));
+                if ((this.order_listRowChanging != null)) {
+                    this.order_listRowChanging(this, new order_listRowChangeEvent(((order_listRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1295,8 +1323,8 @@ namespace Invoice {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.orderRowDeleted != null)) {
-                    this.orderRowDeleted(this, new orderRowChangeEvent(((orderRow)(e.Row)), e.Action));
+                if ((this.order_listRowDeleted != null)) {
+                    this.order_listRowDeleted(this, new order_listRowChangeEvent(((order_listRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1304,14 +1332,14 @@ namespace Invoice {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.orderRowDeleting != null)) {
-                    this.orderRowDeleting(this, new orderRowChangeEvent(((orderRow)(e.Row)), e.Action));
+                if ((this.order_listRowDeleting != null)) {
+                    this.order_listRowDeleting(this, new order_listRowChangeEvent(((order_listRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemoveorderRow(orderRow row) {
+            public void Removeorder_listRow(order_listRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -1338,7 +1366,7 @@ namespace Invoice {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "orderDataTable";
+                attribute2.FixedValue = "order_listDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -1546,7 +1574,7 @@ namespace Invoice {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public storeRow AddstoreRow(orderRow parentorderRowByorder_store, string store_name, string store_phone, string store_address, string contact_name, string contact_phone, string store_detail, string store_fax, string isMarket) {
+            public storeRow AddstoreRow(order_listRow parentorder_listRowByorder_store, string store_name, string store_phone, string store_address, string contact_name, string contact_phone, string store_detail, string store_fax, string isMarket) {
                 storeRow rowstoreRow = ((storeRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1558,8 +1586,8 @@ namespace Invoice {
                         store_detail,
                         store_fax,
                         isMarket};
-                if ((parentorderRowByorder_store != null)) {
-                    columnValuesArray[0] = parentorderRowByorder_store[1];
+                if ((parentorder_listRowByorder_store != null)) {
+                    columnValuesArray[0] = parentorder_listRowByorder_store[1];
                 }
                 rowstoreRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowstoreRow);
@@ -1949,17 +1977,17 @@ namespace Invoice {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string quantity {
+            public string box {
                 get {
                     try {
-                        return ((string)(this[this.tablecart.quantityColumn]));
+                        return ((string)(this[this.tablecart.boxColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'quantity\' in table \'cart\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'box\' in table \'cart\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablecart.quantityColumn] = value;
+                    this[this.tablecart.boxColumn] = value;
                 }
             }
             
@@ -2029,6 +2057,38 @@ namespace Invoice {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string each {
+                get {
+                    try {
+                        return ((string)(this[this.tablecart.eachColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'each\' in table \'cart\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablecart.eachColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string pound {
+                get {
+                    try {
+                        return ((string)(this[this.tablecart.poundColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'pound\' in table \'cart\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablecart.poundColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool Isorder_idNull() {
                 return this.IsNull(this.tablecart.order_idColumn);
             }
@@ -2053,14 +2113,14 @@ namespace Invoice {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsquantityNull() {
-                return this.IsNull(this.tablecart.quantityColumn);
+            public bool IsboxNull() {
+                return this.IsNull(this.tablecart.boxColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetquantityNull() {
-                this[this.tablecart.quantityColumn] = global::System.Convert.DBNull;
+            public void SetboxNull() {
+                this[this.tablecart.boxColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2113,12 +2173,36 @@ namespace Invoice {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public orderRow[] GetorderRows() {
+            public bool IseachNull() {
+                return this.IsNull(this.tablecart.eachColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SeteachNull() {
+                this[this.tablecart.eachColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IspoundNull() {
+                return this.IsNull(this.tablecart.poundColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetpoundNull() {
+                this[this.tablecart.poundColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public order_listRow[] Getorder_listRows() {
                 if ((this.Table.ChildRelations["cart_order"] == null)) {
-                    return new orderRow[0];
+                    return new order_listRow[0];
                 }
                 else {
-                    return ((orderRow[])(base.GetChildRows(this.Table.ChildRelations["cart_order"])));
+                    return ((order_listRow[])(base.GetChildRows(this.Table.ChildRelations["cart_order"])));
                 }
             }
         }
@@ -2126,25 +2210,25 @@ namespace Invoice {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class orderRow : global::System.Data.DataRow {
+        public partial class order_listRow : global::System.Data.DataRow {
             
-            private orderDataTable tableorder;
+            private order_listDataTable tableorder_list;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal orderRow(global::System.Data.DataRowBuilder rb) : 
+            internal order_listRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableorder = ((orderDataTable)(this.Table));
+                this.tableorder_list = ((order_listDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public string order_id {
                 get {
-                    return ((string)(this[this.tableorder.order_idColumn]));
+                    return ((string)(this[this.tableorder_list.order_idColumn]));
                 }
                 set {
-                    this[this.tableorder.order_idColumn] = value;
+                    this[this.tableorder_list.order_idColumn] = value;
                 }
             }
             
@@ -2153,14 +2237,14 @@ namespace Invoice {
             public string store_id {
                 get {
                     try {
-                        return ((string)(this[this.tableorder.store_idColumn]));
+                        return ((string)(this[this.tableorder_list.store_idColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'store_id\' in table \'order\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'store_id\' in table \'order_list\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableorder.store_idColumn] = value;
+                    this[this.tableorder_list.store_idColumn] = value;
                 }
             }
             
@@ -2169,14 +2253,14 @@ namespace Invoice {
             public string ordered_date {
                 get {
                     try {
-                        return ((string)(this[this.tableorder.ordered_dateColumn]));
+                        return ((string)(this[this.tableorder_list.ordered_dateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ordered_date\' in table \'order\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'ordered_date\' in table \'order_list\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableorder.ordered_dateColumn] = value;
+                    this[this.tableorder_list.ordered_dateColumn] = value;
                 }
             }
             
@@ -2185,14 +2269,14 @@ namespace Invoice {
             public string delivery_date {
                 get {
                     try {
-                        return ((string)(this[this.tableorder.delivery_dateColumn]));
+                        return ((string)(this[this.tableorder_list.delivery_dateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'delivery_date\' in table \'order\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'delivery_date\' in table \'order_list\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableorder.delivery_dateColumn] = value;
+                    this[this.tableorder_list.delivery_dateColumn] = value;
                 }
             }
             
@@ -2201,14 +2285,14 @@ namespace Invoice {
             public string total {
                 get {
                     try {
-                        return ((string)(this[this.tableorder.totalColumn]));
+                        return ((string)(this[this.tableorder_list.totalColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'total\' in table \'order\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'total\' in table \'order_list\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableorder.totalColumn] = value;
+                    this[this.tableorder_list.totalColumn] = value;
                 }
             }
             
@@ -2226,49 +2310,49 @@ namespace Invoice {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool Isstore_idNull() {
-                return this.IsNull(this.tableorder.store_idColumn);
+                return this.IsNull(this.tableorder_list.store_idColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void Setstore_idNull() {
-                this[this.tableorder.store_idColumn] = global::System.Convert.DBNull;
+                this[this.tableorder_list.store_idColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool Isordered_dateNull() {
-                return this.IsNull(this.tableorder.ordered_dateColumn);
+                return this.IsNull(this.tableorder_list.ordered_dateColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void Setordered_dateNull() {
-                this[this.tableorder.ordered_dateColumn] = global::System.Convert.DBNull;
+                this[this.tableorder_list.ordered_dateColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool Isdelivery_dateNull() {
-                return this.IsNull(this.tableorder.delivery_dateColumn);
+                return this.IsNull(this.tableorder_list.delivery_dateColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void Setdelivery_dateNull() {
-                this[this.tableorder.delivery_dateColumn] = global::System.Convert.DBNull;
+                this[this.tableorder_list.delivery_dateColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IstotalNull() {
-                return this.IsNull(this.tableorder.totalColumn);
+                return this.IsNull(this.tableorder_list.totalColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SettotalNull() {
-                this[this.tableorder.totalColumn] = global::System.Convert.DBNull;
+                this[this.tableorder_list.totalColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2438,9 +2522,9 @@ namespace Invoice {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public orderRow orderRow {
+            public order_listRow orderRow {
                 get {
-                    return ((orderRow)(this.GetParentRow(this.Table.ParentRelations["order_store"])));
+                    return ((order_listRow)(this.GetParentRow(this.Table.ParentRelations["order_store"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["order_store"]);
@@ -2616,22 +2700,22 @@ namespace Invoice {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class orderRowChangeEvent : global::System.EventArgs {
+        public class order_listRowChangeEvent : global::System.EventArgs {
             
-            private orderRow eventRow;
+            private order_listRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public orderRowChangeEvent(orderRow row, global::System.Data.DataRowAction action) {
+            public order_listRowChangeEvent(order_listRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public orderRow Row {
+            public order_listRow Row {
                 get {
                     return this.eventRow;
                 }

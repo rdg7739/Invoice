@@ -30,7 +30,7 @@
               <Mapping SourceColumn="product" DataSetColumn="product" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="invoice_dbConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteQuery" Modifier="Public" Name="DeleteQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="DeleteQuery">
+              <DbSource ConnectionRef="invoice_dbConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteQuery" Modifier="Public" Name="DeleteQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="DeleteQuery">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>DELETE FROM product
@@ -41,7 +41,7 @@ WHERE        (product_id = @product_id)</CommandText>
                   </DbCommand>
                 </DeleteCommand>
               </DbSource>
-              <DbSource ConnectionRef="invoice_dbConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="InsertQuery" Modifier="Public" Name="InsertQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="InsertQuery">
+              <DbSource ConnectionRef="invoice_dbConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="InsertQuery" Modifier="Public" Name="InsertQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="InsertQuery">
                 <InsertCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.InsertQuery</CommandText>
@@ -93,15 +93,17 @@ WHERE        (product_id = @product_id)</CommandText>
               <xs:element name="cart_id" msprop:Generator_ColumnVarNameInTable="columncart_id" msprop:Generator_ColumnPropNameInRow="cart_id" msprop:Generator_ColumnPropNameInTable="cart_idColumn" msprop:Generator_UserColumnName="cart_id" type="xs:string" />
               <xs:element name="order_id" msprop:Generator_ColumnVarNameInTable="columnorder_id" msprop:Generator_ColumnPropNameInRow="order_id" msprop:Generator_ColumnPropNameInTable="order_idColumn" msprop:Generator_UserColumnName="order_id" type="xs:string" minOccurs="0" />
               <xs:element name="product" msprop:Generator_ColumnVarNameInTable="columnproduct" msprop:Generator_ColumnPropNameInRow="product" msprop:Generator_ColumnPropNameInTable="productColumn" msprop:Generator_UserColumnName="product" type="xs:string" minOccurs="0" />
-              <xs:element name="quantity" msprop:Generator_ColumnVarNameInTable="columnquantity" msprop:Generator_ColumnPropNameInRow="quantity" msprop:Generator_ColumnPropNameInTable="quantityColumn" msprop:Generator_UserColumnName="quantity" type="xs:string" minOccurs="0" />
+              <xs:element name="box" msprop:Generator_ColumnVarNameInTable="columnbox" msprop:Generator_ColumnPropNameInRow="box" msprop:Generator_ColumnPropNameInTable="boxColumn" msprop:Generator_UserColumnName="box" type="xs:string" minOccurs="0" />
               <xs:element name="price" msprop:Generator_ColumnVarNameInTable="columnprice" msprop:Generator_ColumnPropNameInRow="price" msprop:Generator_ColumnPropNameInTable="priceColumn" msprop:Generator_UserColumnName="price" type="xs:string" minOccurs="0" />
               <xs:element name="market" msprop:Generator_ColumnVarNameInTable="columnmarket" msprop:Generator_ColumnPropNameInRow="market" msprop:Generator_ColumnPropNameInTable="marketColumn" msprop:Generator_UserColumnName="market" type="xs:string" minOccurs="0" />
               <xs:element name="note" msprop:Generator_ColumnVarNameInTable="columnnote" msprop:Generator_ColumnPropNameInRow="note" msprop:Generator_ColumnPropNameInTable="noteColumn" msprop:Generator_UserColumnName="note" type="xs:string" minOccurs="0" />
               <xs:element name="route" msprop:Generator_ColumnVarNameInTable="columnroute" msprop:Generator_ColumnPropNameInRow="route" msprop:Generator_ColumnPropNameInTable="routeColumn" msprop:Generator_UserColumnName="route" type="xs:string" minOccurs="0" />
+              <xs:element name="each" msprop:Generator_ColumnVarNameInTable="columneach" msprop:Generator_ColumnPropNameInRow="each" msprop:Generator_ColumnPropNameInTable="eachColumn" msprop:Generator_UserColumnName="each" type="xs:string" minOccurs="0" />
+              <xs:element name="pound" msprop:Generator_ColumnVarNameInTable="columnpound" msprop:Generator_ColumnPropNameInRow="pound" msprop:Generator_ColumnPropNameInTable="poundColumn" msprop:Generator_UserColumnName="pound" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="order" msprop:Generator_TableClassName="orderDataTable" msprop:Generator_TableVarName="tableorder" msprop:Generator_TablePropName="order" msprop:Generator_RowDeletingName="orderRowDeleting" msprop:Generator_RowChangingName="orderRowChanging" msprop:Generator_RowEvHandlerName="orderRowChangeEventHandler" msprop:Generator_RowDeletedName="orderRowDeleted" msprop:Generator_UserTableName="order" msprop:Generator_RowChangedName="orderRowChanged" msprop:Generator_RowEvArgName="orderRowChangeEvent" msprop:Generator_RowClassName="orderRow">
+        <xs:element name="order_list" msprop:Generator_TableClassName="order_listDataTable" msprop:Generator_TableVarName="tableorder_list" msprop:Generator_TablePropName="order_list" msprop:Generator_RowDeletingName="order_listRowDeleting" msprop:Generator_RowChangingName="order_listRowChanging" msprop:Generator_RowEvHandlerName="order_listRowChangeEventHandler" msprop:Generator_RowDeletedName="order_listRowDeleted" msprop:Generator_UserTableName="order_list" msprop:Generator_RowChangedName="order_listRowChanged" msprop:Generator_RowEvArgName="order_listRowChangeEvent" msprop:Generator_RowClassName="order_listRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="order_id" msprop:Generator_ColumnVarNameInTable="columnorder_id" msprop:Generator_ColumnPropNameInRow="order_id" msprop:Generator_ColumnPropNameInTable="order_idColumn" msprop:Generator_UserColumnName="order_id" type="xs:string" />
@@ -138,7 +140,7 @@ WHERE        (product_id = @product_id)</CommandText>
       <xs:field xpath="mstns:cart_id" />
     </xs:unique>
     <xs:unique name="orderKey1" msdata:PrimaryKey="true">
-      <xs:selector xpath=".//mstns:order" />
+      <xs:selector xpath=".//mstns:order_list" />
       <xs:field xpath="mstns:order_id" />
     </xs:unique>
     <xs:unique name="storeKey1" msdata:PrimaryKey="true">
@@ -148,8 +150,8 @@ WHERE        (product_id = @product_id)</CommandText>
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="cart_order" msdata:parent="cart" msdata:child="order" msdata:parentkey="order_id" msdata:childkey="order_id" msprop:Generator_UserChildTable="order" msprop:Generator_ChildPropName="GetorderRows" msprop:Generator_UserRelationName="cart_order" msprop:Generator_ParentPropName="cartRow" msprop:Generator_RelationVarName="relationcart_order" msprop:Generator_UserParentTable="cart" />
-      <msdata:Relationship name="order_store" msdata:parent="order" msdata:child="store" msdata:parentkey="store_id" msdata:childkey="store_id" msprop:Generator_UserChildTable="store" msprop:Generator_ChildPropName="GetstoreRows" msprop:Generator_UserRelationName="order_store" msprop:Generator_ParentPropName="orderRow" msprop:Generator_RelationVarName="relationorder_store" msprop:Generator_UserParentTable="order" />
+      <msdata:Relationship name="cart_order" msdata:parent="cart" msdata:child="order_list" msdata:parentkey="order_id" msdata:childkey="order_id" msprop:Generator_UserChildTable="order_list" msprop:Generator_ChildPropName="Getorder_listRows" msprop:Generator_UserRelationName="cart_order" msprop:Generator_ParentPropName="cartRow" msprop:Generator_RelationVarName="relationcart_order" msprop:Generator_UserParentTable="cart" />
+      <msdata:Relationship name="order_store" msdata:parent="order_list" msdata:child="store" msdata:parentkey="store_id" msdata:childkey="store_id" msprop:Generator_UserChildTable="store" msprop:Generator_ChildPropName="GetstoreRows" msprop:Generator_UserRelationName="order_store" msprop:Generator_ParentPropName="orderRow" msprop:Generator_RelationVarName="relationorder_store" msprop:Generator_UserParentTable="order_list" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

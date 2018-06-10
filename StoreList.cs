@@ -15,6 +15,15 @@ namespace Invoice
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
+        private int STORE_ID        = 0;
+        private int STORE_NAME      = 1;
+        private int STORE_PHONE     = 2;
+        private int STORE_FAX       = 3;
+        private int STORE_ADDRESS   = 4;
+        private int CONTACT_NAME    = 5;
+        private int CONTACT_PHONE   = 6;
+        private int STORE_NOTE      = 7;
+        private int IS_MARKET       = 8;
         public StoreList()
         {
             InitializeComponent();
@@ -50,16 +59,38 @@ namespace Invoice
                 }
                 db = new DbConnectorClass();
                 adapter = new SqlDataAdapter("SELECT store_id AS 'Store Id', store_name AS 'Store Name'," +
-                    "store_address AS Address, store_phone AS Phone, store_fax AS Fax, " +
+                    "store_phone AS Phone, store_fax AS Fax, store_address AS Address, " +
                     "contact_name AS 'Contact Name', contact_phone AS 'Contact #', store_detail AS 'Store Detail', " +
-                    "CASE WHEN  isMarket = 1 THEN 'True' ELSE 'False' END AS 'Is Market'" +
+                    "isMarket AS 'Is Market'" +
                     "FROM dbo.store " + whereStr + " order by store_name ", db.GetConnection());
-                // Create one DataTable with one column.
                 DataSet DS = new DataSet();
                 adapter.Fill(DS);
-                this.StoreDataView.DataSource = DS.Tables[0];
-                this.StoreDataView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            }
+                this.StoreDataView.Rows.Clear();
+                for (int i = 0; i < DS.Tables[0].Rows.Count; i++)
+                {
+                    DataRow myRow = DS.Tables[0].Rows[i];
+                    DataGridViewRow row = (DataGridViewRow)StoreDataView.Rows[0].Clone();
+                    row.Cells[STORE_ID].Value       = myRow[STORE_ID].ToString();
+                    row.Cells[STORE_NAME].Value     = myRow[STORE_NAME].ToString().Trim();
+                    row.Cells[STORE_PHONE].Value    = myRow[STORE_PHONE].ToString().Trim();
+                    row.Cells[STORE_FAX].Value      = myRow[STORE_FAX].ToString().Trim();
+                    row.Cells[STORE_ADDRESS].Value = myRow[STORE_ADDRESS].ToString().Trim();
+                    row.Cells[CONTACT_NAME].Value   = myRow[CONTACT_NAME].ToString().Trim();
+                    row.Cells[CONTACT_PHONE].Value  = myRow[CONTACT_PHONE].ToString().Trim();
+                    row.Cells[STORE_NOTE].Value     = myRow[STORE_NOTE].ToString().Trim();
+                    DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)row.Cells[IS_MARKET];
+                    String isMarketVal = myRow[IS_MARKET].ToString().Trim();
+                    if (isMarketVal.Equals("1"))
+                    {
+                        chk.Value = chk.TrueValue;
+                    }
+                    else
+                    {
+                        chk.Value = chk.FalseValue;
+                    }
+                    this.StoreDataView.Rows.Add(row);
+                }
+            } 
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
@@ -123,26 +154,16 @@ namespace Invoice
             String contactName = "";
             String contactPhone = "";
             String Note = "";
-            string isMarket = "";
-            if (row.Cells[0].Value != null)
-                storeId         = row.Cells[0].Value.ToString();
-            if (row.Cells[1].Value != null)
-                storeName       = row.Cells[1].Value.ToString();
-            if (row.Cells[2].Value != null)
-                storePhone      = row.Cells[2].Value.ToString();
-            if (row.Cells[3].Value != null)
-                storeFax        = row.Cells[3].Value.ToString();
-            if (row.Cells[4].Value != null)
-                storeAddr       = row.Cells[4].Value.ToString();
-            if (row.Cells[5].Value != null)
-                contactName     = row.Cells[5].Value.ToString();
-            if (row.Cells[6].Value != null)
-                contactPhone    = row.Cells[6].Value.ToString();
-            if (row.Cells[7].Value != null)
-                Note            = row.Cells[7].Value.ToString();
-            if (row.Cells[8].Value != null)
-                isMarket        = row.Cells[8].Value.ToString();
-
+            String isMarket = "";
+            if (row.Cells[STORE_ID].Value != null) storeId              = row.Cells[STORE_ID].Value.ToString();
+            if (row.Cells[STORE_NAME].Value != null) storeName          = row.Cells[STORE_NAME].Value.ToString();
+            if (row.Cells[STORE_PHONE].Value != null) storePhone        = row.Cells[STORE_PHONE].Value.ToString();
+            if (row.Cells[STORE_FAX].Value != null) storeFax            = row.Cells[STORE_FAX].Value.ToString();
+            if (row.Cells[STORE_ADDRESS].Value != null) storeAddr       = row.Cells[STORE_ADDRESS].Value.ToString();
+            if (row.Cells[CONTACT_NAME].Value != null) contactName      = row.Cells[CONTACT_NAME].Value.ToString();
+            if (row.Cells[CONTACT_PHONE].Value != null) contactPhone    = row.Cells[CONTACT_PHONE].Value.ToString();
+            if (row.Cells[STORE_NOTE].Value != null) Note               = row.Cells[STORE_NOTE].Value.ToString();
+            if (row.Cells[IS_MARKET].Value != null) isMarket            = row.Cells[IS_MARKET].Value.ToString();
             if (isMarket.Equals(""))
             {
                 isMarket = "0";
@@ -159,30 +180,31 @@ namespace Invoice
                     {
                         sqlQuery = "INSERT INTO dbo.store " +
                         "(store_name, store_phone, store_fax, store_address, contact_name, contact_phone, store_detail, isMarket) VALUES " +
-                        "('" + storeName + "', " +
+                        "(N'" + storeName + "', " +
                         " '" + storePhone + "', " +
                         " '" + storeFax + "', " +
-                        " '" + storeAddr + "', " +
-                        " '" + contactName + "', " +
+                        " N'" + storeAddr + "', " +
+                        " N'" + contactName + "', " +
                         " '" + contactPhone + "', " +
-                        " '" + Note + "', " +
-                        " '" + isMarket + "') ";
+                        " N'" + Note + "', " +
+                        " " + isMarket + ") ";
                     }
                     else
                     {
                         sqlQuery = "UPDATE dbo.store set " +
-                        "store_name = '" + storeName + "', " +
+                        "store_name = N'" + storeName + "', " +
                         "store_phone = '" + storePhone + "', " +
                         "store_fax = '" + storeFax + "', " +
-                        "store_address = '" + storeAddr + "', " +
-                        "contact_name = '" + contactName + "', " +
+                        "store_address = N'" + storeAddr + "', " +
+                        "contact_name = N'" + contactName + "', " +
                         "contact_phone = '" + contactPhone + "', " +
-                        "store_detail = '" + Note + "', " +
-                        "isMarket = '" + isMarket + "' WHERE store_id = " + storeId;
+                        "store_detail = N'" + Note + "', " +
+                        "isMarket = " + isMarket + " WHERE store_id = " + storeId;
                     }
                     db.RunQuery(sqlQuery).Close();
                     // need to close this form after click 'OK' button
-                    GetStoreList();
+                    if(!saveAll)
+                        GetStoreList();
                 }
             }
             catch (Exception ex)
@@ -217,10 +239,15 @@ namespace Invoice
 
         private void saveBtn_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < this.StoreDataView.RowCount - 1; i++)
+            var x = MessageBox.Show("Are you sure you want to save? ", "Save", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (DialogResult.Yes == x)
             {
-                DataGridViewRow row = this.StoreDataView.Rows[i];
-                SaveStore(row, true);
+                for (int i = 0; i < this.StoreDataView.RowCount - 1; i++)
+                {
+                    DataGridViewRow row = this.StoreDataView.Rows[i];
+                    SaveStore(row, true);
+                }
+                GetStoreList();
             }
         }
 

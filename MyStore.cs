@@ -31,11 +31,11 @@ namespace Invoice
                 if(DialogResult.Yes == x)
                 {
                     String sqlQuery = "UPDATE dbo.store SET " +
-                    "store_name='" + this.storeNameTxt.Text + "', " +
+                    "store_name=N'" + this.storeNameTxt.Text + "', " +
                     " store_phone = '" + this.storePhoneTxt.Text + "', " +
-                    " store_address = '" + this.storeAddressTxt.Text + "', " +
+                    " store_address = N'" + this.storeAddressTxt.Text + "', " +
                     " store_fax = '" + this.storeFaxTxt.Text + "', " +
-                    " store_detail = '" + this.storeDetailTxt.Text + "' " +
+                    " store_detail = N'" + this.storeDetailTxt.Text + "' " +
                     " WHERE store_id = 1;";
                     db.RunQuery(sqlQuery).Close();
                     SyncData();
@@ -56,11 +56,11 @@ namespace Invoice
                 SqlDataReader dbReader =  db.RunQuery("select * from dbo.store where store_id = 1");
                 if (dbReader.Read())
                 {
-                    this.storeNameTxt.Text = db.NullToEmpty(dbReader, "store_name");
-                    this.storePhoneTxt.Text = db.NullToEmpty(dbReader, "store_phone");
-                    this.storeAddressTxt.Text = db.NullToEmpty(dbReader, "store_address");
-                    this.storeFaxTxt.Text =  db.NullToEmpty(dbReader, "store_fax");
-                    this.storeDetailTxt.Text = db.NullToEmpty(dbReader, "store_detail");
+                    this.storeNameTxt.Text = db.NullToNA(dbReader, "store_name");
+                    this.storePhoneTxt.Text = db.NullToNA(dbReader, "store_phone");
+                    this.storeAddressTxt.Text = db.NullToNA(dbReader, "store_address");
+                    this.storeFaxTxt.Text =  db.NullToNA(dbReader, "store_fax");
+                    this.storeDetailTxt.Text = db.NullToNA(dbReader, "store_detail");
                 }
                 SyncData();
                 dbReader.Close();

@@ -48,14 +48,14 @@ namespace Invoice
                 if (dbReader.Read())
                 {
                     this.dbId = id;
-                    this.storeNameTxt.Text = db.NullToEmpty(dbReader, "store_name");
-                    this.storePhoneTxt.Text = db.NullToEmpty(dbReader, "store_phone");
-                    this.storeAddressTxt.Text = db.NullToEmpty(dbReader, "store_address");
-                    this.storeFaxTxt.Text = db.NullToEmpty(dbReader, "store_fax");
-                    this.contactNameTxt.Text = db.NullToEmpty(dbReader, "contact_name");
-                    this.contactPhoneTxt.Text = db.NullToEmpty(dbReader, "contact_phone");
-                    this.storeDetailTxt.Text = db.NullToEmpty(dbReader, "store_detail");
-                    Object isMarketValue = db.NullToEmpty(dbReader, "isMarket");
+                    this.storeNameTxt.Text = db.NullToNA(dbReader, "store_name");
+                    this.storePhoneTxt.Text = db.NullToNA(dbReader, "store_phone");
+                    this.storeAddressTxt.Text = db.NullToNA(dbReader, "store_address");
+                    this.storeFaxTxt.Text = db.NullToNA(dbReader, "store_fax");
+                    this.contactNameTxt.Text = db.NullToNA(dbReader, "contact_name");
+                    this.contactPhoneTxt.Text = db.NullToNA(dbReader, "contact_phone");
+                    this.storeDetailTxt.Text = db.NullToNA(dbReader, "store_detail");
+                    Object isMarketValue = db.NullToNA(dbReader, "isMarket");
                     this.isMarket.Checked = (isMarketValue.Equals("1")) ? true : false;
                 }
                 SyncData();
@@ -90,25 +90,25 @@ namespace Invoice
                     {
                         sqlQuery = "INSERT INTO dbo.store " +
                         "(store_name, store_phone, store_address, store_fax, store_detail, contact_phone, contact_name, isMarket) VALUES " +
-                        "('" + this.storeNameTxt.Text + "', " +
+                        "(N'" + this.storeNameTxt.Text + "', " +
                         " '" + this.storePhoneTxt.Text + "', " +
-                        " '" + this.storeAddressTxt.Text + "', " +
+                        " N'" + this.storeAddressTxt.Text + "', " +
                         " '" + this.storeFaxTxt.Text + "', " +
-                        " '" + this.storeDetailTxt.Text + "', " +
+                        " N'" + this.storeDetailTxt.Text + "', " +
                         " '" + this.contactPhoneTxt.Text + "', " +
-                        " '" + this.contactNameTxt.Text + "', " +
+                        " N'" + this.contactNameTxt.Text + "', " +
                         " '" + ((this.isMarket.Checked) ? 1: 0) + "') ";
                     }
                     else
                     {
                         sqlQuery = "UPDATE dbo.store set " +
-                        "store_name = '" + this.storeNameTxt.Text + "', " +
+                        "store_name = N'" + this.storeNameTxt.Text + "', " +
                         "store_phone = '" + this.storePhoneTxt.Text + "', " +
-                        "store_address = '" + this.storeAddressTxt.Text + "', " +
+                        "store_address = N'" + this.storeAddressTxt.Text + "', " +
                         "store_fax = '" + this.storeFaxTxt.Text + "', " +
-                        "store_detail = '" + this.storeDetailTxt.Text + "', " +
+                        "store_detail = N'" + this.storeDetailTxt.Text + "', " +
                         "contact_phone = '" + this.contactPhoneTxt.Text + "', " +
-                        "contact_name = '" + this.contactNameTxt.Text + "', " +
+                        "contact_name = N'" + this.contactNameTxt.Text + "', " +
                         "isMarket = '" + ((this.isMarket.Checked) ? 1: 0) + "' WHERE store_id= " + this.dbId;
                     }
                     db.RunQuery(sqlQuery).Close();

@@ -19,39 +19,52 @@ namespace Invoice
         public static extern bool ReleaseCapture();
         DateTime OrderSearchDate;
         String store_id = "";
+        bool isModified = false;
         public OrderList()
         {
             InitializeComponent();
-            OrderLoad();
-            AddEditBtn();
-            SqlDataReader dbReader = db.RunQuery("select s.store_id, store_name, store_phone, store_address, contact_name, contact_phone, store_detail, store_fax, isMarket, count(*) as count " +
-                    " from dbo.store as s full outer join dbo.order_list as o on s.store_id = o.store_id " +
-                    " group by s.store_id, store_name, store_phone, store_address, contact_name, contact_phone, store_detail, store_fax, isMarket order by count(*) desc; ");
-            ComboboxItem defaultComboItem = new ComboboxItem
-            {
-                Text = "", Value = ""
-            };
-            this.StoreList.Items.Add(defaultComboItem);
-            while (dbReader.Read())
-            {
-                ComboboxItem comboItem = new ComboboxItem
-                {
-                    Text = db.NullToEmpty(dbReader, "store_name"),
-                    Value = db.NullToEmpty(dbReader, "store_id")
-                };
-                this.StoreList.Items.Add(comboItem);
-            }
-            this.StoreList.AutoCompleteMode = AutoCompleteMode.Append;
-            this.StoreList.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.StoreList.AutoCompleteSource = AutoCompleteSource.ListItems;
-            dbReader.Close();
+            OrderLoad(true, true);
+            AddBtns();
+        }
+        public OrderList(bool isBuy, bool isSell, DateTime searchDate)
+        {
+            OrderLoad(isBuy, isSell, searchDate, "");
+            AddBtns();
+        }
+        public OrderList(bool isBuy, bool isSell, DateTime searchDate, String storeId)
+        {
+            OrderLoad(isBuy, isSell, searchDate, storeId);
+            AddBtns();
         }
 
-        public void OrderLoad()
+        public void OrderLoad(bool isBuy, bool isSell, DateTime searchDate, String storeId)
         {
-            this.BuyCheckBox.Checked = true;
-            this.SellCheckBox.Checked = true;
-            OrderLoadWithOption();
+            InitializeComponent();
+            if(!searchDate.ToString("yyyy-MM-dd").Equals("0001-01-01"))
+                this.DeliveryDate.Value = searchDate;
+            this.OrderSearchDate = searchDate;
+            this.store_id = storeId;
+            OrderLoad(isBuy, isSell);
+            if (storeId != null && !storeId.Equals(""))
+            {
+                SqlDataReader dbReader = db.RunQuery("select * from dbo.store where store_id = " + storeId + ";");
+                if (dbReader.Read())
+                {
+                    this.StoreList.SelectedIndex = this.StoreList.FindString(db.NullToNA(dbReader, "store_name"));
+                }
+                dbReader.Close();
+            }
+        }
+
+        public void OrderLoad(bool isBuy, bool isSell)
+        {
+            this.BuyCheckBox.Checked = isBuy;
+            this.SellCheckBox.Checked = isSell;
+            OrderLoadWithOption();            
+            for(int i = 0; i < this.OrderListView.ColumnCount; i++)
+            {
+                OrderListView.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
         }
         public void OrderLoadWithOption()
         {
@@ -86,7 +99,7 @@ namespace Invoice
                     whereStr += " and t1.store_id = '"+this.store_id+"'";
                 }
                 adapter = new SqlDataAdapter(
-                    "Select order_id as 'Order Id', store_name as Store, delivery_date as 'Delivery Date', ordered_date as 'Ordered Date', total as Total " +
+                    "Select order_id as 'Order Id', store_name as Store, store_phone as Phone, store_fax as Fax, store_address as Address, delivery_date as 'Delivery Date', ordered_date as 'Ordered Date', total as Total " +
                     "from dbo.order_list as t1 inner join dbo.store as t2 " +
                     "on t1.store_id = t2.store_id "+whereStr+ "  order by delivery_date desc, order_id desc;", db.GetConnection());
                 // Create one DataTable with one column.
@@ -103,8 +116,30 @@ namespace Invoice
             }
         }
 
-        private void AddEditBtn()
+        private void AddBtns()
         {
+            SqlDataReader dbReader = db.RunQuery("select s.store_id, store_name, store_phone, store_address, contact_name, contact_phone, store_detail, store_fax, isMarket, count(*) as count " +
+" from dbo.store as s full outer join dbo.order_list as o on s.store_id = o.store_id " +
+" group by s.store_id, store_name, store_phone, store_address, contact_name, contact_phone, store_detail, store_fax, isMarket order by count(*) desc; ");
+            ComboboxItem defaultComboItem = new ComboboxItem
+            {
+                Text = "",
+                Value = ""
+            };
+            this.StoreList.Items.Add(defaultComboItem);
+            while (dbReader.Read())
+            {
+                ComboboxItem comboItem = new ComboboxItem
+                {
+                    Text = db.NullToNA(dbReader, "store_name"),
+                    Value = db.NullToNA(dbReader, "store_id")
+                };
+                this.StoreList.Items.Add(comboItem);
+            }
+            this.StoreList.AutoCompleteMode = AutoCompleteMode.Append;
+            this.StoreList.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.StoreList.AutoCompleteSource = AutoCompleteSource.ListItems;
+            dbReader.Close();
             DataGridViewButtonColumn EditBtnColumn = new DataGridViewButtonColumn
             {
                 HeaderText = "",
@@ -112,21 +147,71 @@ namespace Invoice
                 Text = "Edit",
                 UseColumnTextForButtonValue = true
             };
+            DataGridViewButtonColumn DeleteBtnColumn = new DataGridViewButtonColumn
+            {
+                HeaderText = "",
+                Name = "Delete",
+                Text = "Delete",
+                UseColumnTextForButtonValue = true
+            };
+            DataGridViewButtonColumn InvoiceBtnColumn = new DataGridViewButtonColumn
+            {
+                HeaderText = "",
+                Name = "Invoice",
+                Text = "Invoice",
+                UseColumnTextForButtonValue = true
+            };
             this.OrderListView.Columns.Add(EditBtnColumn);
+            this.OrderListView.Columns.Add(DeleteBtnColumn);
+            this.OrderListView.Columns.Add(InvoiceBtnColumn);
+            this.OrderListView.CellClick -= new DataGridViewCellEventHandler(DataGridView_CellClick);
             this.OrderListView.CellClick += new DataGridViewCellEventHandler(DataGridView_CellClick);
-            this.OrderListView.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            this.OrderListView.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
+
         // Calls the Employee.RequestStatus method.
         private void DataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            int orderIdx = this.OrderListView.Columns["Order Id"].Index;
+            int invoiceIdx = this.OrderListView.Columns["Invoice"].Index;
             // Ignore clicks that are not on button cells. 
-            if (e.RowIndex < 0 || e.ColumnIndex !=
-                this.OrderListView.Columns["Edit"].Index) return;
-
-            // Retrieve the task ID.
-            String orderId = (String)this.OrderListView[1, e.RowIndex].Value.ToString();
-            CreateOrder cs = new CreateOrder(orderId, this);
-            cs.Show();
+            if (e.RowIndex > -1 && e.RowIndex < this.OrderListView.RowCount-1) {
+                String orderId = (String)this.OrderListView[orderIdx, e.RowIndex].Value.ToString();
+                if (e.ColumnIndex == this.OrderListView.Columns["Edit"].Index)
+                {
+                    // Retrieve the task ID.
+                    CreateOrder cs = new CreateOrder(orderId, this);
+                    cs.Show();
+                }
+                else if (e.ColumnIndex == this.OrderListView.Columns["Delete"].Index)
+                {
+                    try
+                    {
+                        var x = MessageBox.Show("Do you want to delete? ", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (DialogResult.Yes == x)
+                        {
+                            String sqlQuery = "DELETE FROM dbo.cart WHERE order_id= " + orderId;
+                            db.RunQuery(sqlQuery).Close();
+                            sqlQuery = "DELETE FROM dbo.order_list WHERE order_id= " + orderId;
+                            db.RunQuery(sqlQuery).Close();
+                            MessageBox.Show("Data Deleted successfully", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.None);
+                            // need to close this form after click 'OK' button
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    OrderLoad(true, true);
+                }
+                else if (e.ColumnIndex == this.OrderListView.Columns["Invoice"].Index)
+                {
+                    // Retrieve the task ID.
+                    String totalTxt = (String)this.OrderListView[invoiceIdx, e.RowIndex].Value.ToString();
+                    printPreview preview = new printPreview(orderId, totalTxt);
+                    preview.Show();
+                }
+            }
         }
 
         private void OptionCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -153,7 +238,7 @@ namespace Invoice
             this.DeliveryDate.CustomFormat = "MMM/dd/yy ddd";
             OrderSearchDate = this.DeliveryDate.Value;
             this.showAllOrderCheckBox.Checked = false;
-            OrderLoad();
+            OrderLoad(true, true);
         }
 
         private void StoreList_SelectedIndexChanged(object sender, EventArgs e)
@@ -161,10 +246,10 @@ namespace Invoice
             ComboboxItem item  = (ComboboxItem)this.StoreList.SelectedItem;
             this.store_id = item.Value.ToString();
             this.showAllOrderCheckBox.Checked = false;
-            OrderLoad();
+            OrderLoad(true, true);
         }
 
-        private void showAllOrderCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void ShowAllOrderCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if (this.showAllOrderCheckBox.Checked)
             {
@@ -178,5 +263,6 @@ namespace Invoice
             }
             
         }
+
     }
 }

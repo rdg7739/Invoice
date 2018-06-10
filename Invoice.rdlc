@@ -29,8 +29,8 @@
           <DataField>product</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="quantity">
-          <DataField>quantity</DataField>
+        <Field Name="box">
+          <DataField>box</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="price">
@@ -47,6 +47,14 @@
         </Field>
         <Field Name="route">
           <DataField>route</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="each">
+          <DataField>each</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="pound">
+          <DataField>pound</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
@@ -68,19 +76,19 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>4.97864cm</Width>
+                  <Width>4.91902cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.88728cm</Width>
+                  <Width>1.82766cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.11913cm</Width>
+                  <Width>2.05951cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.78036cm</Width>
+                  <Width>1.72074cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>6.54867cm</Width>
+                  <Width>6.54718cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -274,14 +282,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="quantity">
+                        <Textbox Name="box">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!quantity.Value</Value>
+                                  <Value>=Fields!box.Value+Fields!each.Value+Fields!pound.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -290,7 +298,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>quantity</rd:DefaultName>
+                          <rd:DefaultName>box</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -353,7 +361,7 @@
                                   <Style />
                                 </TextRun>
                                 <TextRun>
-                                  <Value>=Fields!quantity.Value * Fields!price.Value</Value>
+                                  <Value>=(Fields!box.Value+Fields!each.Value+Fields!pound.Value) * Fields!price.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -436,7 +444,7 @@
             <Top>0.14111cm</Top>
             <Left>0.1884cm</Left>
             <Height>1.12062cm</Height>
-            <Width>17.31409cm</Width>
+            <Width>17.07413cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -444,10 +452,10 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>0.52865in</Height>
+        <Height>0.65365in</Height>
         <Style />
       </Body>
-      <Width>6.93504in</Width>
+      <Width>6.79627in</Width>
       <Page>
         <PageHeader>
           <Height>6.0737cm</Height>
@@ -554,8 +562,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>storeAddr</rd:DefaultName>
-              <Top>1.73453cm</Top>
-              <Left>4.13872cm</Left>
+              <Top>1.86641cm</Top>
+              <Left>4.13873cm</Left>
               <Height>0.81167cm</Height>
               <Width>13.1238cm</Width>
               <ZIndex>3</ZIndex>
@@ -660,8 +668,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox15</rd:DefaultName>
-              <Top>2.5462cm</Top>
-              <Left>8.41252cm</Left>
+              <Top>2.67808cm</Top>
+              <Left>8.41253cm</Left>
               <Height>0.61323cm</Height>
               <Width>8.85cm</Width>
               <ZIndex>5</ZIndex>
@@ -763,7 +771,7 @@
               <Top>6.00314cm</Top>
               <Left>0.0544cm</Left>
               <Height>0cm</Height>
-              <Width>17.56061cm</Width>
+              <Width>17.20813cm</Width>
               <ZIndex>8</ZIndex>
               <Style>
                 <Border>
@@ -815,7 +823,7 @@
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>3.28083cm</Height>
+          <Height>3.54541cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -1026,7 +1034,7 @@
               </Paragraphs>
               <rd:DefaultName>Textbox26</rd:DefaultName>
               <Top>0.42333cm</Top>
-              <Left>14.18925cm</Left>
+              <Left>13.89117cm</Left>
               <Height>1.37375cm</Height>
               <Width>1.68568cm</Width>
               <ZIndex>4</ZIndex>
@@ -1060,7 +1068,7 @@
               </Paragraphs>
               <rd:DefaultName>Textbox26</rd:DefaultName>
               <Top>0.42333cm</Top>
-              <Left>15.87493cm</Left>
+              <Left>15.57685cm</Left>
               <Height>1.37375cm</Height>
               <Width>1.68568cm</Width>
               <ZIndex>5</ZIndex>
@@ -1081,7 +1089,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>TOTAL: </Value>
+                      <Value>TOTAL: $</Value>
                       <Style />
                     </TextRun>
                     <TextRun>
@@ -1096,7 +1104,7 @@
               </Paragraphs>
               <rd:DefaultName>Textbox28</rd:DefaultName>
               <Top>0.42333cm</Top>
-              <Left>10.19436cm</Left>
+              <Left>9.89628cm</Left>
               <Height>0.6cm</Height>
               <Width>3.88906cm</Width>
               <ZIndex>6</ZIndex>
@@ -1113,7 +1121,7 @@
             <Line Name="Line2">
               <Top>0.38806cm</Top>
               <Height>0cm</Height>
-              <Width>17.56061cm</Width>
+              <Width>17.26253cm</Width>
               <ZIndex>7</ZIndex>
               <Style>
                 <Border>

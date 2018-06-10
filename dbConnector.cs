@@ -18,12 +18,12 @@ public class DbConnectorClass
         if(dbConnect.State == ConnectionState.Closed)
             dbConnect.Open();
     }
-     public String NullToEmpty(SqlDataReader dbReader, String columnName)
+     public String NullToNA(SqlDataReader dbReader, String columnName)
     {
         int idx = dbReader.GetOrdinal(columnName);
-        if (dbReader.IsDBNull(idx))
+        if (dbReader.IsDBNull(idx) || dbReader.GetValue(idx).ToString().Equals(""))
         {
-            return "";
+            return "N/A";
         }
         return dbReader.GetValue(idx).ToString();
     }

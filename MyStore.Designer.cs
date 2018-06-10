@@ -38,8 +38,8 @@
             this.storePhoneTxt = new System.Windows.Forms.TextBox();
             this.storeAddressTxt = new System.Windows.Forms.TextBox();
             this.storeDetailTxt = new System.Windows.Forms.TextBox();
-            this.cancelBtn = new ButtonModified();
-            this.saveBtn = new ButtonModified();
+            this.cancelBtn = new Invoice.ButtonModified();
+            this.saveBtn = new Invoice.ButtonModified();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.storeFaxTxt = new System.Windows.Forms.TextBox();
             this.storeFaxLabel = new System.Windows.Forms.Label();
@@ -208,6 +208,7 @@
             this.pictureBox2.Size = new System.Drawing.Size(29, 32);
             this.pictureBox2.TabIndex = 3;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DragTitlePanel);
             // 
             // pictureBox1
             // 
@@ -218,6 +219,7 @@
             this.pictureBox1.Size = new System.Drawing.Size(57, 55);
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DragTitlePanel);
             // 
             // Title
             // 
@@ -229,8 +231,9 @@
             this.Title.Name = "Title";
             this.Title.Size = new System.Drawing.Size(387, 60);
             this.Title.TabIndex = 1;
-            this.Title.Text = "MY Store";
+            this.Title.Text = "My Store";
             this.Title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Title.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DragTitlePanel);
             // 
             // MyStore
             // 
@@ -251,7 +254,6 @@
             this.Controls.Add(this.storeAddressLabel);
             this.Controls.Add(this.storePhoneLabels);
             this.Controls.Add(this.storeNameLabel);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MyStore";
             this.Load += new System.EventHandler(this.MyStore_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();

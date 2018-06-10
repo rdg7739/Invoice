@@ -16,7 +16,11 @@ namespace Invoice
         private int THURSDAY = 5;
         private int FRIDAY = 6;
         private int WEEKLYTOTAL = 7;
-
+        String MonStr = null;
+        String TuesStr = null;
+        String WedStr = null;
+        String ThurStr = null;
+        String FriStr = null;
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
 
@@ -45,11 +49,11 @@ namespace Invoice
                 decimal ThurTotal = 0;
                 decimal FriTotal = 0;
                 decimal WeeklyTotal = 0;
-                String MonStr = "Mon (" + Mondate.ToString("MM-dd") + ")";
-                String TuesStr = "Tues (" + Tuesdate.ToString("MM-dd") + ")";
-                String WedStr = "Wednes (" + Wednesdate.ToString("MM-dd") + ")";
-                String ThurStr = "Thurs (" + Thursdate.ToString("MM-dd") + ")";
-                String FriStr = "Fri (" + Fridate.ToString("MM-dd") + ")";
+                MonStr = "Mon (" + Mondate.ToString("MM-dd") + ")";
+                TuesStr = "Tues (" + Tuesdate.ToString("MM-dd") + ")";
+                WedStr = "Wednes (" + Wednesdate.ToString("MM-dd") + ")";
+                ThurStr = "Thurs (" + Thursdate.ToString("MM-dd") + ")";
+                FriStr = "Fri (" + Fridate.ToString("MM-dd") + ")";
                 db = new DbConnectorClass();
                 String query = "select s.Store_id as No, Store_name as Store, " +
                     "sum(case when delivery_date = '" + Mondate.ToString("yyyy-MM-dd")
@@ -130,6 +134,71 @@ namespace Invoice
             {
                 ReleaseCapture();
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+
+        private void PrintBtn_Click(object sender, EventArgs e)
+        {
+            printWeeklyReport preview = new printWeeklyReport(GetMonday());
+            preview.Show();
+        }
+        private void WeeklyExpenseDataView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+                DateTime searchDate;
+                if(e.ColumnIndex > 1 && e.ColumnIndex < 7)
+                {
+                    searchDate = getSearchDate(e.ColumnIndex);
+                }
+                else
+                {
+                    searchDate = new DateTime(1, 1, 1);
+                }
+                string storeId = "";
+                if (e.RowIndex < this.WeeklyExpenseDataView.Rows.Count - 1)
+                    storeId = this.WeeklyExpenseDataView.Rows[e.RowIndex].Cells[0].Value.ToString();
+                OrderList ol = new OrderList(true, false, searchDate, storeId);
+                ol.WindowState = FormWindowState.Maximized;
+                ol.Show();
+            }
+        }
+        private void WeeklyExpenseDataView_ColumnHeaderClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex > 1 && e.ColumnIndex < 7)
+            {
+                DateTime searchDate = getSearchDate(e.ColumnIndex);
+                OrderList ol = new OrderList(true, false, searchDate);
+                ol.WindowState = FormWindowState.Maximized;
+                ol.Show();
+            }
+        }
+        private DateTime getSearchDate(int columnIdx)
+        {
+            string text = this.WeeklyExpenseDataView.Columns[columnIdx].HeaderText;
+            if (text.Equals(MonStr))
+            {
+                return GetMonday();
+            }
+            else if (text.Equals(TuesStr))
+            {
+                return GetMonday().AddDays(1);
+            }
+            else if (text.Equals(WedStr))
+            {
+                return GetMonday().AddDays(2);
+            }
+            else if (text.Equals(ThurStr))
+            {
+                return GetMonday().AddDays(3);
+            }
+            else if (text.Equals(FriStr))
+            {
+                return GetMonday().AddDays(4);
+            }
+            else
+            {
+                return new DateTime(1, 1, 1);
             }
         }
     }

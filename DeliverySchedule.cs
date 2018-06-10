@@ -34,23 +34,37 @@ namespace Invoice
             try
             {
                 db = new DbConnectorClass();
-                adapter = new SqlDataAdapter(
-                    "select product, sum(quantity) as QTY, Price, (price * quantity) as Amount, Market, Note, "+
-                    "sum(case when route = 1 then quantity else 0 end) as 'route 1', " +
-                    "sum(case when route = 2 then quantity else 0 end) as 'route 2', "+
-                    "sum(case when route = 3 then quantity else 0 end) as 'route 3' "+
+                String query = "select product, " +
+                    "CONCAT(" +
+                    "sum(case when route = 1 then box else 0 end), ' box, ', " +
+                    "sum(case when route = 1 then each else 0 end), ' each, ', " +
+                    "sum(case when route = 1 then pound else 0 end), ' pound') as 'route 1', " +
+                    "CONCAT(" +
+                    "sum(case when route = 2 then box else 0 end), ' box, ', " +
+                    "sum(case when route = 2 then each else 0 end), ' each, ', " +
+                    "sum(case when route = 2 then pound else 0 end), ' pound') as 'route 2', " +
+                    "CONCAT(" +
+                    "sum(case when route = 3 then box else 0 end), ' box, ', " +
+                    "sum(case when route = 3 then each else 0 end), ' each, ', " +
+                    "sum(case when route = 3 then pound else 0 end), ' pound') as 'route 3' " +
                     "from dbo.cart as c where order_id in " +
                     "(select order_id from dbo.order_list as o inner join dbo.store as s " +
                     "on s.store_id = o.store_id where isMarket = '0' AND delivery_date = '" +
-                Convert.ToDateTime(this.DeliveryScheduleDate.Value.ToString()).ToString("yyyy-MM-dd")+
-                    "') group by c.Product, c.quantity, c.price, c.market, c.note;", db.GetConnection());
+                Convert.ToDateTime(this.DeliveryScheduleDate.Value.ToString()).ToString("yyyy-MM-dd") +
+                    "') group by c.Product;";
+                adapter = new SqlDataAdapter(query, db.GetConnection());
                 // Create one DataTable with one column.
                 this.DS = new DataSet();
                 adapter.Fill(DS);
                 this.DeliveryScheduleView.DataSource = DS.Tables[0];
                 this.DeliveryScheduleView.AutoGenerateColumns = true;
                 this.DeliveryScheduleView.AutoResizeColumns();
-                this.DeliveryScheduleView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                this.DeliveryScheduleView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                for (int i = 0; i < this.DeliveryScheduleView.ColumnCount; i++)
+                {
+                    DeliveryScheduleView.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    DeliveryScheduleView.Columns[i].FillWeight = 20;
+                }
             }
             catch (Exception ex)
             {
@@ -108,6 +122,12 @@ namespace Invoice
                 ReleaseCapture();
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
+        }
+
+        private void PrintBtn_Click(object sender, EventArgs e)
+        {
+            delieveryReport preview = new delieveryReport(this.DeliveryScheduleDate.Value);
+            preview.Show();
         }
     }
 }

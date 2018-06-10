@@ -60,6 +60,7 @@
             this.Title.TabIndex = 1;
             this.Title.Text = "Invoice";
             this.Title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Title.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DragTitlePanel);
             // 
             // titlePanel
             // 
@@ -73,6 +74,7 @@
             this.titlePanel.Size = new System.Drawing.Size(582, 91);
             this.titlePanel.TabIndex = 11;
             this.titlePanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DragTitlePanel);
+            
             // 
             // closeBtn
             // 
@@ -93,6 +95,7 @@
             this.pictureBox2.Size = new System.Drawing.Size(29, 32);
             this.pictureBox2.TabIndex = 3;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DragTitlePanel);
             // 
             // pictureBox1
             // 
@@ -103,6 +106,7 @@
             this.pictureBox1.Size = new System.Drawing.Size(57, 55);
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DragTitlePanel);
             // 
             // WeeklyExpenseBtn
             // 

@@ -37,6 +37,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Title = new System.Windows.Forms.Label();
+            this.PrintBtn = new Invoice.ButtonModified();
             ((System.ComponentModel.ISupportInitialize)(this.WeeklyExpenseDataView)).BeginInit();
             this.titlePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -79,11 +80,15 @@
             this.WeeklyExpenseDataView.ReadOnly = true;
             this.WeeklyExpenseDataView.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.WeeklyExpenseDataView.RowHeadersVisible = false;
-            this.WeeklyExpenseDataView.Size = new System.Drawing.Size(722, 419);
+            this.WeeklyExpenseDataView.Size = new System.Drawing.Size(722, 403);
             this.WeeklyExpenseDataView.TabIndex = 3;
+            this.WeeklyExpenseDataView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.WeeklyExpenseDataView_CellContentClick);
+            this.WeeklyExpenseDataView.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.WeeklyExpenseDataView_ColumnHeaderClick);
             // 
             // titlePanel
             // 
+            this.titlePanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.titlePanel.BackColor = System.Drawing.Color.SteelBlue;
             this.titlePanel.Controls.Add(this.closeBtn);
             this.titlePanel.Controls.Add(this.pictureBox2);
@@ -117,6 +122,7 @@
             this.pictureBox2.Size = new System.Drawing.Size(29, 32);
             this.pictureBox2.TabIndex = 3;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DragTitlePanel);
             // 
             // pictureBox1
             // 
@@ -127,6 +133,7 @@
             this.pictureBox1.Size = new System.Drawing.Size(57, 55);
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DragTitlePanel);
             // 
             // Title
             // 
@@ -138,6 +145,20 @@
             this.Title.TabIndex = 1;
             this.Title.Text = "Weekly Expense";
             this.Title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Title.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DragTitlePanel);
+            // 
+            // PrintBtn
+            // 
+            this.PrintBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.PrintBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PrintBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.PrintBtn.Location = new System.Drawing.Point(534, 524);
+            this.PrintBtn.Name = "PrintBtn";
+            this.PrintBtn.Size = new System.Drawing.Size(219, 34);
+            this.PrintBtn.TabIndex = 26;
+            this.PrintBtn.Text = "Open Weekly Report";
+            this.PrintBtn.UseVisualStyleBackColor = true;
+            this.PrintBtn.Click += new System.EventHandler(this.PrintBtn_Click);
             // 
             // WeeklyExpense
             // 
@@ -146,7 +167,8 @@
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(784, 561);
+            this.ClientSize = new System.Drawing.Size(784, 570);
+            this.Controls.Add(this.PrintBtn);
             this.Controls.Add(this.titlePanel);
             this.Controls.Add(this.WeeklyExpenseDataView);
             this.Name = "WeeklyExpense";
@@ -167,5 +189,6 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label Title;
+        private ButtonModified PrintBtn;
     }
 }

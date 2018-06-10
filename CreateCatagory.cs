@@ -6,7 +6,7 @@ using System.Data;
 
 namespace Invoice
 {
-    public partial class CreateCatagory : Form
+    public partial class CreateCatagory : ResizeForm
     {
         private DbConnectorClass db;
         public const int WM_NCLBUTTONDOWN = 0xA1;
@@ -128,7 +128,6 @@ namespace Invoice
                 Catagory = row.Cells[1].Value.ToString().ToUpper();
             if (row.Cells[2].Value != null)
                 SubCatagory = row.Cells[2].Value.ToString().ToUpper();
-
             try
             {
                 var x = MessageBox.Show("Are you sure you want to save? ", "Save", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -139,14 +138,14 @@ namespace Invoice
                     {
                         sqlQuery = "INSERT INTO dbo.Catagory " +
                         "(Catagory, subcatagory) VALUES (" +
-                        " '" + Catagory + "', " +
-                        " '" + SubCatagory + "') ";
+                        " N'" + Catagory + "', " +
+                        " N'" + SubCatagory + "') ";
                     }
                     else
                     {
                         sqlQuery = "UPDATE dbo.Catagory set " +
-                        "Catagory = '" + Catagory + "', " +
-                        "SubCatagory = '" + SubCatagory + "' WHERE catagory_id = " + catagoryId;
+                        "Catagory = N'" + Catagory + "', " +
+                        "SubCatagory = N'" + SubCatagory + "' WHERE catagory_id = " + catagoryId;
                     }
                     db.RunQuery(sqlQuery).Close();
                     // need to close this form after click 'OK' button
@@ -176,7 +175,6 @@ namespace Invoice
         {
             this.Close();
         }
-
 
     }
 }

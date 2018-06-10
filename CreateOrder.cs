@@ -22,14 +22,15 @@ namespace Invoice
         private int PRICE   = 4;
         private int AMOUNT  = 5;
         private int MARKET  = 6;
-        private int NOTE    = 7;
-        private int ROUTE   = 8;
+        private int ROUTE   = 7;
+        private int NOTE    = 8;
+        
         private OrderList ol;
         private Hashtable qtyList = new Hashtable(); 
         private bool isSave = false;
         private SqlDataReader dbReader;
         private bool isMarket;
-
+        private bool isModified = false;
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
         [DllImportAttribute("user32.dll")]
@@ -62,6 +63,7 @@ namespace Invoice
             OrderLoad(id);
             this.orderId = id;
             this.ol = ol;
+            isModified = false;
             this.PrintBtn.Show();
         }
         private void SetComboBox()
@@ -73,21 +75,19 @@ namespace Invoice
                 while (dbReader.Read())
                 {
                     (this.orderDataView.Columns[0] as DataGridViewComboBoxColumn)
-                        .Items.Add(db.NullToEmpty(dbReader, "product"));
+                        .Items.Add(db.NullToNA(dbReader, "product"));
                 }
                 dbReader.Close();
-                dbReader = db.RunQuery("select store_name, store_phone, store_address, contact_name, contact_phone, store_detail, store_fax, isMarket, count(*) as count "+
+                //use count to get order by popular store
+                dbReader = db.RunQuery("select s.store_id, store_name, store_phone, store_address, contact_name, contact_phone, store_detail, store_fax, isMarket, count(*) as count "+
                     " from dbo.store as s full outer join dbo.order_list as o on s.store_id = o.store_id "+
-                    " group by store_name, store_phone, store_address, contact_name, contact_phone, store_detail, store_fax, isMarket order by count(*) desc; ");
+                    " group by s.store_id, store_name, store_phone, store_address, contact_name, contact_phone, store_detail, store_fax, isMarket order by count(*) desc; ");
                 while (dbReader.Read())
                 {
                     ComboboxItem comboItem = new ComboboxItem
                     {
-                        Text = db.NullToEmpty(dbReader, "store_name") +
-                        ", (" + db.NullToEmpty(dbReader, "store_phone") +
-                        "), " + db.NullToEmpty(dbReader, "store_address") +
-                        " (Contact: " + db.NullToEmpty(dbReader, "contact_name") + ")",
-                        Value = db.NullToEmpty(dbReader, "isMarket")
+                        Text = db.NullToNA(dbReader, "store_id") + ": " + db.NullToNA(dbReader, "store_name") + ", (Contact: " + db.NullToNA(dbReader, "contact_name") + ")",
+                        Value = db.NullToNA(dbReader, "isMarket")
                     };
                     this.StoreList.Items.Add(comboItem);
                 }
@@ -112,9 +112,9 @@ namespace Invoice
             try
             {
                 db = new DbConnectorClass();
-                adapter = new SqlDataAdapter("SELECT Product, Box, Each, Pound" +
-                    "Price, ((Box+Each+Pound) * quantity) AS Amount, Market, Note, Route " +
-                    "FROM dbo.cart where quantity > 0 and order_id = "+id, db.GetConnection());
+                adapter = new SqlDataAdapter("SELECT Product, Box, Each, Pound," +
+                    "Price, ((Box+Each+Pound) * price) AS Amount, Market, Route, Note " +
+                    "FROM dbo.cart where (Box+Each+Pound) > 0 and order_id = " + id, db.GetConnection());
                 // Create one DataTable with one column.
                 this.DS = new DataSet();
                 adapter.Fill(DS);
@@ -122,21 +122,23 @@ namespace Invoice
                 for (int i = 0; i < DS.Tables[0].Rows.Count; i++)
                 {
                     DataRow myRow = DS.Tables[0].Rows[i];
-                    this.orderDataView.Rows.Add(myRow[PRODUCT], myRow[BOX], myRow[EACH], myRow[POUND], myRow[PRICE], myRow[AMOUNT], myRow[MARKET], myRow[NOTE], myRow[ROUTE]);
-                    int qty = getQty(myRow[BOX], myRow[EACH], myRow[POUND]);
+                    this.orderDataView.Rows.Add(myRow[PRODUCT], myRow[BOX], myRow[EACH], myRow[POUND], myRow[PRICE], myRow[AMOUNT], myRow[MARKET], myRow[ROUTE], myRow[NOTE]);
+                    double qty = getQty(myRow[BOX], myRow[EACH], myRow[POUND]);
                     qtyList.Add(myRow[PRODUCT], myRow[BOX]);
+                    if (myRow[ROUTE] != null)
+                    {
+                        String routeVal = myRow[ROUTE].ToString();
+                        this.RouteComboBox.SelectedItem = myRow[ROUTE].ToString();
+                    }
                 }
                 dbReader = db.RunQuery("select * from dbo.store as s inner join dbo.order_list as o " +
                     "on s.store_id = o.store_id where order_id = "+id+";");
                 if(dbReader.Read())
                 {
                     this.StoreList.SelectedIndex = this.StoreList.FindString(
-                        db.NullToEmpty(dbReader, "store_name") +
-                        ", (" + db.NullToEmpty(dbReader, "store_phone") +
-                        "), " + db.NullToEmpty(dbReader, "store_address") +
-                        " (Contact: " + db.NullToEmpty(dbReader, "contact_name") + ")");
-                    this.DeliveryDate.Value = Convert.ToDateTime(db.NullToEmpty(dbReader, "delivery_date"));
-                    this.isMarket = db.NullToEmpty(dbReader, "isMarket").Equals('1') ? true: false;
+                        db.NullToNA(dbReader, "store_id") + ": " + db.NullToNA(dbReader, "store_name") + ", (Contact: " + db.NullToNA(dbReader, "contact_name") + ")");
+                    this.DeliveryDate.Value = Convert.ToDateTime(db.NullToNA(dbReader, "delivery_date"));
+                    this.isMarket = db.NullToNA(dbReader, "isMarket").Equals('1') ? true: false;
                 }
                 dbReader.Close();
                 //this.orderDataView.DataSource = DS.Tables[0];
@@ -155,15 +157,22 @@ namespace Invoice
             // Update the balance column whenever the value of any cell changes.
             UpdateBalance();
         }
-        private int getQty(object box, object each, object pound)
+        private double getQty(object box, object each, object pound)
         {
-            int qty = 0;
-            if ((int)box > 0)
-                qty = (int)box;
-            else if ((int)each > 0)
-                qty = (int)each;
-            else if ((int)pound > 0)
-                qty = (int)pound;
+            double qty = 0;
+            try
+            {
+                if (Convert.ToDouble(box) > 0)
+                    qty = Convert.ToDouble(box);
+                else if (Convert.ToDouble(each) > 0)
+                    qty = Convert.ToDouble(each);
+                else if (Convert.ToDouble(pound) > 0)
+                    qty = Convert.ToDouble(pound);
+            }
+            catch (Exception e)
+            {
+
+            }
             return qty;
         }
         private void UpdateBalance()
@@ -182,15 +191,43 @@ namespace Invoice
                 Object eachValue = dataRow.Cells[EACH].Value;
                 Object poundValue = dataRow.Cells[POUND].Value;
                 Object priceValue = dataRow.Cells[PRICE].Value;
-                int qtyValue = getQty(boxValue, eachValue, poundValue);
+                double qtyValue = 0;
+                try
+                {
+                    if (Convert.ToDouble(boxValue) > 0)
+                    {
+                        qtyValue = Convert.ToDouble(boxValue);
+                        dataRow.Cells[EACH].Value = "0";
+                        dataRow.Cells[POUND].Value = "0";
+                    }
+                    else if (Convert.ToDouble(eachValue) > 0)
+                    {
+                        qtyValue = Convert.ToDouble(eachValue);
+                        dataRow.Cells[BOX].Value = "0";
+                        dataRow.Cells[POUND].Value = "0";
+                    }
+                    else if (Convert.ToDouble(poundValue) > 0)
+                    {
+                        qtyValue = Convert.ToDouble(poundValue);
+                        dataRow.Cells[BOX].Value = "0";
+                        dataRow.Cells[EACH].Value = "0";
+                    }
+                }catch(Exception e)
+                {
+
+                }
                 qty = Convert.ToDouble(qtyValue.ToString());
 
                 if (priceValue != null)
                 {
                     if (priceValue.ToString().Length != 0)
                     {
-                        priceValue = Regex.Replace(priceValue.ToString(), "[^a-zA-Z0-9_.]+", "", 
+                        priceValue = Regex.Replace(priceValue.ToString(), "[^0-9.]+", "", 
                             RegexOptions.Compiled);
+                        if (priceValue.Equals(""))
+                        {
+                            priceValue = "0";
+                        }
                         price = Convert.ToDouble(priceValue.ToString());
                         dataRow.Cells[PRICE].Value = "$" + priceValue;
                     }
@@ -227,8 +264,8 @@ namespace Invoice
                 if (dbReader.Read())
                 {
                     //product, qty, price, amount, market, note
-                    Object[] values = { db.NullToEmpty(dbReader, "product"), 0,
-                        "$" + db.NullToEmpty(dbReader, "price"), 0, "", db.NullToEmpty(dbReader, "note") };
+                    Object[] values = { db.NullToNA(dbReader, "product"), 0,
+                        "$" + db.NullToNA(dbReader, "price"), 0, "", db.NullToNA(dbReader, "note") };
                     orderDataView.Rows[rowIndex].SetValues(values);
                 }
                 dbReader.Close();
@@ -265,22 +302,22 @@ namespace Invoice
                 
                 if (!HasValue(row.Cells[PRODUCT].Value))
                 {
-                   msg = "You have to set product on row "+i;
+                   msg = "You have to set product on row "+(i+1);
                    ErrorFound = true;
                 }
                 else if (getQty(row.Cells[BOX].Value, row.Cells[EACH].Value, row.Cells[POUND].Value) < 1)
                 {
-                    msg = "You have to set quantity on row " + i;
+                    msg = "You have to set quantity on row " + (i + 1);
                     ErrorFound = true;
                 }
                 else if (!HasValue(row.Cells[PRICE].Value))
                 {
-                    msg = "You have to set price on row " + i ;
+                    msg = "You have to set price on row " + (i + 1);
                     ErrorFound = true;
                 }
                 else if (Double.Parse(row.Cells[PRICE].Value.ToString().Substring(1)) < 0)
                 {
-                    msg = "You have to set price above or equal to 0 on row " + i ;
+                    msg = "You have to set price above or equal to 0 on row " + (i + 1);
                     ErrorFound = true;
                 }
                 if (ErrorFound)
@@ -348,7 +385,7 @@ namespace Invoice
                         {
                             sqlQuery = "INSERT INTO dbo.order_list " +
                             "(store_id, ordered_date, delivery_date, total) VALUES " +
-                            "('" + (this.StoreList.SelectedIndex + 1) + "', " +
+                            "('" + (this.StoreList.Text.Split(':')[0]) + "', " +
                             " getDATE(), " +
                             " '" + Convert.ToDateTime(this.DeliveryDate.Value.ToString()).ToString("yyyy-MM-dd") + "', " +
                             " '" + this.TotalTxt.Text + "') ";
@@ -357,7 +394,7 @@ namespace Invoice
                             if (dbReader.Read())
                             {
                                 //product, qty, price, amount, market, note
-                                this.orderId = (String)db.NullToEmpty(dbReader, "order_id");
+                                this.orderId = (String)db.NullToNA(dbReader, "order_id");
                             }
                             dbReader.Close();
                             for (int i = 0; i < this.orderDataView.Rows.Count - 1; i++)
@@ -380,11 +417,11 @@ namespace Invoice
                                     route = routeIdx;
                                 }
                                 string InsertSql = "INSERT INTO dbo.cart(box, each, pound, product, price, market, note, route, order_id) VALUES(" +
-                                    "'" + box + "', ''" + each + "', ''" + pound + "', '" + product + "', '" + price + "', '" +
-                                    market + "', '" + note + "', '" + route + "', '" + this.orderId + "')";
+                                    "'" + box + "', '" + each + "', '" + pound + "', N'" + product + "', '" + price + "', N'" +
+                                    market + "', N'" + note + "', '" + route + "', '" + this.orderId + "')";
                                 db.RunQuery(InsertSql).Close();
                                 String buyOrSell = this.isMarket ? "+" : "-";
-                                string updateQuantity = "UPDATE dbo.product set box = (box " + buyOrSell + " " + box + ") where product ='" + product + "'";
+                                string updateQuantity = "UPDATE dbo.product set quantity = (quantity " + buyOrSell + " " + box + ") where product ='" + product + "'";
                                 db.RunQuery(updateQuantity).Close();
                             }
                         }
@@ -421,14 +458,14 @@ namespace Invoice
                                 if (!dbReader.Read())
                                 {
                                     InsertSql = "INSERT INTO dbo.cart(box, each, pound, product, price, market, note, route, order_id) VALUES(" +
-                                    "'" + box + "','" + each + "','" + pound + "', '" + product + "', '" + price + "', '" +
-                                    market + "', '" + note + "', '" + route + "', '" + this.orderId + "')";
+                                    "'" + box + "','" + each + "','" + pound + "', N'" + product + "', '" + price + "', N'" +
+                                    market + "', N'" + note + "', '" + route + "', '" + this.orderId + "')";
 
                                 }
                                 else
                                 {
                                     InsertSql = "UPDATE dbo.cart set box='" + box +
-                                    "', price='" + price + "', market='" + market + "', note='" + note +
+                                    "', price='" + price + "', market=N'" + market + "', note=N'" + note +
                                     "', route='" + route + "' " + whereStr;
                                 }
                                 dbReader.Close();
@@ -454,7 +491,7 @@ namespace Invoice
                         if (saveFromBtn)
                         {
                             if (this.ol != null)
-                                this.ol.OrderLoad();
+                                this.ol.OrderLoad(true,true);
                             this.Close();
                         }
                     }
@@ -467,7 +504,12 @@ namespace Invoice
         }
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            if (!isSave)
+            if (!isModified)
+            {
+                db.Close();
+                e.Cancel = false;
+            }
+            else if (!isSave)
             {
                 var x = MessageBox.Show("Do you want to exit?\n unsaved data will be lost. ",
                     "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -490,7 +532,7 @@ namespace Invoice
                 if (DialogResult.Yes == x)
                 {
                     String sqlQuery = "DELETE FROM dbo.cart WHERE order_id= " + this.orderId;
-                    db.RunQuery(sqlQuery);
+                    db.RunQuery(sqlQuery).Close();
                     sqlQuery = "DELETE FROM dbo.order_list WHERE order_id= " + this.orderId;
                     db.RunQuery(sqlQuery).Close();
                     MessageBox.Show("Data Deleted successfully", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.None);
@@ -543,7 +585,11 @@ namespace Invoice
         }
         private void PrintBtn_Click(object sender, EventArgs e)
         {
-            var x = MessageBox.Show("Unsaved data will not show on invoice, Do you want to SAVE order?", "Open Invoice", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+            var x = DialogResult.No;
+            if (isModified)
+            {
+                x = MessageBox.Show("Unsaved data will not show on invoice, Do you want to SAVE order?", "Open Invoice", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+            }
             if (DialogResult.Cancel == x)
             {
                 return;
@@ -551,7 +597,7 @@ namespace Invoice
             else if(DialogResult.Yes == x) {
                 saveData(false);
             }
-            printPreview preview = new printPreview(this.orderId, this.TotalTxt.Text, this.orderDataView);
+            printPreview preview = new printPreview(this.orderId, this.TotalTxt.Text);
             preview.Show();
         }
 
@@ -572,9 +618,20 @@ namespace Invoice
             {
                 products.Add(rows[i].Cells[0].Value);
             }
-            ProductCollection pc = new ProductCollection(this, products);
+            String routeValue = "";
+            if(this.RouteComboBox.SelectedItem != null)
+            {
+                routeValue = this.RouteComboBox.SelectedItem.ToString();
+            }
+            ProductCollection pc = new ProductCollection(this, products, routeValue);
+            pc.WindowState = FormWindowState.Maximized;
             pc.Show();
         }
-        
+
+        private void OrderListView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1)
+                isModified = true;
+        }
     }
 }

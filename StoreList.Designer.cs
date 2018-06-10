@@ -42,6 +42,15 @@
             this.closeBtn = new System.Windows.Forms.Button();
             this.saveBtn = new Invoice.ButtonModified();
             this.cancelBtn = new Invoice.ButtonModified();
+            this.No = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.storeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.storePhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.storeFax = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.storeAddr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contactName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contactPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.storeDetail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isMarket = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.StoreDataView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.storeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -59,6 +68,16 @@
             this.StoreDataView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.StoreDataView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.StoreDataView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.StoreDataView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.No,
+            this.storeName,
+            this.storePhone,
+            this.storeFax,
+            this.storeAddr,
+            this.contactName,
+            this.contactPhone,
+            this.storeDetail,
+            this.isMarket});
             this.StoreDataView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.StoreDataView.Location = new System.Drawing.Point(32, 114);
             this.StoreDataView.Name = "StoreDataView";
@@ -106,6 +125,7 @@
             this.ListOptionLbl.Size = new System.Drawing.Size(116, 25);
             this.ListOptionLbl.TabIndex = 4;
             this.ListOptionLbl.Text = "List Option: ";
+            this.ListOptionLbl.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DragTitlePanel);
             // 
             // pictureBox2
             // 
@@ -116,6 +136,7 @@
             this.pictureBox2.Size = new System.Drawing.Size(29, 32);
             this.pictureBox2.TabIndex = 3;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DragTitlePanel);
             // 
             // pictureBox1
             // 
@@ -126,6 +147,7 @@
             this.pictureBox1.Size = new System.Drawing.Size(57, 55);
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DragTitlePanel);
             // 
             // Title
             // 
@@ -137,6 +159,7 @@
             this.Title.TabIndex = 1;
             this.Title.Text = "Store List";
             this.Title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Title.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DragTitlePanel);
             // 
             // titlePanel
             // 
@@ -194,6 +217,71 @@
             this.cancelBtn.UseVisualStyleBackColor = true;
             this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
+            // No
+            // 
+            this.No.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.No.HeaderText = "No";
+            this.No.Name = "No";
+            this.No.Width = 46;
+            // 
+            // storeName
+            // 
+            this.storeName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.storeName.HeaderText = "Store Name";
+            this.storeName.Name = "storeName";
+            this.storeName.Width = 88;
+            // 
+            // storePhone
+            // 
+            this.storePhone.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.storePhone.HeaderText = "Store Phone";
+            this.storePhone.Name = "storePhone";
+            this.storePhone.Width = 91;
+            // 
+            // storeFax
+            // 
+            this.storeFax.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.storeFax.HeaderText = "Store Fax";
+            this.storeFax.Name = "storeFax";
+            this.storeFax.Width = 77;
+            // 
+            // storeAddr
+            // 
+            this.storeAddr.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.storeAddr.HeaderText = "Store Address";
+            this.storeAddr.Name = "storeAddr";
+            this.storeAddr.Width = 98;
+            // 
+            // contactName
+            // 
+            this.contactName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.contactName.HeaderText = "Contact Name";
+            this.contactName.Name = "contactName";
+            // 
+            // contactPhone
+            // 
+            this.contactPhone.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.contactPhone.HeaderText = "Contact Phone";
+            this.contactPhone.Name = "contactPhone";
+            this.contactPhone.Width = 95;
+            // 
+            // storeDetail
+            // 
+            this.storeDetail.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.storeDetail.HeaderText = "Store Detail";
+            this.storeDetail.Name = "storeDetail";
+            // 
+            // isMarket
+            // 
+            this.isMarket.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.isMarket.FalseValue = "0";
+            this.isMarket.HeaderText = "IsMarket";
+            this.isMarket.Name = "isMarket";
+            this.isMarket.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.isMarket.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.isMarket.TrueValue = "1";
+            this.isMarket.Width = 73;
+            // 
             // StoreList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -230,5 +318,14 @@
         private System.Windows.Forms.Button closeBtn;
         private ButtonModified saveBtn;
         private ButtonModified cancelBtn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn No;
+        private System.Windows.Forms.DataGridViewTextBoxColumn storeName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn storePhone;
+        private System.Windows.Forms.DataGridViewTextBoxColumn storeFax;
+        private System.Windows.Forms.DataGridViewTextBoxColumn storeAddr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn contactName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn contactPhone;
+        private System.Windows.Forms.DataGridViewTextBoxColumn storeDetail;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn isMarket;
     }
 }

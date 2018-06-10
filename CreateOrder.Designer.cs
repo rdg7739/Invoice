@@ -32,9 +32,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateOrder));
             this.orderDataView = new System.Windows.Forms.DataGridView();
             this.ProductCol = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.box = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.box1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EachCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Pound = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pound1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PriceCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AmountCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MarketCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -75,9 +75,9 @@
             this.orderDataView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.orderDataView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ProductCol,
-            this.box,
+            this.box1,
             this.EachCol,
-            this.Pound,
+            this.pound1,
             this.PriceCol,
             this.AmountCol,
             this.MarketCol,
@@ -91,10 +91,12 @@
             this.orderDataView.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.orderDataView.Size = new System.Drawing.Size(822, 386);
             this.orderDataView.TabIndex = 5;
+            this.orderDataView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.OrderListView_CellValueChanged);
             this.orderDataView.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Grid_EditingControlShowing);
             // 
             // ProductCol
             // 
+            this.ProductCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.ProductCol.HeaderText = "Product";
             this.ProductCol.MinimumWidth = 150;
             this.ProductCol.Name = "ProductCol";
@@ -102,51 +104,60 @@
             this.ProductCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.ProductCol.Width = 150;
             // 
-            // box
+            // box1
             // 
-            this.box.FillWeight = 40F;
-            this.box.HeaderText = "Box";
-            this.box.MinimumWidth = 40;
-            this.box.Name = "box";
-            this.box.Width = 40;
+            this.box1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.box1.FillWeight = 40F;
+            this.box1.HeaderText = "Box";
+            this.box1.MinimumWidth = 40;
+            this.box1.Name = "box1";
+            this.box1.Width = 50;
             // 
             // EachCol
             // 
+            this.EachCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.EachCol.FillWeight = 40F;
             this.EachCol.HeaderText = "Each";
             this.EachCol.MinimumWidth = 40;
             this.EachCol.Name = "EachCol";
-            this.EachCol.Width = 40;
+            this.EachCol.Width = 57;
             // 
-            // Pound
+            // pound1
             // 
-            this.Pound.FillWeight = 40F;
-            this.Pound.HeaderText = "Pound";
-            this.Pound.MinimumWidth = 40;
-            this.Pound.Name = "Pound";
-            this.Pound.Width = 40;
+            this.pound1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.pound1.FillWeight = 40F;
+            this.pound1.HeaderText = "Pound";
+            this.pound1.MinimumWidth = 40;
+            this.pound1.Name = "pound1";
+            this.pound1.Width = 63;
             // 
             // PriceCol
             // 
+            this.PriceCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.PriceCol.HeaderText = "Unit Price";
             this.PriceCol.MinimumWidth = 50;
             this.PriceCol.Name = "PriceCol";
+            this.PriceCol.Width = 78;
             // 
             // AmountCol
             // 
+            this.AmountCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.AmountCol.HeaderText = "Amount";
             this.AmountCol.MinimumWidth = 50;
             this.AmountCol.Name = "AmountCol";
+            this.AmountCol.Width = 68;
             // 
             // MarketCol
             // 
+            this.MarketCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.MarketCol.HeaderText = "Market";
             this.MarketCol.MinimumWidth = 50;
             this.MarketCol.Name = "MarketCol";
+            this.MarketCol.Width = 65;
             // 
             // RouteCol
             // 
-            this.RouteCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.RouteCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.RouteCol.HeaderText = "Route";
             this.RouteCol.Items.AddRange(new object[] {
             "",
@@ -176,9 +187,12 @@
             this.BillToLbl.Size = new System.Drawing.Size(181, 25);
             this.BillToLbl.TabIndex = 6;
             this.BillToLbl.Text = "Bill To (Customer): ";
+            this.BillToLbl.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DragTitlePanel);
             // 
             // StoreList
             // 
+            this.StoreList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.StoreList.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StoreList.FormattingEnabled = true;
             this.StoreList.Location = new System.Drawing.Point(264, 11);
@@ -195,7 +209,7 @@
             this.DeliveryDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.DeliveryDate.Location = new System.Drawing.Point(147, 53);
             this.DeliveryDate.Name = "DeliveryDate";
-            this.DeliveryDate.Size = new System.Drawing.Size(213, 26);
+            this.DeliveryDate.Size = new System.Drawing.Size(243, 26);
             this.DeliveryDate.TabIndex = 2;
             this.DeliveryDate.Value = new System.DateTime(2018, 4, 14, 17, 57, 1, 0);
             // 
@@ -205,11 +219,12 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.Window;
-            this.label1.Location = new System.Drawing.Point(652, 54);
+            this.label1.Location = new System.Drawing.Point(645, 54);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 25);
+            this.label1.Size = new System.Drawing.Size(78, 25);
             this.label1.TabIndex = 12;
-            this.label1.Text = "Total:";
+            this.label1.Text = "Total: $";
+            this.label1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DragTitlePanel);
             // 
             // TotalTxt
             // 
@@ -257,6 +272,7 @@
             this.RouteLbl.Size = new System.Drawing.Size(74, 25);
             this.RouteLbl.TabIndex = 16;
             this.RouteLbl.Text = "Route: ";
+            this.RouteLbl.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DragTitlePanel);
             // 
             // Quantity
             // 
@@ -268,7 +284,7 @@
             // 
             this.RouteComboBox.AllowDrop = true;
             this.RouteComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.RouteComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.RouteComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.RouteComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RouteComboBox.FormattingEnabled = true;
             this.RouteComboBox.Items.AddRange(new object[] {
@@ -313,6 +329,7 @@
             this.label2.Size = new System.Drawing.Size(59, 25);
             this.label2.TabIndex = 18;
             this.label2.Text = "Date:";
+            this.label2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DragTitlePanel);
             // 
             // closeBtn
             // 
@@ -335,6 +352,7 @@
             this.pictureBox2.Size = new System.Drawing.Size(30, 32);
             this.pictureBox2.TabIndex = 3;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DragTitlePanel);
             // 
             // pictureBox1
             // 
@@ -345,6 +363,7 @@
             this.pictureBox1.Size = new System.Drawing.Size(58, 55);
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DragTitlePanel);
             // 
             // PrintBtn
             // 
@@ -419,7 +438,6 @@
         private System.Windows.Forms.Button DeleteBtn;
         private System.Windows.Forms.Label RouteLbl;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
-        private System.Windows.Forms.ComboBox RouteComboBox;
         private System.Windows.Forms.Panel titlePanel;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button closeBtn;
@@ -430,13 +448,14 @@
         private ButtonModified PrintBtn;
         private ButtonModified ProdListBtn;
         private System.Windows.Forms.DataGridViewComboBoxColumn ProductCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn box;
+        private System.Windows.Forms.DataGridViewTextBoxColumn box1;
         private System.Windows.Forms.DataGridViewTextBoxColumn EachCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Pound;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pound1;
         private System.Windows.Forms.DataGridViewTextBoxColumn PriceCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn AmountCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn MarketCol;
         private System.Windows.Forms.DataGridViewComboBoxColumn RouteCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn NoteCol;
+        private System.Windows.Forms.ComboBox RouteComboBox;
     }
 }

@@ -145,5 +145,6 @@ C:\Users\yomiguri\Documents\GitHub\Invoice\bin\Debug\zh-CHS\Microsoft.ReportView
 C:\Users\yomiguri\Documents\GitHub\Invoice\bin\Debug\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
 C:\Users\yomiguri\Documents\GitHub\Invoice\obj\Debug\Invoice.exe.config
 C:\Users\yomiguri\Documents\GitHub\Invoice\obj\Debug\Invoice.csprojAssemblyReference.cache
-C:\Users\yomiguri\Documents\GitHub\Invoice\obj\Debug\Invoice.Catagory.resources
 C:\Users\yomiguri\Documents\GitHub\Invoice\obj\Debug\Invoice.CreateCatagory.resources
+C:\Users\yomiguri\Documents\GitHub\Invoice\obj\Debug\Invoice.printWeeklyReport.resources
+C:\Users\yomiguri\Documents\GitHub\Invoice\obj\Debug\Invoice.delieveryReport.resources

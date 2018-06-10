@@ -54,7 +54,6 @@ namespace Invoice
         private void MyStoreBtn_Click(object sender, EventArgs e)
         {
             MyStore form2 = new MyStore();
-            form2.WindowState = FormWindowState.Maximized;
             form2.Show();
         }
 
@@ -102,7 +101,6 @@ namespace Invoice
         private void CatagoryBtn_Click(object sender, EventArgs e)
         {
             CreateCatagory form2 = new CreateCatagory();
-            form2.WindowState = FormWindowState.Maximized;
             form2.Show();
         }
     }

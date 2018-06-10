@@ -30,6 +30,7 @@ namespace Invoice
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductList));
             this.ProductDataView = new System.Windows.Forms.DataGridView();
             this.No = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,6 +42,8 @@ namespace Invoice
             this.Note = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Title = new System.Windows.Forms.Label();
             this.titlePanel = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.CatagoryBox = new System.Windows.Forms.ComboBox();
             this.closeBtn = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -69,6 +72,14 @@ namespace Invoice
             this.Catagory,
             this.SubCatagory,
             this.Note});
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ProductDataView.DefaultCellStyle = dataGridViewCellStyle1;
             this.ProductDataView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.ProductDataView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.ProductDataView.Location = new System.Drawing.Point(36, 113);
@@ -82,45 +93,55 @@ namespace Invoice
             // 
             // No
             // 
+            this.No.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.No.FillWeight = 50F;
             this.No.HeaderText = "No";
             this.No.Name = "No";
-            this.No.Width = 50;
+            this.No.ReadOnly = true;
+            this.No.Width = 46;
             // 
             // Product
             // 
+            this.Product.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.Product.HeaderText = "Product";
             this.Product.Name = "Product";
+            this.Product.Width = 69;
             // 
             // Price
             // 
+            this.Price.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.Price.FillWeight = 50F;
             this.Price.HeaderText = "Price";
             this.Price.Name = "Price";
-            this.Price.Width = 50;
+            this.Price.Width = 56;
             // 
             // Quantity
             // 
+            this.Quantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.Quantity.FillWeight = 60F;
             this.Quantity.HeaderText = "Quantity";
             this.Quantity.Name = "Quantity";
-            this.Quantity.Width = 60;
+            this.Quantity.Width = 71;
             // 
             // Catagory
             // 
+            this.Catagory.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.Catagory.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
             this.Catagory.HeaderText = "Catagory";
             this.Catagory.Name = "Catagory";
             this.Catagory.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Catagory.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Catagory.Width = 74;
             // 
             // SubCatagory
             // 
+            this.SubCatagory.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.SubCatagory.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
             this.SubCatagory.HeaderText = "SubCatagory";
             this.SubCatagory.Name = "SubCatagory";
             this.SubCatagory.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.SubCatagory.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.SubCatagory.Width = 93;
             // 
             // Note
             // 
@@ -133,18 +154,21 @@ namespace Invoice
             this.Title.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.Title.Font = new System.Drawing.Font("Arial", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Title.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Title.Location = new System.Drawing.Point(300, 15);
+            this.Title.Location = new System.Drawing.Point(95, 18);
             this.Title.Name = "Title";
             this.Title.Size = new System.Drawing.Size(238, 60);
             this.Title.TabIndex = 1;
             this.Title.Text = "Product List";
             this.Title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Title.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DragTitlePanel);
             // 
             // titlePanel
             // 
             this.titlePanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.titlePanel.BackColor = System.Drawing.Color.SteelBlue;
+            this.titlePanel.Controls.Add(this.label1);
+            this.titlePanel.Controls.Add(this.CatagoryBox);
             this.titlePanel.Controls.Add(this.closeBtn);
             this.titlePanel.Controls.Add(this.pictureBox2);
             this.titlePanel.Controls.Add(this.pictureBox1);
@@ -154,6 +178,30 @@ namespace Invoice
             this.titlePanel.Size = new System.Drawing.Size(782, 91);
             this.titlePanel.TabIndex = 23;
             this.titlePanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DragTitlePanel);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.ForeColor = System.Drawing.SystemColors.Window;
+            this.label1.Location = new System.Drawing.Point(406, 32);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(103, 25);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Catagory: ";
+            // 
+            // CatagoryBox
+            // 
+            this.CatagoryBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CatagoryBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CatagoryBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.CatagoryBox.FormattingEnabled = true;
+            this.CatagoryBox.Location = new System.Drawing.Point(515, 29);
+            this.CatagoryBox.Name = "CatagoryBox";
+            this.CatagoryBox.Size = new System.Drawing.Size(242, 33);
+            this.CatagoryBox.TabIndex = 5;
+            this.CatagoryBox.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // closeBtn
             // 
@@ -172,22 +220,24 @@ namespace Invoice
             this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Location = new System.Drawing.Point(274, 41);
+            this.pictureBox2.Location = new System.Drawing.Point(69, 44);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(29, 32);
             this.pictureBox2.TabIndex = 3;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DragTitlePanel);
             // 
             // pictureBox1
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(239, 16);
+            this.pictureBox1.Location = new System.Drawing.Point(34, 19);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(57, 55);
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DragTitlePanel);
             // 
             // saveBtn
             // 
@@ -230,6 +280,7 @@ namespace Invoice
             this.Text = "ItemList";
             ((System.ComponentModel.ISupportInitialize)(this.ProductDataView)).EndInit();
             this.titlePanel.ResumeLayout(false);
+            this.titlePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -243,6 +294,8 @@ namespace Invoice
         private System.Windows.Forms.Button closeBtn;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private ButtonModified saveBtn;
+        private ButtonModified cancelBtn;
         private DataGridViewTextBoxColumn No;
         private DataGridViewTextBoxColumn Product;
         private DataGridViewTextBoxColumn Price;
@@ -250,7 +303,7 @@ namespace Invoice
         private DataGridViewComboBoxColumn Catagory;
         private DataGridViewComboBoxColumn SubCatagory;
         private DataGridViewTextBoxColumn Note;
-        private ButtonModified saveBtn;
-        private ButtonModified cancelBtn;
+        private Label label1;
+        private ComboBox CatagoryBox;
     }
 }

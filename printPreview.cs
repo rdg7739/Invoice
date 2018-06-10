@@ -18,10 +18,9 @@ namespace Invoice
         private SqlDataReader dbReader;
         String total;
         String orderId;
-        DataGridView gridView;
-        public printPreview(String orderId, String total, DataGridView gridView)
+        String delieveryDateLbl;
+        public printPreview(String orderId, String total)
         {
-            this.gridView = gridView;
             this.orderId = orderId;
             this.total = total;
             InitializeComponent();
@@ -29,6 +28,8 @@ namespace Invoice
 
         private void printPreview_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'DataSet1.weeklyExpenseDataTable' table. You can move, or remove it, as needed.
+            this.weeklyExpenseDataTableTableAdapter.Fill(this.DataSet1.weeklyExpenseDataTable, delieveryDateLbl, delieveryDateLbl, delieveryDateLbl, delieveryDateLbl, delieveryDateLbl);
             this.reportViewer1.RefreshReport();
         }
 
@@ -36,7 +37,6 @@ namespace Invoice
         {
             string storeIdLbl = "";
             string orderIdLbl = "";
-            string delieveryDateLbl = "";
             string totalLbl = "";
             string custNameLbl = "";
             string custAddrLbl = "";
@@ -50,25 +50,25 @@ namespace Invoice
                     "on s.store_id = o.store_id where order_id = " + orderId + ";");
             if (dbReader.Read())
             {
-                storeIdLbl = db.NullToEmpty(dbReader, "store_id").PadLeft(5,'0');
+                storeIdLbl = db.NullToNA(dbReader, "store_id").PadLeft(5,'0');
                 orderIdLbl = this.orderId.PadLeft(5,'0');
-                delieveryDateLbl = db.NullToEmpty(dbReader, "delivery_date");
+                delieveryDateLbl = db.NullToNA(dbReader, "delivery_date");
                 
 
-                totalLbl = "$" + this.total;
-                custNameLbl = db.NullToEmpty(dbReader, "store_name");
-                custAddrLbl = db.NullToEmpty(dbReader, "store_address");
-                custPhoneLbl = db.NullToEmpty(dbReader, "store_phone");
+                totalLbl = this.total;
+                custNameLbl = db.NullToNA(dbReader, "store_name");
+                custAddrLbl = db.NullToNA(dbReader, "store_address");
+                custPhoneLbl = db.NullToNA(dbReader, "store_phone");
             }
             dbReader.Close();
 
             dbReader = db.RunQuery("select * from dbo.store where store_id = 1;");
             if (dbReader.Read())
             {
-                storeNameLbl = db.NullToEmpty(dbReader, "store_name");
-                addressLbl = db.NullToEmpty(dbReader, "store_address");
-                telLabel = db.NullToEmpty(dbReader, "store_phone");
-                faxLbl = db.NullToEmpty(dbReader, "store_fax");
+                storeNameLbl = db.NullToNA(dbReader, "store_name");
+                addressLbl = db.NullToNA(dbReader, "store_address");
+                telLabel = db.NullToNA(dbReader, "store_phone");
+                faxLbl = db.NullToNA(dbReader, "store_fax");
             }
             dbReader.Close();
             DateTime parsedDate = DateTime.Parse(delieveryDateLbl);
@@ -92,15 +92,17 @@ namespace Invoice
             try
             {
                 db = new DbConnectorClass();
-                adapter = new SqlDataAdapter("SELECT Product, quantity, " +
-                    "Price, (price * quantity) AS Amount, Note " +
-                    "FROM dbo.cart where quantity > 0 and order_id = " + orderId, db.GetConnection());
+                adapter = new SqlDataAdapter("SELECT Product, Box, Each, Pound," +
+                    "Price, (price * (Box + Each + Pound)) AS Amount, Note " +
+                    "FROM dbo.cart where (box + each + pound) > 0 and order_id = " + orderId, db.GetConnection());
                 // Create one DataTable with one column.
                 this.DS = new DataSet();
                 adapter.Fill(DS);
                 ReportDataSource rds = new ReportDataSource("Order", DS.Tables[0]);
                 this.reportViewer1.LocalReport.DataSources.Clear();
                 this.reportViewer1.LocalReport.DataSources.Add(rds);
+                this.reportViewer1.LocalReport.Refresh();
+                this.reportViewer1.RefreshReport();
             }
             catch (Exception ex)
             {

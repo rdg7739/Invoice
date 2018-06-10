@@ -21,10 +21,12 @@ namespace Invoice
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
         ArrayList products;
-        public ProductCollection(CreateOrder co, ArrayList products)
+        String routeValue;
+        public ProductCollection(CreateOrder co, ArrayList products, String routeValue)
         {
             this.products = products;
             this.co = co;
+            this.routeValue = routeValue;
             InitializeComponent();
             ProductLoad();
         }
@@ -74,7 +76,7 @@ namespace Invoice
         private void setChecked(CheckedListBox cb)
         {
             if (this.products == null) return;
-            for (int k = 0; k < this.products.Count-1; k++)
+            for (int k = 0; k < this.products.Count; k++)
             {
                 for (int i = 0; i < cb.Items.Count; i++)
                 {
@@ -103,36 +105,40 @@ namespace Invoice
                 CheckedListBox listBox = boxList[b];
                 for (int i = 0; i < listBox.CheckedItems.Count; i++)
                 {
-                    DataRowView box = (DataRowView)listBox.CheckedItems[i];
-                    String prodName = (String)box.Row.ItemArray[1];
+                    DataRowView item = (DataRowView)listBox.CheckedItems[i];
+                    String prodName = (String)item.Row.ItemArray[1];
                     try
                     {
-                        db = new DbConnectorClass();
-                        SqlDataReader dbReader = db.RunQuery("select * from dbo.product where product ='" + prodName + "';");
-
-                        if (dbReader.Read())
+                        bool isFound = false;
+                        for (int k = 0; k < dataView.Rows.Count; k++)
                         {
-                            int qty = 0;
-                            String price = "$" + db.NullToEmpty(dbReader, "price");
-                            int amount = 0;
-                            String market = "";
-                            String note = db.NullToEmpty(dbReader, "note");
-                            bool isFound = false;
-                            for (int k = 0; k < dataView.Rows.Count-1; k++)
+                            DataGridViewCellCollection cells = dataView.Rows[k].Cells;
+                            if (cells[0].Value.Equals(prodName))
                             {
-                                DataGridViewCellCollection cells = dataView.Rows[k].Cells;
-                                if (cells[0].Value.Equals(prodName))
-                                {
-                                    this.products.Remove(prodName);
-                                    isFound = true;
-                                }
+                                this.products.Remove(prodName);
+                                isFound = true;
+                                break;
                             }
-                            //product, qty, price, amount, market, note
-                            //add only new items
-                            if(!isFound)
-                               dataView.Rows.Add(prodName, qty, price, amount, market, note);
                         }
-                        dbReader.Close();
+                        if (!isFound)
+                        {
+                            db = new DbConnectorClass();
+                            SqlDataReader dbReader = db.RunQuery("select * from dbo.product where product ='" + prodName + "';");
+
+                            if (dbReader.Read())
+                            {
+                                int box = 0;
+                                int each = 0;
+                                int pound = 0;
+                                String price = "$" + db.NullToNA(dbReader, "price");
+                                int amount = 0;
+                                String market = "";
+                                String note = db.NullToNA(dbReader, "note");
+                                //add only new items
+                                dataView.Rows.Add(prodName, box, each, pound, price, amount, market, this.routeValue, note);
+                            }
+                            dbReader.Close();
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -141,9 +147,9 @@ namespace Invoice
                 }
             }
             //remove unchecked item from order list
-            for (int k = 0; k < this.products.Count-1; k++)
+            for (int k = 0; k < this.products.Count; k++)
             {
-                for (int u = 0; u < dataView.Rows.Count - 1; u++)
+                for (int u = 0; u < dataView.Rows.Count; u++)
                 {
                     if (dataView.Rows[u].Cells[0].Value.Equals(this.products[k]))
                     {

@@ -238,14 +238,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Invoice.exe" size="2249800">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Invoice.exe" size="2479176">
       <assemblyIdentity name="Invoice" version="1.0.0.0" publicKeyToken="579BB53D7D274B6E" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>dK1gUjp9pz56VSNAkcVfmW12QnHRzkOzviyIUg81p/U=</dsig:DigestValue>
+        <dsig:DigestValue>wTyyxHKXky3EsidCgY0kGzEvq8/SzAH3ohS4Ys/lIk0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -1221,13 +1221,13 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="Invoice.exe.config" size="2148">
+  <file name="Invoice.exe.config" size="2388">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>aSnmnvM8NOOoFP2c1yc5ho4UOUbrZT9cRNrf6Qu4CvE=</dsig:DigestValue>
+      <dsig:DigestValue>lCjqYt+9Nablv6Y8SfkxQoNKfz7G7yN6PPy2NFBDqF0=</dsig:DigestValue>
     </hash>
   </file>
   <file name="invoice_db.mdf" size="8388608">
@@ -1236,7 +1236,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>N75iv0jLtVerSuaTwTL+mxQieFx8jCSr//JEjJ6Db1E=</dsig:DigestValue>
+      <dsig:DigestValue>PMQMADgBKcMFbMf9hv5vzohR1ON4LZWdVU+Yrp9lnPk=</dsig:DigestValue>
     </hash>
   </file>
   <file name="invoice_db_log.ldf" size="8388608">
@@ -1245,7 +1245,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>/zJN1+73u9e2riZl3XznQscAh68GdlB/SJrnrh/yf9M=</dsig:DigestValue>
+      <dsig:DigestValue>dJTULBSUMZxN6O5QXA5jp80hVDAAJ4IoR2pyZGSp4og=</dsig:DigestValue>
     </hash>
   </file>
   <file name="SqlServerTypes\readme.htm" size="2369">

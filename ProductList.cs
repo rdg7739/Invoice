@@ -3,6 +3,8 @@ using System.Data;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Runtime.InteropServices;
+using System.Drawing;
+
 namespace Invoice
 {
     public partial class ProductList : ResizeForm
@@ -20,23 +22,28 @@ namespace Invoice
         {
             InitializeComponent();
             db = new DbConnectorClass();
+            SqlDataReader dbReader = db.RunQuery("select Catagory from dbo.Catagory group by Catagory order by CASE Catagory " +
+                            "WHEN 'MEAT' THEN 1 WHEN 'FROZEN' THEN 2 WHEN 'PRODUCE' THEN 3 WHEN 'GROCERY' THEN 4  WHEN 'FRUIT' THEN 5 ELSE 6  END, Catagory");
+            (this.ProductDataView.Columns[4] as DataGridViewComboBoxColumn).Items.Clear();
+            while (dbReader.Read())
+            {
+                (this.ProductDataView.Columns[4] as DataGridViewComboBoxColumn).Items.Add(db.NullToNA(dbReader, "Catagory").Trim());
+                this.CatagoryBox.Items.Add(db.NullToNA(dbReader, "Catagory").Trim());
+            }
+            dbReader.Close();
             GetProductList();
             AddBtns();
         }
         public void GetProductList() {
             try
             {
-                SqlDataReader dbReader = db.RunQuery("select Catagory from dbo.Catagory group by Catagory order by CASE Catagory " +
-                            "WHEN 'MEAT' THEN 1 WHEN 'FROZEN' THEN 2 WHEN 'PRODUCE' THEN 3 WHEN 'GROCERY' THEN 4  WHEN 'FRUIT' THEN 5 ELSE 6  END, Catagory");
-                (this.ProductDataView.Columns[4] as DataGridViewComboBoxColumn).Items.Clear();
-                while (dbReader.Read())
+                String whereStr = "";
+                if(this.CatagoryBox.SelectedItem != null && !this.CatagoryBox.SelectedItem.Equals(""))
                 {
-                    (this.ProductDataView.Columns[4] as DataGridViewComboBoxColumn).Items.Add(db.NullToEmpty(dbReader, "Catagory").Trim());
+                    whereStr = "where Catagory = '" + this.CatagoryBox.SelectedItem+ "'";
                 }
-                dbReader.Close();
-
                 db = new DbConnectorClass();
-                adapter = new SqlDataAdapter("select product_id as No, Product, Price, Quantity, Catagory, SubCatagory, Note from dbo.product order by CASE Catagory " +
+                adapter = new SqlDataAdapter("select product_id as No, Product, Price, Quantity, Catagory, SubCatagory, Note from dbo.product "+ whereStr + " order by CASE Catagory " +
                             "WHEN 'MEAT' THEN 1 WHEN 'FROZEN' THEN 2 WHEN 'PRODUCE' THEN 3 WHEN 'GROCERY' THEN 4  WHEN 'FRUIT' THEN 5 ELSE 6  END, Catagory, SubCatagory", db.GetConnection());
                 // Create one DataTable with one column.
                 DataSet DS = new DataSet();
@@ -127,19 +134,32 @@ namespace Invoice
             {
                 DataGridViewRow row = this.ProductDataView.Rows[rowNum];
                 if (oldValue != catagoryName)
+                {
                     SelectedCatagory(row, catagoryName);
+                    ((DataGridViewComboBoxEditingControl)sender).BackColor = Color.White;
+
+                    DataGridViewComboBoxEditingControl combo = (DataGridViewComboBoxEditingControl)sender;
+                    combo.SelectedIndexChanged -= new EventHandler(DataGridView1_CellValueChanged);
+                    combo.DropDown += new EventHandler(combo_DropDown);
+                    combo.GotFocus += new EventHandler(combo_DropDown);
+                }
             }
         }
+        void combo_DropDown(object sender, EventArgs e)
+        {
+            ((DataGridViewComboBoxEditingControl)sender).BackColor = Color.White;
+        }
+
+
         private void SelectedCatagory(DataGridViewRow row, string catagoryName)
         {
             row.Cells[5].Value = 0;
             (row.Cells[5] as DataGridViewComboBoxCell).Items.Clear();
             if (!row.Cells[4].Value.Equals("")) {
-                SqlDataReader dbReader = db.RunQuery("select SubCatagory from dbo.Catagory where Catagory = '" + catagoryName.Trim() + 
-                    "' group by SubCatagory order by CASE SubCatagory WHEN '' THEN 2 ELSE 1  END, SubCatagory");
+                SqlDataReader dbReader = db.RunQuery("select distinct SubCatagory from dbo.Catagory where Catagory = '" + catagoryName.Trim() + "'");
                 while (dbReader.Read())
                 {
-                    (row.Cells[5] as DataGridViewComboBoxCell).Items.Add(db.NullToEmpty(dbReader, "SubCatagory").Trim());
+                    (row.Cells[5] as DataGridViewComboBoxCell).Items.Add(db.NullToNA(dbReader, "SubCatagory").Trim());
                 }
                 dbReader.Close();
             }
@@ -217,22 +237,22 @@ namespace Invoice
                     {
                         sqlQuery = "INSERT INTO dbo.product " +
                         "(product, price, quantity, note, catagory, subcatagory) VALUES " +
-                        "('" + Product + "', " +
+                        "(N'" + Product + "', " +
                         " '" + Price + "', " +
                         " '" + Quantity + "', " +
-                        " '" + Note + "', " +
-                        " '" + Catagory + "', " +
-                        " '" + SubCatagory + "') ";
+                        " N'" + Note + "', " +
+                        " N'" + Catagory + "', " +
+                        " N'" + SubCatagory + "') ";
                     }
                     else
                     {
                         sqlQuery = "UPDATE dbo.product set " +
-                        "product = '" + Product + "', " +
+                        "product = N'" + Product + "', " +
                         "price = '" + Price + "', " +
                         "quantity = '" + Quantity + "', " +
-                        "Note = '" + Note + "', " +
-                        "Catagory = '" + Catagory + "', " +
-                        "SubCatagory = '" + SubCatagory + "' WHERE product_id = " + productId;
+                        "Note = N'" + Note + "', " +
+                        "Catagory = N'" + Catagory + "', " +
+                        "SubCatagory = N'" + SubCatagory + "' WHERE product_id = " + productId;
                     }
                     db.RunQuery(sqlQuery).Close();
                     // need to close this form after click 'OK' button
@@ -270,6 +290,11 @@ namespace Invoice
                 DataGridViewRow row = this.ProductDataView.Rows[i];
                 SaveProduce(row, true);
             }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GetProductList();
         }
     }
 }

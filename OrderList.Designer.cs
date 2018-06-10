@@ -77,6 +77,7 @@
             this.BuyCheckBox.Text = "Buy Order List";
             this.BuyCheckBox.UseVisualStyleBackColor = true;
             this.BuyCheckBox.CheckedChanged += new System.EventHandler(this.OptionCheckBox_CheckedChanged);
+            this.BuyCheckBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DragTitlePanel);
             // 
             // SellCheckBox
             // 
@@ -91,6 +92,7 @@
             this.SellCheckBox.Text = "Sell Order List";
             this.SellCheckBox.UseVisualStyleBackColor = true;
             this.SellCheckBox.CheckedChanged += new System.EventHandler(this.OptionCheckBox_CheckedChanged);
+            this.SellCheckBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DragTitlePanel);
             // 
             // OptionLbl
             // 
@@ -103,6 +105,7 @@
             this.OptionLbl.Size = new System.Drawing.Size(136, 25);
             this.OptionLbl.TabIndex = 4;
             this.OptionLbl.Text = "Order Option: ";
+            this.OptionLbl.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DragTitlePanel);
             // 
             // Title
             // 
@@ -114,6 +117,7 @@
             this.Title.TabIndex = 1;
             this.Title.Text = "Order List";
             this.Title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Title.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DragTitlePanel);
             // 
             // titlePanel
             // 
@@ -148,10 +152,12 @@
             this.showAllOrderCheckBox.TabIndex = 7;
             this.showAllOrderCheckBox.Text = "Show All Order";
             this.showAllOrderCheckBox.UseVisualStyleBackColor = true;
-            this.showAllOrderCheckBox.CheckedChanged += new System.EventHandler(this.showAllOrderCheckBox_CheckedChanged);
+            this.showAllOrderCheckBox.CheckedChanged += new System.EventHandler(this.ShowAllOrderCheckBox_CheckedChanged);
             // 
             // StoreList
             // 
+            this.StoreList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.StoreList.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StoreList.FormattingEnabled = true;
             this.StoreList.Location = new System.Drawing.Point(301, 11);
@@ -194,6 +200,7 @@
             this.pictureBox2.Size = new System.Drawing.Size(29, 32);
             this.pictureBox2.TabIndex = 3;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DragTitlePanel);
             // 
             // pictureBox1
             // 
@@ -204,6 +211,7 @@
             this.pictureBox1.Size = new System.Drawing.Size(57, 55);
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DragTitlePanel);
             // 
             // reportAction1
             // 
@@ -213,7 +221,6 @@
             this.reportAction1.OwningCollection = null;
             this.reportAction1.Path = null;
             this.reportAction1.ReportServer = null;
-            //this.reportAction1.SiteID = "reportAction1";
             // 
             // OrderList
             // 
